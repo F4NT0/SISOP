@@ -30,10 +30,10 @@ JMPIE|Verifica se um valor de um Registrador é igual que Zero, se for, ele vai 
 ### Operações com valores Diretos
 Nome da Função|Descrição|Sintaxe|Operação
 |---|---|---|---|
-ADDI| Imediatamente soma um valor dentro de um Registrador com um valor entrado|ADDI Rd,k|Rd <- Rd + k
-SUBI| Imediatamente subtrai um valor dentro de um Registrador com um valor entrado|SUBI Rd,k|Rd <- Rd - k
-ANDI| Imediatamente faz uma Operação de AND com um valor entrado, armazenando o resultado booleano(0 ou 1) no Registrador|ANDI Rd,k| Rd <- Rd AND k
-ORI | Imediatamente faz uma Operação de OR com um valor entrado, armazenando o Resultado Booleano(0 ou 1) no Registrador| ORI Rd,k|Rd <- Rd OR k
+ADDI| Imediatamente soma um valor dentro de um Registrador com um valor entrado|ADDI Rd,k|Rd <- <br> Rd + k
+SUBI| Imediatamente subtrai um valor dentro de um Registrador com um valor entrado|SUBI Rd,k|Rd <- <br> Rd - k
+ANDI| Imediatamente faz uma Operação de AND com um valor entrado, armazenando o resultado booleano(0 ou 1) no Registrador|ANDI Rd,k| Rd <- <br> Rd AND k
+ORI | Imediatamente faz uma Operação de OR com um valor entrado, armazenando o Resultado Booleano(0 ou 1) no Registrador| ORI Rd,k|Rd <- <br> Rd OR k
 LDI | Imediatamente Carrega um valor entrado para dentro de um Registrador|LDI Rd,k|Rd <- k
 LDD | Imediatamente Carregamos um valor vindo de uma Posição de Memória Específica| LDD Rd,[A]|Rd <- [A]
 STD | Imediatamente Colocamos um valor de um Registrador dentro de uma Posição da Memória|STD [A],Rs|[A] <- Rs
@@ -47,4 +47,10 @@ MULT| Multiplica o valor armazenado entre dois Registradores no primeiro Registr
 AND | Faz a Operação Lógica AND|AND Rd,Rs|Rd <- <br> Rd AND Rs
 OR  | Faz a Operação Lógica OR|OR Rd,Rs| Rd <- <br> Rd OR Rs
 LDX | Pega uma Posição do vetor por um valor de um Registrador e salva o valor em outro Registrador|LDX Rd,[Rs]|Rd <- [Rs]
-STX | 
+STX | Adiciona o valor do Registrador em uma Posição da Memória|STX [Rd],Rs|[Rd] <- Rs
+
+### Operações em um Registrador
+Nome da Função|Descrição|Sintaxe|Operação
+|---|---|---|---|
+NOT | Operação Lógica NOT | NOT Rd | Rd <- NOT Rd
+SHL | Movimenta o valor de um Registrador para a Esquerda| SHL Rd | Rd(n+1) <- Rd(n), Rd(0) <- 0
