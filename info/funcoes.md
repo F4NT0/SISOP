@@ -53,4 +53,7 @@ STX | Adiciona o valor do Registrador em uma Posição da Memória|STX [Rd],Rs|[
 Nome da Função|Descrição|Sintaxe|Operação
 |---|---|---|---|
 NOT | Operação Lógica NOT | NOT Rd | Rd <- NOT Rd
-SHL | Movimenta o valor de um Registrador para a Esquerda| SHL Rd | Rd(n+1) <- Rd(n), Rd(0) <- 0
+SHL | Movimenta o valor de um registrador para o próximo registrador(ex: de R1 para o R2)| SHL Rd | Rd(n+1) <- Rd(n) <br> Rd(0) <- 0
+SHR | Movimenta o valor de um registrador para o registrador anterior(ex: de R2 para o R1)| SHR Rd| Rd(n) <- Rd(n+1) <br> Rd(7) <- 0
+SWAP| Movimenta os valores dos primeiros registradores para os ultimos|SWAP Rd| Rd7 <- Rd3 <br> Rd6 <- Rd2 <br> Rd5 <-  Rd1 <br> Rd4 <- Rd0
+STOP| Para o programa
