@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9e30d456-8596-4af1-ab23-f428af097938" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Java/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SISOP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SISOP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Zao1nMbUx06LWFz97Cs5oW568H" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="SISOP" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9e30d456-8596-4af1-ab23-f428af097938" name="Default Changelist" comment="" />
+      <created>1585086352679</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585086352679</updated>
+      <workItem from="1585086354375" duration="335000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="516" y="189" key="#Main" timestamp="1585086683498">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="516" y="189" key="#Main/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086683498" />
+    <state x="440" y="177" key="#Project_Structure" timestamp="1585086528213">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="440" y="177" key="#Project_Structure/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086528213" />
+    <state x="304" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585086595571">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="304" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086595571" />
+    <state x="577" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1585086444013">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="577" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086444013" />
+    <state x="689" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585086366039">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="689" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086366039" />
+    <state x="328" y="93" key="SettingsEditor" timestamp="1585086637530">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="328" y="93" key="SettingsEditor/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086637530" />
+  </component>
+</project>
