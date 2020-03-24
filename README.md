@@ -16,3 +16,6 @@
         * O processador possui um contador de Instruções (PC) que anda pelas linhas do código
         * Oito Registradores, contados de 0 á 7
         * O CPU possui as Seguintes [Funções](./info/funcoes.md)
+    
+    * **EXPLICAÇÃO DE COMO A VM DEVE SER MONTADA**
+        * Toda a info passada pelo professor está [Aqui](./info/resolucao.md)
