@@ -3,7 +3,7 @@
 1) Estrutura de Armazenamento
     * Turma definiu que cada palavra da memória é um objeto com os atributos necessários para codificar
     * Os Atributos são:
-        * **OPCODE** (anda pelas linhas de código)
+        * **OPCODE** (nome da função)
         * Registrador1 que pode ser de 1 á 8
         * Registrador2 que pode ser de 1 á 8
         * Parametro **k** ou **A** (k é um valor e A é pos. do vetor)
