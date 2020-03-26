@@ -41,7 +41,7 @@ public class Shell implements KeyListener {
         output.setFocusable(false);
         output.setLineWrap(true);
         output.setEditable(false);
-        output.setFont(new Font("Serif", Font.ITALIC, 14));
+        output.setFont(new Font("Courier", Font.PLAIN, 16));
         
         // Área de Entrada de texto
         input = new JTextField();
@@ -51,7 +51,7 @@ public class Shell implements KeyListener {
         input.setFocusable(true);
         input.addKeyListener(this);
         input.setFocusTraversalKeysEnabled(false);
-        input.setFont(new Font("Serif", Font.BOLD, 14));
+        input.setFont(new Font("Courier", Font.PLAIN, 16));
 
         f=new JFrame();
         f.setSize(930,496);
@@ -108,7 +108,7 @@ public class Shell implements KeyListener {
             }
             output.setText("");
             for(int i = 0 ; i < allFiles.size() ; i++){
-                output.append("> Arquivo: " + allFiles.get(i) + "\n");
+                output.append("M4TRIX > Arquivo: " + allFiles.get(i) + "\n");
             }
             
         }
