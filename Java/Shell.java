@@ -37,6 +37,7 @@ public class Shell implements KeyListener {
         output.setBounds(0,0,930,400);//(posicaoX,posicaoY,largura,altura)
         output.setBackground(Color.black);
         output.setForeground(Color.green);
+        output.setText("M4TRIX > ");
         output.setFocusable(false);
         output.setLineWrap(true);
         output.setEditable(false);
@@ -105,13 +106,14 @@ public class Shell implements KeyListener {
             }catch(FileNotFoundException e){
                 output.setText("> Programa não encontrado");
             }
+            output.setText("");
             for(int i = 0 ; i < allFiles.size() ; i++){
                 output.append("> Arquivo: " + allFiles.get(i) + "\n");
             }
             
         }
         if(text.equals("clear")){
-            output.setText("> ");
+            output.setText("M4TRIX > ");
         }
     }
 
