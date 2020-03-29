@@ -38,13 +38,6 @@ public class ObjectCreator {
                     //adiciona o OBJETO na lista de FUNCOES
                     funcoes.add(f);
 
-                    // if(split[1].length() != 0){
-                    // f.setR1(Integer.parseInt(split[1]));
-                    // }
-
-                    // if(split[2].length() != 0){
-                    // f.setR2(Integer.parseInt(split[2]));
-                    // }
 
                 } else {
                     break;

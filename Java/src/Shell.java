@@ -24,6 +24,7 @@ public class Shell implements KeyListener {
     private JTextArea output;
     private JTextField input;
     private JFrame f;
+    private List<String> allFiles = new ArrayList<String>();
 
 /***************************************
  *    TELA DO TERMINAL COM JAVA SWING
@@ -53,6 +54,18 @@ public class Shell implements KeyListener {
         input.setFocusTraversalKeysEnabled(false);
         input.setFont(new Font("Courier", Font.PLAIN, 16));
 
+        //Lendo o arquivo com nome de programas
+        try{
+            File filename = new File("programas/programs.txt");
+            Scanner file = new Scanner(filename);
+            while(file.hasNextLine()){
+                allFiles.add(file.next());
+            }
+            file.close();
+        }catch(FileNotFoundException e){
+            output.setText("> Programa não encontrado");
+        }
+
         f=new JFrame();
         f.setSize(930,496);
         f.getContentPane().setBackground(Color.gray);
@@ -76,6 +89,7 @@ public class Shell implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             final String saida = input.getText();
             commands(saida);
+            input.setText("");
         }
     }
 
@@ -95,21 +109,12 @@ public class Shell implements KeyListener {
             f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
         }
         if(text.equals("ls")) {
-            List<String> allFiles = new ArrayList<String>();
-            try{
-                File filename = new File("programas/programs.txt");
-                Scanner file = new Scanner(filename);
-                while(file.hasNextLine()){
-                    allFiles.add(file.next());
-                }
-                file.close();
-            }catch(FileNotFoundException e){
-                output.setText("> Programa não encontrado");
-            }
-            output.setText("");
+            output.setText(""); // Para limpar o terminal
             for(int i = 0 ; i < allFiles.size() ; i++){
                 output.append("M4TRIX > Arquivo: " + allFiles.get(i) + "\n");
+                output.append("Numero de Arquivos: " + allFiles.size() + "\n");
             }
+            input.setText("");
             
         }
         if(text.equals("clear")){
@@ -118,11 +123,22 @@ public class Shell implements KeyListener {
         if(text.substring(0,4).equals("take")){
             String nomes[] = text.split(" ");
             String arquivo = nomes[1];
-            ObjectCreator createObject = new ObjectCreator();
-            createObject.readAndCreateFunctions(arquivo);
-            ArrayList<Funcao> saida = createObject.getFuncoes();
-            for(Funcao function : saida){
-                output.append((function.getOPCODE()).toString() + "\n");
+            if(allFiles.contains(arquivo) == false){
+                output.append("M4TRIX > Arquivo Não Encontrado! \n");
+                input.setText("");
+            }
+            else{
+                ObjectCreator createObject = new ObjectCreator();
+                createObject.readAndCreateFunctions(arquivo);
+                ArrayList<Funcao> saida = createObject.getFuncoes();
+                output.setText("");
+                output.append("");
+                output.append("Lendo arquivo " + arquivo + ".... \n");
+                output.append("");
+                for(Funcao function : saida){
+                    output.append("M4TRIX > " + (function.getOPCODE()).toString() + "\n");
+                }
+                input.setText("");
             }
 
         }
