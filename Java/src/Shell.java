@@ -1,5 +1,3 @@
-package src;
-
 /**********************************************
 * SHELL DE INTERAÇÃO DO USUÁRIO COM O PROGRAMA
 **********************************************/
@@ -93,10 +91,10 @@ public class Shell implements KeyListener {
      *******************************************/
 
     public void commands(String text){
-        if (text.equals("exit")) {
+        if(text.equals("exit")) {
             f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
         }
-        if (text.equals("ls")) {
+        if(text.equals("ls")) {
             List<String> allFiles = new ArrayList<String>();
             try{
                 File filename = new File("programas/programs.txt");
@@ -116,6 +114,17 @@ public class Shell implements KeyListener {
         }
         if(text.equals("clear")){
             output.setText("M4TRIX > ");
+        }
+        if(text.substring(0,4).equals("take")){
+            String nomes[] = text.split(" ");
+            String arquivo = nomes[1];
+            ObjectCreator createObject = new ObjectCreator();
+            createObject.readAndCreateFunctions(arquivo);
+            ArrayList<Funcao> saida = createObject.getFuncoes();
+            for(Funcao function : saida){
+                output.append((function.getOPCODE()).toString() + "\n");
+            }
+
         }
     }
 

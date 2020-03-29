@@ -1,5 +1,3 @@
-// package src;
-
 /**********************************
  * LEITOR DE ARQUIVOS PARA OBJETOS
 **********************************/
@@ -9,22 +7,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
-// Imports Internos
-
-public class Main {
+public class ObjectCreator {
 
     // Variáveis Globais
 
     private static BufferedReader buffer;
 
-    private static String PATH = "prog.txt";
-
     private static ArrayList<Funcao> funcoes = new ArrayList<Funcao>();
 
     // Criador dos Objetos
-    public static void readAndCreateFunctions(String path) {
-        setup();
+    public void readAndCreateFunctions(String path) {
+        setup(path);
         try {
             //File myObj = new File(path);
             while (true) {
@@ -64,19 +57,15 @@ public class Main {
         }
     }
 
-    // Main
-    public static void main(String[] args) {
-        readAndCreateFunctions(PATH);
-
-        System.out.println(funcoes.size());
-
-        for (Funcao funcao : funcoes) {
-            System.out.println(funcao);
-        }
+    
+    // Setup do caminho
+    public void setup(String path) {
+        Reader reader = new Reader();
+        buffer = reader.setupFilePath(path);
     }
 
-    public static void setup() {
-        Reader reader = new Reader();
-        buffer = reader.setupFilePath(PATH);
-    }   
+    // Para chamar o Arraylist externamente
+    public ArrayList<Funcao> getFuncoes(){
+        return funcoes;
+    }
 }
