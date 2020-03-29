@@ -1,3 +1,8 @@
+// package src;
+
+/**************************************
+ * FUNÇÕES PARA OS OBJETOS DAS FUNÇÕES
+ *************************************/
 
 public class Funcao {
     private String OPCODE ;

@@ -1,13 +1,20 @@
+// package src;
 
+/**********************************
+ * LEITOR DE ARQUIVOS PARA OBJETOS
+**********************************/
 
+// Imports Externos
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+
+// Imports Internos
 
 public class Main {
+
+    // Variáveis Globais
 
     private static BufferedReader buffer;
 
@@ -15,34 +22,16 @@ public class Main {
 
     private static ArrayList<Funcao> funcoes = new ArrayList<Funcao>();
 
-    public static void main(String[] args) {
-        readAndCreateFunctions(PATH);
-
-        System.out.println(funcoes.size());
-
-        for (Funcao funcao : funcoes) {
-            System.out.println(funcao.getOPCODE());
-        }
-    }
-
-    public static void setup() {
-        Reader reader = new Reader();
-        buffer = reader.setupFilePath(PATH);
-    }
-
+    // Criador dos Objetos
     public static void readAndCreateFunctions(String path) {
-
         setup();
-
         try {
-            File myObj = new File(path);
-
+            //File myObj = new File(path);
             while (true) {
                 String line = buffer.readLine();
                 if (line != null) {
                     String split[] = line.split(" ");
                     System.out.println(split.length);
-
 
                     // cria objeto Funcao
                     Funcao f = new Funcao();
@@ -74,4 +63,20 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+    // Main
+    public static void main(String[] args) {
+        readAndCreateFunctions(PATH);
+
+        System.out.println(funcoes.size());
+
+        for (Funcao funcao : funcoes) {
+            System.out.println(funcao);
+        }
+    }
+
+    public static void setup() {
+        Reader reader = new Reader();
+        buffer = reader.setupFilePath(PATH);
+    }   
 }

@@ -1,3 +1,9 @@
+// package src;
+
+/*******************
+* LEITOR DE ARQUIVOS 
+********************/
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +18,7 @@ public class Reader {
         try {
             File currentDirFile = new File("");
             String separator = System.getProperty("file.separator");
-            FILE_PATH = currentDirFile.getAbsolutePath()+separator + "files" +separator + filename;
+            FILE_PATH = currentDirFile.getAbsolutePath()+separator + "programas" +separator + filename;
 
             System.out.println(FILE_PATH);
 
