@@ -8,6 +8,6 @@ class Cpu {
     private int[] registradores =  new int[8];
 
     public Cpu() {
-
+        
     }
 }
