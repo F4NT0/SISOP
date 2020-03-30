@@ -8,4 +8,4 @@ Nome do Arquivo|Para que serve
 **ObjectCreator.java**| Transforma cada linha lida do Arquivo em Objetos
 **Memory.java**| Onde se encontra todas as Funções de Gerênciamento da Memória
 **CPU**| Onde se encontram os Registradores e faz a interação entre as Funções Lidas com as Funções nos Objetos criados
-****|
+****|   
