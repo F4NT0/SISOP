@@ -3,11 +3,15 @@ import java.util.ArrayList;
 
 final class Memory <T> {
 
-    private static Integer memorySize = 1024;
+    private final Integer memorySize = 1024;
     private List <T> memoryArray;
+    private Integer programCounter;
+
+
 
     public Memory() {
         memoryArray = new ArrayList<>(memorySize);
+        programCounter = 0;
     }
 
     public void set (int index, T value) {
