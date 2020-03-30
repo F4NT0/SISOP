@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java/src/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/CPU.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/Memory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/src/ProcessorRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/OPCODE.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +43,14 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Memory">
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="SISOP" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SISOP" />
@@ -59,6 +67,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.Memory" />
         <item itemvalue="Application.Main" />
       </list>
@@ -76,6 +85,7 @@
       <updated>1585086352679</updated>
       <workItem from="1585086354375" duration="335000" />
       <workItem from="1585514805480" duration="3815000" />
+      <workItem from="1585592890462" duration="3567000" />
     </task>
     <servers />
   </component>
@@ -107,5 +117,13 @@
       <screen x="0" y="23" width="1680" height="978" />
     </state>
     <state x="328" y="93" key="SettingsEditor/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086637530" />
+    <state x="397" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1585592890705">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="397" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1585592890705" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1585609182129">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1585609182129" />
   </component>
 </project>
