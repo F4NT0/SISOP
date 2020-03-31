@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
     public void print(ArrayList<Funcao> vetor){
         System.out.println("Imprimindo o Primeiro Objeto");
-        System.out.println(vetor.get(1).getOPCODE());
+        System.out.println(vetor.get(1).getOpcode());
         System.out.println(vetor.get(1).getK());
-        System.out.println(vetor.get(1).getR1());
-        System.out.println(vetor.get(1).getR2());
+        System.out.println(vetor.get(1).getRs());
+        System.out.println(vetor.get(1).getRd());
+        System.out.println(vetor.get(1).getRc());
     }
 
     public static void main(String[] args){
@@ -26,7 +27,9 @@ import java.util.ArrayList;
         ArrayList<Funcao> vetorArquivo = new ArrayList<>();
         Teste verify = new Teste();
         vetorArquivo = verify.createObjects();
-        System.out.println(vetorArquivo.get(1).getOPCODE());
+        // System.out.println(vetorArquivo.get(1).getOpcode());
+        // verify.print(vetorArquivo);
+        System.out.println(vetorArquivo.size());
         
     }
  }
