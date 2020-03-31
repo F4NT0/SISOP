@@ -5,14 +5,15 @@
 
 public class SystemFunctions {
 
-    private int pc;
+    private int pc; // Program Counter
     private int [] register = {0, 0, 0, 0, 0, 0, 0, 0};
-    private String [] indexRegister = {"R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8"};
+    private String [] indexRegister = {"R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7"};
 
     public SystemFunctions() {
         this.pc = 0;
     }
 
+    // -------------------- Verificação do OPCODE com 2 Registradores--------------------------- 
     public void exec(String opcode, String param1, String param2, int[] memory) {
         switch(opcode) {
           case "JMPIG" : 
@@ -53,12 +54,15 @@ public class SystemFunctions {
             break;
           case "STX" :
             STX(mprf(param1), register[findRegisterIndex(param2)], memory);
-            break;  
-          default :
+            break;
+          case "STOP":
+            break;
+          default:
             break;        
         }
     }
 
+    // ------------------ Funções de movimentação do PC ------------------------------
     public void exec(String opcode, String param) {
         switch (opcode) {
             case "JMP" :
@@ -71,6 +75,7 @@ public class SystemFunctions {
         }
     }
 
+    // ------------------------ Função para encontrar o Registrador ---------------------
     private int findRegisterIndex(String register) {
         int index = 9;
         for(int i = 0; i <= indexRegister.length - 1; i++) {
@@ -94,6 +99,11 @@ public class SystemFunctions {
             return i;
         }
     }
+
+    /**************************************
+    *  LISTA DE FUNÇÕES EXERCIDOS PELA VM
+    **************************************/
+
 
     private void JMP(int k) {
         pc = k;

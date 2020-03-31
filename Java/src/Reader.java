@@ -18,7 +18,7 @@ public class Reader {
             String separator = System.getProperty("file.separator");
             FILE_PATH = currentDirFile.getAbsolutePath()+separator + "programas" +separator + filename;
 
-            System.out.println(FILE_PATH);
+            System.out.println("Arquivo Lido: " + FILE_PATH);
 
             FileReader filereader = new FileReader(FILE_PATH);
             BufferedReader buffer = new BufferedReader(filereader);
