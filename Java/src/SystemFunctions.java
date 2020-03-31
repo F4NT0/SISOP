@@ -24,63 +24,79 @@ public class SystemFunctions {
         }
     }
 
-    public void exec(String opcode, String param1, String param2, int[] memory) {
+    public void execDirectValues(String opcode, String param1, int param2, int[] memory){
+        switch(opcode){
+            case "ADDI" : 
+            ADDI(findRegisterIndex(param1), param2);
+            break;
+            case "SUBI" : 
+            SUBI(findRegisterIndex(param1), param2);
+            break;
+            case "LDI" :
+            LDI(findRegisterIndex(param1), param2);
+            break;
+        }
+    }
+
+    public void execVectorOperations(String opcode, String rd , int a, int[] memory){
+        switch(opcode){
+            case "LDD" : 
+                LDD(findRegisterIndex(rd), a, memory);
+                break;
+            case "STD" : 
+                STD(a, findRegisterIndex(rd), memory);
+                break;
+        }
+    }
+
+    public void execRegisterOperations(String opcode, String rd , String rs, int[] memory){
+        switch(opcode){
+            case "ADD" :
+                ADD(findRegisterIndex(rd), findRegisterIndex(rs));
+                break;
+            case "SUB" : 
+                SUB(findRegisterIndex(rd), Integer.parseInt(rs));
+                break;
+            case "MULT" : 
+                MULT(findRegisterIndex(rd), findRegisterIndex(rs));
+                break;
+        }
+    }
+
+    public void execJumpOperations(String opcode, String rs, String rc, int[] memory) {
         switch(opcode) {
           case "JMPIG" : 
-            JMPIG(findRegisterIndex(param1), findRegisterIndex(param2));
+            JMPIG(findRegisterIndex(rs), findRegisterIndex(rc));
             break;
           case "JMPIL" : 
-            JMPIL(findRegisterIndex(param1), findRegisterIndex(param2));
+            JMPIL(findRegisterIndex(rs), findRegisterIndex(rc));
             break;
           case "JMPIE" :
-            JMPIE(findRegisterIndex(param1), findRegisterIndex(param2));
+            JMPIE(findRegisterIndex(rs), findRegisterIndex(rc));
             break;
-          case "ADDI" : 
-            ADDI(findRegisterIndex(param1), Integer.parseInt(param2));
-            break;
-          case "SUBI" : 
-            SUBI(findRegisterIndex(param1), Integer.parseInt(param2));
-            break;
-          case "LDI" :
-            LDI(findRegisterIndex(param1), Integer.parseInt(param2));
-            break;
-          case "LDD" : 
-            LDD(findRegisterIndex(param1), mprf(param2), memory);
-            break;
-          case "STD" : 
-            STD(mprf(param1), findRegisterIndex(param2), memory);
-            break;
-          case "ADD" :
-            ADD(findRegisterIndex(param1), findRegisterIndex(param2));
-            break;
-          case "SUB" : 
-            SUB(findRegisterIndex(param1), Integer.parseInt(param2));
-            break;
-          case "MULT" : 
-            MULT(findRegisterIndex(param1), findRegisterIndex(param2));
-            break;
-          case "LDX" :
-            LDX(findRegisterIndex(param1), mprf(param2), memory);
-            break;
-          case "STX" :
-            STX(mprf(param1), findRegisterIndex(param2), memory);
-            break;  
           default :
             break;        
         }
     }
 
-    // ------------------ Funções de movimentação do PC ------------------------------
-    public void exec(String opcode, String param) {
-        switch (opcode) {
-            case "JMP" :
-                JMP(Integer.parseInt(param));
-                break;
-            case "JMPI" :
-                JMPI(register[findRegisterIndex(param)]);
-            default:
-                break;
+    public void execRegisterVectorOperations(String opcode, String rd, String rs, int[] memory ){
+        switch(opcode){
+            case "LDX" :
+                LDX(findRegisterIndex(rd), rs, memory);
+            break;
+            case "STX" :
+                STX(rd, findRegisterIndex(rs), memory);
+            break;  
         }
+    }
+
+    // ------------------ Funções de movimentação do PC ------------------------------
+    public void execJMPI(String opcode, String param) {
+        JMPI(register[findRegisterIndex(param)]);   
+    }
+
+    public void execJMP(String opcode, int param){
+        JMP(param);
     }
 
     // ------------------------ Função para encontrar o Registrador ---------------------
@@ -95,19 +111,7 @@ public class SystemFunctions {
         return index;
     }
 
-    //Nome de metodo temporario
-    private int mprf(String param) {
-        String [] value = param.split("\\[|\\]");
-        int i;
-        try {
-            i = Integer.parseInt(value[1]);
-            return i;
-        } catch (Exception e) {
-            i = findRegisterIndex(value[1]);
-            return i;
-        }
-    }
-
+   
     /**************************************
     *  LISTA DE FUNÇÕES EXERCIDOS PELA VM
     **************************************/
@@ -196,12 +200,14 @@ public class SystemFunctions {
         pc++;
     }
 
-    private void LDX(int rd, int rs, int[] memory) {
+    // Precisa fazer com que ele encontre na memória
+    private void LDX(String rd, String rs, int[] memory) {
         register[rd]= memory[register[rs]];
         pc++;
     }
 
-    private void STX(int rd, int rs, int[] memory) {
+    // Precisa fazer com que ele encontre na memória
+    private void STX(String rd, String rs, int[] memory) {
         memory[register[rd]] = register[rs];
         pc++;
     }

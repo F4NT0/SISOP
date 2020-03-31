@@ -56,13 +56,18 @@ public class ObjectCreator {
                         f.setA(valueA);
                     }
 
-                    // // Atribui o k ao Objeto (JMP)
+                    // Atribui o k ao Objeto (JMP)
                     if(isNumeric(split[1])){
                         int valueK = Integer.parseInt(String.valueOf(split[1]));
                         f.setA(valueK);
                     }
 
-                    // // Atribui o k ao Objeto
+                    // Atribui o Rs ao Objeto (JMPI)
+                    if((split[1].charAt(0) == 'R') && (split[2] == null)){
+                        f.setRs(split[1]);
+                    }
+
+                    // Atribui o k ao Objeto
                     if(isNumeric(split[2])){
                         int valueK = Integer.parseInt(String.valueOf(split[2]));
                         f.setK(valueK);
@@ -77,13 +82,13 @@ public class ObjectCreator {
 
                     // // Atribui o Rd se ele for uma posição do Vetor (LDX STX)
                     if((split[1].charAt(0) == '[') && (split[1].charAt(1) == 'R')){
-                        f.setRd(split[1]);
+                        f.setRd(split[1].substring(1,2));
                         f.setRs(split[2]);
                     }
 
                     if((split[2].charAt(0) == '[') && (split[2].charAt(1) == 'R')){
                         f.setRd(split[1]);
-                        f.setRs(split[2]);
+                        f.setRs(split[2].substring(1,2));
                     }
 
                     // // Atribui o Rd Rs se as Funções forem (ADD SUB MULT AND OR)

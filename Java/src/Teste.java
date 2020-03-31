@@ -27,9 +27,19 @@ import java.util.ArrayList;
         ArrayList<Funcao> vetorArquivo = new ArrayList<>();
         Teste verify = new Teste();
         vetorArquivo = verify.createObjects();
-        // System.out.println(vetorArquivo.get(1).getOpcode());
-        // verify.print(vetorArquivo);
-        System.out.println(vetorArquivo.size());
+
+        // Testando as Funções
+        SystemFunctions testeFunc = new SystemFunctions();
+
+        for(int i = 0 ; i < vetorArquivo.size() ; i++){
+            if(vetorArquivo.get(i).getOpcode().equals("JMP")){
+                testeFunc.execJMP(vetorArquivo.get(i).getOpcode(), vetorArquivo.get(i).getK());                
+            }
+            if(vetorArquivo.get(i).getOpcode().equals("JMPI")){
+                testeFunc.execJMPI(vetorArquivo.get(i).getOpcode(),vetorArquivo.get(i).getRs());
+            }
+            
+        }
         
     }
  }
