@@ -87,10 +87,10 @@ public class SystemFunctions {
     public void execRegisterVectorOperations(String opcode, String rd, String rs, Memory memory ){
         switch(opcode){
             case "LDX" :
-                LDX(findRegisterIndex(rd), rs, memory);
+                LDX(rd, rs, memory);
             break;
             case "STX" :
-                STX(rd, findRegisterIndex(rs), memory);
+                STX(rd, rs, memory);
             break;  
         }
     }
