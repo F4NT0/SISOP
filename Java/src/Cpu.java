@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /************************
  * CPU DA MÁQUINA VIRTUAL
@@ -166,7 +167,16 @@ public class Cpu{
     }
 
 
+    public void testMemory(){
+        List<Object> teste = memory.array();
+        for(int i = 0 ; i <= 14 ; i++){
+            System.out.println("Opcode na memória: " + teste.get(i).toString());
+        }
+        
+    }
+
     public void startReading(){
+        // Teste se o programa está na memória
         
     }
 
