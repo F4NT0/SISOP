@@ -1,27 +1,31 @@
 /**************************************
- * FUNÇÕES PARA OS OBJETOS DAS FUNÇÕES
+ * FUNÇÕES PaRa OS OBJETOS DaS FUNÇÕES
  *************************************/
 
 public class Funcao {
-    private String OPCODE ;
-    private int R1;
-    private int R2;
+    private String opcode ;
+    private String rs;
+    private String rc;
+    private String rd;
     private int k;
+    private int a;
 
     public Funcao() {
-        this.OPCODE = "";
-        this.R2 = 0;
-        this.R1 = 0;
+        this.opcode = "";
+        this.rs = "";
+        this.rc = "";
+        this.rd = "";
         this.k = 0;
+        this.a = 0;
     }
 
    
 
     /**
-     * @return the oPCODE
+     * @return the opcode
      */
-    public String getOPCODE() {
-        return OPCODE;
+    public String getOpcode() {
+        return opcode;
     }
 
     /**
@@ -32,39 +36,60 @@ public class Funcao {
     }
 
     /**
-     * @return the r1
+     * @return the Register Source
      */
-    public int getR1() {
-        return R1;
+    public String getRs() {
+        return rs;
     }
 
     /**
-     * @return the r2
+     * @return the Register Comparable
      */
-    public int getR2() {
-        return R2;
+    public String getRc() {
+        return rc;
+    }
+
+    /**
+     * @return the Register Destiny
+     */
+    public String getRd(){
+        return rd;
+    }
+
+    /**
+     * @return the Position from an array
+     */
+    public int getA(){
+        return a;
     }
 
 
     /**
-     * @param oPCODE the oPCODE to set
+     * @param opcode the opcode to set
      */
-    public void setOPCODE(String oPCODE) {
-        this.OPCODE = oPCODE;
+    public void setOpcode(String opcode) {
+        this.opcode = opcode;
     }
 
     /**
-     * @param r1 the r1 to set
+     * @param rs the rs to set
      */
-    public void setR1(int r1) {
-        R1 = r1;
+    public void setRs(String rs) {
+        this.rs = rs;
     }
 
     /**
-     * @param r2 the r2 to set
+     * @param rc the rc to set
      */
-    public void setR2(int r2) {
-        R2 = r2;
+    public void setRc(String rc) {
+        this.rc = rc;
+    }
+
+    /**
+     * @param rd the rd
+     */
+    public void setRd(String rd){
+        this.rd = rd;
     }
 
     /**
@@ -72,5 +97,12 @@ public class Funcao {
      */
     public void setK(int k) {
         this.k = k;
+    }
+
+    /**
+     * @param a the a to set
+     */
+    public void setA(int a){
+        this.a = a;
     }
 }

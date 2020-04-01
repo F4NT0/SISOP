@@ -23,7 +23,7 @@ Nome da Função|Descrição|Sintaxe|Operação
 |---|---|---|---|
 JMP|Envia o PC para uma posição específica|JMP k|PC <- k
 JMPI|Envia o PC para uma posição armazenada em um Registrador|JMPI Rs|PC <- Rs
-JMPIG|Verifica se um valor de um Registrador é maior que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIG Rs,Rc| if Rs > 0 <br> then <br> PC <- Rs <br> Else <br> PC <- PC+1
+JMPIG|Verifica se um valor de um Registrador é maior que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIG Rs,Rc| if Rs > 0 <br> then <br> PC <- Rc <br> Else <br> PC <- PC+1
 JMPIL|Verifica se um valor de um Registrador é menor que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIL Rs,Rc| if Rs < 0 <br> then <br> PC -< Rs <br> Else <br> PC <- PC+1
 JMPIE|Verifica se um valor de um Registrador é igual que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIE Rs,Rc| if Rs = 0 <br> then <br> PC <- Rs <br> Else <br> PC <- PC+1
 

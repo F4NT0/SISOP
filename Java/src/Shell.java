@@ -25,6 +25,7 @@ public class Shell implements KeyListener {
     private JTextField input;
     private JFrame f;
     private List<String> allFiles = new ArrayList<String>();
+    Cpu cpu = new Cpu();
 
 /***************************************
  *    TELA DO TERMINAL COM JAVA SWING
@@ -128,16 +129,10 @@ public class Shell implements KeyListener {
                 input.setText("");
             }
             else{
-                ObjectCreator createObject = new ObjectCreator();
-                createObject.readAndCreateFunctions(arquivo);
-                ArrayList<Funcao> saida = createObject.getFuncoes();
                 output.setText("");
-                output.append("");
                 output.append("Lendo arquivo " + arquivo + ".... \n");
                 output.append("");
-                for(Funcao function : saida){
-                    output.append("M4TRIX > " + (function.getOPCODE()).toString() + "\n");
-                }
+                cpu.loadProgram(arquivo);
                 input.setText("");
             }
 
