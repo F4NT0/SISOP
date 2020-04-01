@@ -35,10 +35,10 @@ public class SystemFunctions {
             ADDI(rd, k);
             break;
             case "SUBI" : 
-            SUBI(findRegisterIndex(rd), k);
+            SUBI(rd, k);
             break;
             case "LDI" :
-            LDI(findRegisterIndex(rd), k);
+            LDI(rd, k);
             break;
         }
     }
@@ -46,7 +46,7 @@ public class SystemFunctions {
     public void execVectorOperations(String opcode, String rd , int a, Memory memory){
         switch(opcode){
             case "LDD" : 
-                LDD(findRegisterIndex(rd), a, memory);
+                LDD(rd, a, memory);
                 break;
             case "STD" : 
                 STD(a, findRegisterIndex(rd), memory);
@@ -122,9 +122,9 @@ public class SystemFunctions {
     **************************************/
 
 
+    // OK
     private void JMP(int k) {
         pc = k;
-        // return pc;
     }
 
     private void JMPI(int rs) {
@@ -165,6 +165,7 @@ public class SystemFunctions {
         pc++;
     }
 
+    // UPDATED
     private void ADDI(String rd, Integer k) {
         ObjectRegister registerValue = cpu.getValue(rd);
         int oldValue = (Integer) registerValue.getValue();
@@ -173,18 +174,25 @@ public class SystemFunctions {
         pc++;
     }
 
-    private void SUBI(int rd, int k) {
-        register[rd] = register[rd] - k;
+    // UPDATED
+    private void SUBI(String rd, int k) {
+        ObjectRegister registerValue = cpu.getValue(rd);
+        int oldValue = (Integer) registerValue.getValue();
+        registerValue.setValue(oldValue - k);
         pc++;
     }
 
-    private void LDI(int rd, int k) {
-        register[rd] = k;
+    // UPDATED
+    private void LDI(String rd, int k) {
+        cpu.setRegValue(k, rd);
         pc++;
     }
 
-    private void LDD(int rd, int a, int[] memory) {
-        register[rd] = memory[register[a]];
+    // UPDATED
+    private void LDD(String rd, int a, Memory memory) {
+        ObjectRegister object = memory.getValue(a);
+        Object value = object.getValue();
+        cpu.setRegValue(value, rd);
         pc++;
     }
 
@@ -208,7 +216,7 @@ public class SystemFunctions {
         pc++;
     }
 
-    // Precisa fazer com que ele encontre na memória
+    
     private void LDX(String rd, String rs, Memory memory) {
         ObjectRegister rsObject = cpu.getValue(rs);
         Object value = rsObject.getValue();

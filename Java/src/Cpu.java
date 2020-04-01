@@ -10,7 +10,7 @@ public class Cpu{
     private Memory memory = new Memory();
 
 
-    public Cpu(){
+    public Cpu(){ // Valores começam em -1 para não 
         this.r0 = -1;
         this.r1 = -1;
         this.r2 = -1;
@@ -90,7 +90,7 @@ public class Cpu{
     }
 
     //---------------- Armazena um valor de um Registrador na Memória -----------------
-    public void setRegValue(Object value, String register){
+    public void setRegValue(Object value, String register){ 
         ObjectRegister object = new ObjectRegister();
         object.setRegister(register);
         object.setValue(value);

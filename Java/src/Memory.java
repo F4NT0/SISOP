@@ -38,7 +38,7 @@ final class Memory {
     }
 
     //------------ Função para retornar o valor de uma posição --------------
-    public ObjectRegister getValue(int position){
+    public ObjectRegister getValue(int position){   
         ObjectRegister object = (ObjectRegister) memoryArray.get(position);
         return object;
     }
