@@ -49,7 +49,7 @@ public class SystemFunctions {
                 LDD(rd, a, memory);
                 break;
             case "STD" : 
-                STD(a, findRegisterIndex(rd), memory);
+                STD(a, rd, memory);
                 break;
         }
     }
@@ -71,10 +71,10 @@ public class SystemFunctions {
     public void execJumpOperations(String opcode, String rs, String rc, Memory memory) {
         switch(opcode) {
           case "JMPIG" : 
-            JMPIG(findRegisterIndex(rs), findRegisterIndex(rc));
+            JMPIG(rs, rc);
             break;
           case "JMPIL" : 
-            JMPIL(findRegisterIndex(rs), findRegisterIndex(rc));
+            JMPIL(rs,rc);
             break;
           case "JMPIE" :
             JMPIE(findRegisterIndex(rs), findRegisterIndex(rc));
@@ -97,11 +97,11 @@ public class SystemFunctions {
 
     // ------------------ Funções de movimentação do PC ------------------------------
     public void execJMPI(String opcode, String rs) {
-        JMPI(register[findRegisterIndex(rs)]);   
+        JMPI(rs);   
     }
 
-    public void execJMP(String opcode, int rs){
-        JMP(rs);
+    public void execJMP(String opcode, int k){
+        JMP(k);
     }
 
     // ------------------------ Função para encontrar o Registrador ---------------------
@@ -122,28 +122,31 @@ public class SystemFunctions {
     **************************************/
 
 
-    // OK
+    // UPDATED
     private void JMP(int k) {
-        pc = k;
+        cpu.setPc(k);
     }
 
-    private void JMPI(int rs) {
-        pc = register[rs];
-        // return pc;
+    // UPDATED
+    private void JMPI(String rs) {
+        ObjectRegister object = cpu.getValue(rs);
+        Integer value = (Integer) object.getValue();
+        cpu.setPc(value);
     }
 
-    private void JMPIG(int rs, int rc) {
-        // pc = rs > 0 ? pc = rs : pc++;
-        if(register[rc] > 0) {
-            pc = register[rs];
-            // return pc;
-            return;
+    // UPDATED
+    private void JMPIG(String rs, String rc) {
+        ObjectRegister object1 = cpu.getValue(rs);
+        Integer valueRs = (Integer) object1.getValue();
+        ObjectRegister object2 = cpu.getValue(rc);
+        Integer valueRc = (Integer) object2.getValue();
+        if(valueRs > 0){
+            cpu.setPc(valueRc);
         }
-        // return pc++;
-        pc++;
+        cpu.setPc(cpu.getPc() + 1);
     }
     
-    private void JMPIL(int rs, int rc) {
+    private void JMPIL(String rs, String rc) {
         // pc = rs < 0 ? pc = rs : pc++;
         if(register[rc] < 0) {
             pc = register[rs];
