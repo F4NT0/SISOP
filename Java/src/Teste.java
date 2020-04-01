@@ -39,6 +39,7 @@ import java.util.ArrayList;
                 testeFunc.execJMPI(vetorArquivo.get(i).getOpcode(),vetorArquivo.get(i).getRs());
             }
             
+            
         }
         
     }

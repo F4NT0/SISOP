@@ -136,7 +136,7 @@ public class Shell implements KeyListener {
                 output.append("Lendo arquivo " + arquivo + ".... \n");
                 output.append("");
                 for(Funcao function : saida){
-                    output.append("M4TRIX > " + (function.getOPCODE()).toString() + "\n");
+                    output.append("M4TRIX > " + (function.getOpcode()).toString() + "\n");
                 }
                 input.setText("");
             }

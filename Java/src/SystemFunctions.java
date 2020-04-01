@@ -5,14 +5,18 @@
 
 public class SystemFunctions {
 
+    //---------------- Variáveis Globais --------------------------------------------
     private int pc; // Program Counter
     private int [] register = {0, 0, 0, 0, 0, 0, 0, 0};
-    private String [] indexRegister = {"R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7"};
+    private String [] indexRegister = {"r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7"};
+    private Cpu cpu = new Cpu();
 
+    //----------------- Inicialização do PC no zero ----------------------------------
     public SystemFunctions() {
         this.pc = 0;
     }
 
+    //--------------------------- Getters ---------------------------------------------
     public int getPC() {
         return this.pc;
     }
@@ -24,21 +28,22 @@ public class SystemFunctions {
         }
     }
 
-    public void execDirectValues(String opcode, String param1, int param2, int[] memory){
+    //------------------------- Execução das Funções dependendo do tipo ------------------ 
+    public void execDirectValues(String opcode, String rd, int k){
         switch(opcode){
             case "ADDI" : 
-            ADDI(findRegisterIndex(param1), param2);
+            ADDI(rd, k);
             break;
             case "SUBI" : 
-            SUBI(findRegisterIndex(param1), param2);
+            SUBI(findRegisterIndex(rd), k);
             break;
             case "LDI" :
-            LDI(findRegisterIndex(param1), param2);
+            LDI(findRegisterIndex(rd), k);
             break;
         }
     }
 
-    public void execVectorOperations(String opcode, String rd , int a, int[] memory){
+    public void execVectorOperations(String opcode, String rd , int a, Memory memory){
         switch(opcode){
             case "LDD" : 
                 LDD(findRegisterIndex(rd), a, memory);
@@ -49,7 +54,7 @@ public class SystemFunctions {
         }
     }
 
-    public void execRegisterOperations(String opcode, String rd , String rs, int[] memory){
+    public void execRegisterOperations(String opcode, String rd , String rs, Memory memory){
         switch(opcode){
             case "ADD" :
                 ADD(findRegisterIndex(rd), findRegisterIndex(rs));
@@ -63,7 +68,7 @@ public class SystemFunctions {
         }
     }
 
-    public void execJumpOperations(String opcode, String rs, String rc, int[] memory) {
+    public void execJumpOperations(String opcode, String rs, String rc, Memory memory) {
         switch(opcode) {
           case "JMPIG" : 
             JMPIG(findRegisterIndex(rs), findRegisterIndex(rc));
@@ -79,7 +84,7 @@ public class SystemFunctions {
         }
     }
 
-    public void execRegisterVectorOperations(String opcode, String rd, String rs, int[] memory ){
+    public void execRegisterVectorOperations(String opcode, String rd, String rs, Memory memory ){
         switch(opcode){
             case "LDX" :
                 LDX(findRegisterIndex(rd), rs, memory);
@@ -91,12 +96,12 @@ public class SystemFunctions {
     }
 
     // ------------------ Funções de movimentação do PC ------------------------------
-    public void execJMPI(String opcode, String param) {
-        JMPI(register[findRegisterIndex(param)]);   
+    public void execJMPI(String opcode, String rs) {
+        JMPI(register[findRegisterIndex(rs)]);   
     }
 
-    public void execJMP(String opcode, int param){
-        JMP(param);
+    public void execJMP(String opcode, int rs){
+        JMP(rs);
     }
 
     // ------------------------ Função para encontrar o Registrador ---------------------
@@ -160,8 +165,9 @@ public class SystemFunctions {
         pc++;
     }
 
-    private void ADDI(int rd, int k) {
-        register[rd] = register[rd] + k;
+    private void ADDI(String rd, Integer k) {
+        Integer registerValue = cpu.getValue(rd);
+        registerValue = registerValue + k;
         pc++;
     }
 
