@@ -43,13 +43,13 @@ public class SystemFunctions {
         }
     }
 
-    public void execVectorOperations(String opcode, String rd , int a, Memory memory){
+    public void execVectorOperations(String opcode, String rd, int a, Memory memory){
         switch(opcode){
             case "LDD" : 
                 LDD(rd, a, memory);
                 break;
-            case "STD" : 
-                STD(a, findRegisterIndex(rd), memory);
+            case "STD" :
+                STD(a, rd, memory);
                 break;
         }
     }
@@ -196,8 +196,10 @@ public class SystemFunctions {
         pc++;
     }
 
-    private void STD(int a, int rd, int[] memory) {
-        memory[register[a]] = register[rd];
+    private void STD(int a, String rd, Memory memory) {
+        ObjectRegister objectRegister = new ObjectRegister();
+        objectRegister.setValue(register[findRegisterIndex(rd)]);]
+        cpu.setRegValue(objectRegister, rd);
         pc++;
     }
 
