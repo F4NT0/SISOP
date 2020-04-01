@@ -99,6 +99,16 @@ public class Cpu{
         setRegisterPosition(register, position);
     }
 
+    //--------------- Define que um registrador irá mudar uma pos especifica do registrador -------
+    public void setRegValuePosition(ObjectRegister object, int position){
+        int positionFind = memory.findRegister(object);
+        if(positionFind == -1){
+            memory.addRegister(object);
+        }
+        memory.setRegisterOnPosition(position, object);
+        memory.remove(positionFind);
+   }
+
     //--------------- Retorna o valor de um Registrador -------------------------------
     public ObjectRegister getValue(String register){
         ObjectRegister value = null;
@@ -130,6 +140,12 @@ public class Cpu{
         }
         return value;
 
+    }
+
+    //--------------- Retorna um objeto completo somente pela posição ------------------
+    public ObjectRegister getValueDirect(int position){
+        ObjectRegister value = memory.getValue(position);
+        return value;
     }
 
     //---------------- Atualiza um Registrador -----------------------------------------
