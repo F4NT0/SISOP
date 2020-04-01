@@ -1,0 +1,43 @@
+---------- Gerente de memoria -------------------
+	
+    Faixa de memoria
+	    - Tam da memoria (1024)
+            int inicio = 0
+            int final  = 1023
+
+            ArrayList<Particao> blocos;
+
+            - 8 partições fixas de 128
+            - Particao {
+                    int id;
+                    int inicio;
+                    int final;
+                    boolean estado; (?)
+                    }
+
+            // exemplo
+
+            Particao 1 - inicio: 0      fim:127 
+            Particao 2 - inicio: 128  fim: 255    
+
+---------- Gerente de processo -------------------
+
+	- lista de processos prontos para executar
+	- lista de processos em espera
+
+	
+		
+
+	- Alocar a memoria para o processo (carga do programa na particao)
+	- Verificar quais as partiçoes estao livres
+	- Apos alocacao, verificar se não vai haver acesso indevido na memoria
+		ex: Particao 1
+			inicio: 0
+			fim: 127
+
+
+        // exemplo
+		Programa 1: STD[130]
+			ocorre segmentation fault, pois o programa esta tentando acessar uma posicao invalida
+
+	- verificar o fim da execuçao do programa, e desalocar ele da memoria
