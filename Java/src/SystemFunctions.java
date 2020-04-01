@@ -166,8 +166,10 @@ public class SystemFunctions {
     }
 
     private void ADDI(String rd, Integer k) {
-        Integer registerValue = cpu.getValue(rd);
-        registerValue = registerValue + k;
+        ObjectRegister registerValue = cpu.getValue(rd);
+        int oldValue = (Integer) registerValue.getValue();
+        registerValue.setValue(oldValue + k);
+        cpu.updateRegister(registerValue);
         pc++;
     }
 
@@ -207,13 +209,15 @@ public class SystemFunctions {
     }
 
     // Precisa fazer com que ele encontre na memória
-    private void LDX(String rd, String rs, int[] memory) {
-        register[rd]= memory[register[rs]];
+    private void LDX(String rd, String rs, Memory memory) {
+        ObjectRegister rsObject = cpu.getValue(rs);
+        Object value = rsObject.getValue();
+        cpu.setRegValue(value, rd);
         pc++;
     }
 
     // Precisa fazer com que ele encontre na memória
-    private void STX(String rd, String rs, int[] memory) {
+    private void STX(String rd, String rs, Memory memory) {
         memory[register[rd]] = register[rs];
         pc++;
     }

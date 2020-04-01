@@ -90,7 +90,7 @@ public class Cpu{
     }
 
     //---------------- Armazena um valor de um Registrador na Memória -----------------
-    public void setRegValue(Integer value, String register){
+    public void setRegValue(Object value, String register){
         ObjectRegister object = new ObjectRegister();
         object.setRegister(register);
         object.setValue(value);
@@ -100,8 +100,8 @@ public class Cpu{
     }
 
     //--------------- Retorna o valor de um Registrador -------------------------------
-    public Object getValue(String register){
-        Object value = null;
+    public ObjectRegister getValue(String register){
+        ObjectRegister value = null;
         switch(register){
             case "r0":
                 value = memory.getValue(r0);
@@ -132,5 +132,9 @@ public class Cpu{
 
     }
 
+    //---------------- Atualiza um Registrador -----------------------------------------
+    public void updateRegister(ObjectRegister object){
+        memory.updateRegister(object);
+    }
 
 }

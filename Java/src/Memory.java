@@ -38,8 +38,18 @@ final class Memory {
     }
 
     //------------ Função para retornar o valor de uma posição --------------
-    public Object getValue(int position){
-        return memoryArray.get(position);
+    public ObjectRegister getValue(int position){
+        ObjectRegister object = (ObjectRegister) memoryArray.get(position);
+        return object;
+    }
+
+    //------------- Função que atualiza um valor na memória ------------------
+    public void updateRegister(ObjectRegister object){
+        int position = memoryArray.lastIndexOf(object.getRegister());
+        if(position == -1){
+            addRegister(object);
+        }
+        memoryArray.add(position,object);
     }
 
     // --------------- Função que remove o Objeto da Memória por index ------------------------
@@ -54,6 +64,9 @@ final class Memory {
     public void remove(Object object) {
         this.memoryArray.remove(object);
     }
+
+
+
 
     public void createPartition () {
     }
