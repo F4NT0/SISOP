@@ -198,7 +198,7 @@ public class SystemFunctions {
 
     private void STD(int a, String rd, Memory memory) {
         ObjectRegister objectRegister = new ObjectRegister();
-        objectRegister.setValue(register[findRegisterIndex(rd)]);]
+        objectRegister.setValue(register[findRegisterIndex(rd)]);
         cpu.setRegValue(objectRegister, rd);
         pc++;
     }
@@ -222,13 +222,15 @@ public class SystemFunctions {
     private void LDX(String rd, String rs, Memory memory) {
         ObjectRegister rsObject = cpu.getValue(rs);
         Object value = rsObject.getValue();
-        cpu.setRegValue(value, rd);
+        cpu.updateRegister(rsObject);
         pc++;
     }
 
-    // Precisa fazer com que ele encontre na memória
+//    Adiciona o valor do Registrador em uma Posição da Memória
     private void STX(String rd, String rs, Memory memory) {
-        memory[register[rd]] = register[rs];
+        ObjectRegister rsObject = cpu.getValue(rs);
+        Object value = rsObject.getValue();
+        cpu.setRegValue(rsObject, rd);
         pc++;
     }
 }
