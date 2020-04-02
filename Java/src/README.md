@@ -7,5 +7,6 @@ Nome do Arquivo|Para que serve
 **Funcao.java** | São as Funções para gerenciar os Objetos lidos dos arquivos .txt
 **ObjectCreator.java**| Transforma cada linha lida do Arquivo em Objetos
 **Memory.java**| Onde se encontra todas as Funções de Gerênciamento da Memória
-**CPU**| Onde se encontram os Registradores e faz a interação entre as Funções Lidas com as Funções nos Objetos criados
-****|   
+**Cpu.java**| Onde se encontram os Registradores e faz a interação entre as Funções Lidas com as Funções nos Objetos criados
+**ObjectRegister.java**| Os objetos salvos na memória são a String do Registrador e o seu valor, podendo ser Integer ou Char
+**SystemFunctions.java**| Todas as Verificações das Funções do nosso programa e a implementação delas se encontra nessa Classe   

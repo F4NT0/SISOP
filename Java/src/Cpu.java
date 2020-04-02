@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /************************
  * CPU DA MÁQUINA VIRTUAL
@@ -10,7 +11,7 @@ public class Cpu{
     private Memory memory = new Memory();
 
 
-    public Cpu(){ // Valores começam em -1 para não 
+    public Cpu(){ // Valores começam em -1 para não armazenar um valor de memoria real
         this.r0 = -1;
         this.r1 = -1;
         this.r2 = -1;
@@ -21,6 +22,12 @@ public class Cpu{
         this.r7 = -1;
         this.pc = 0;
     }
+
+
+    /*************************************************************************
+     *  FUNÇÕES PARA GERENCIAMENTO DOS REGISTRADORES E INTERAÇÃO COM A MEMÓRIA
+     ************************************************************************/
+
 
     //----------------------- Getters -----------------------------------
     public int getR0(){return r0;}
@@ -75,19 +82,6 @@ public class Cpu{
         }
     }
 
-    //----------------------- Carrega Programa  ------------------------------------
-    public void loadProgram(String file){
-        ObjectCreator objects = new ObjectCreator();
-        objects.readAndCreateFunctions(file);
-        storeProgram(objects.getFuncoes());
-    }
-
-    //----------------------- Armazena o Programa na Memória ------------------------
-    public void storeProgram(ArrayList<Funcao> program){
-        memory.setProgram(program.size(), program);
-        pc = 0;
-    }
-
     //---------------- Armazena um valor de um Registrador na Memória -----------------
     public void setRegValue(Object value, String register){ 
         ObjectRegister object = new ObjectRegister();
@@ -97,6 +91,16 @@ public class Cpu{
         int position = memory.findRegister(object);
         setRegisterPosition(register, position);
     }
+
+    //--------------- Define que um registrador irá mudar uma pos especifica do registrador -------
+    public void setRegValuePosition(ObjectRegister object, int position){
+        int positionFind = memory.findRegister(object);
+        if(positionFind == -1){
+            memory.addRegister(object);
+        }
+        memory.setRegisterOnPosition(position, object);
+        memory.remove(positionFind);
+   }
 
     //--------------- Retorna o valor de um Registrador -------------------------------
     public ObjectRegister getValue(String register){
@@ -131,9 +135,50 @@ public class Cpu{
 
     }
 
+    //--------------- Retorna um objeto completo somente pela posição ------------------
+    public ObjectRegister getValueDirect(int position){
+        ObjectRegister value = memory.getValue(position);
+        return value;
+    }
+
     //---------------- Atualiza um Registrador -----------------------------------------
     public void updateRegister(ObjectRegister object){
         memory.updateRegister(object);
     }
+
+
+    /****************************************
+    * FUNÇÕES DE LEITURA E AÇÃO DAS FUNÇÕES 
+    ****************************************/
+
+
+    //----------------------- Carrega Programa  ------------------------------------
+    public void loadProgram(String file){
+        ObjectCreator objects = new ObjectCreator();
+        objects.readAndCreateFunctions(file);
+        storeProgram(objects.getFuncoes());
+    }
+
+    //----------------------- Armazena o Programa na Memória ------------------------
+    public void storeProgram(ArrayList<Funcao> program){
+        memory.setProgram(program.size(), program);
+        pc = 0;
+    }
+
+
+    public void testMemory(){
+        List<Object> teste = memory.array();
+        for(int i = 0 ; i <= 14 ; i++){
+            System.out.println("Opcode na memória: " + teste.get(i).toString());
+        }
+        
+    }
+
+    public void startReading(){
+        // Teste se o programa está na memória
+        
+    }
+
+
 
 }

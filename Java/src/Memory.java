@@ -13,7 +13,7 @@ final class Memory {
     // ------------------------- Função que inicia a memória ----------------
     public Memory() {
         memoryArray = new ArrayList<>(memorySize);
-        for (int i = 0; i < memorySize; i++) { memoryArray.set(i, null); }
+        for(int i = 0 ; i < memorySize ; i++){ memoryArray.add(null);}
     }
 
     // ------------------------ Função que adiciona os Objetos do programa --------
@@ -31,17 +31,26 @@ final class Memory {
         memoryArray.add(value);
     }
 
+    // --------------- Função que adiciona um Registrador direto em uma posição -------------
+    public void setRegisterOnPosition(int position, ObjectRegister object) throws OutOfMemoryError{
+        if (memoryArray.size() >= memorySize) {
+            throw new OutOfMemoryError("Tried to add Object " + object + " while memory is full.");
+        }
+        memoryArray.add(position, object);
+    }
+    
     // ------------ Função que retorna a posição de um registrador ------------------------
     public int findRegister(ObjectRegister object){
         int position = memoryArray.lastIndexOf(object.getRegister());
         return position;
     }
 
-    //------------ Função para retornar o valor de uma posição --------------
+    //------------ Função para retornar o objeto de uma posição --------------
     public ObjectRegister getValue(int position){   
         ObjectRegister object = (ObjectRegister) memoryArray.get(position);
         return object;
     }
+
 
     //------------- Função que atualiza um valor na memória ------------------
     public void updateRegister(ObjectRegister object){
@@ -75,7 +84,7 @@ final class Memory {
 
     }
 
-    public List array() {
+    public List<Object> array() {
         return this.memoryArray;
     }
 
