@@ -16,7 +16,8 @@ public class Reader {
         try {
             File currentDirFile = new File("");
             String separator = System.getProperty("file.separator");
-            FILE_PATH = currentDirFile.getAbsolutePath()+separator + "Java" + separator + "programas" +separator + filename;
+          
+            FILE_PATH = currentDirFile.getAbsolutePath() +separator+"Java"+ separator + "src" + separator +"programas" +separator + filename;
 
             System.out.println("Arquivo Lido: " + FILE_PATH);
 

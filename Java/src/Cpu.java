@@ -21,7 +21,6 @@ public class Cpu{
         this.r6 = -1;
         this.r7 = -1;
         this.pc = 0;
-
     }
 
 

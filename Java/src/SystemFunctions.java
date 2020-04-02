@@ -219,7 +219,6 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    
     // UPDATED
     private void LDX(String rd, String rs) {
         ObjectRegister rsObject = cpu.getValue(rs); //pega o objeto rs
@@ -238,6 +237,6 @@ public class SystemFunctions {
         Object valueRs = getObject.getValue();
         cpu.setRegValue(valueRs, rs);
         cpu.setPc(cpu.getPc() + 1);
-
+      
     }
 }
