@@ -30,8 +30,6 @@ public class ObjectCreator {
                      // cria objeto Funcao
                      Funcao f = new Funcao();   
 
-                    System.out.println(split[0]);
-
                     if(split[0].equals("STOP")){
                         String stop = split[0];
                         f.setOpcode(stop);

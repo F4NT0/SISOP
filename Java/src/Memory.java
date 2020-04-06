@@ -13,13 +13,13 @@ final class Memory {
     // ------------------------- Função que inicia a memória ----------------
     public Memory() {
         memoryArray = new ArrayList<>(memorySize);
-        // for(int i = 0 ; i < memorySize ; i++){ memoryArray.set(i, null);}
+        for(int i = 0 ; i < memorySize ; i++){ memoryArray.add(i, null);}
     }
 
     // ------------------------ Função que adiciona os Objetos do programa --------
     public void setProgram (int sizeProgram, ArrayList<Funcao> programa) {
         for(int i = 0 ; i < sizeProgram ; i++){
-            memoryArray.add(programa.get(i));
+            memoryArray.set(i,programa.get(i));
         }
     }
 
@@ -28,7 +28,13 @@ final class Memory {
         if (memoryArray.size() >= memorySize) {
             throw new OutOfMemoryError("Tried to add Object " + value + " while memory is full.");
         }
-        memoryArray.add(value);
+        int pos = 0;
+        while(memoryArray.size() <= memorySize){
+            if(memoryArray.get(pos) == null){
+                memoryArray.set(pos, value);
+                break;
+            }
+        }
     }
 
     // --------------- Função que adiciona um Registrador direto em uma posição -------------

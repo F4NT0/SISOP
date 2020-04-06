@@ -28,9 +28,13 @@ import java.util.List;
         //Teste de salvamento do programa na memória
             memory.setProgram(funcoes.size(), funcoes);
             List<Object> testeMemoria = memory.array(); //pegando a memoria para ver
-        for(int i = 0 ; i < testeMemoria.size() ; i++){
-            System.out.println("Pos " + i + " : " + testeMemoria.get(i));
-        }
+            for(int i = 0 ; i < testeMemoria.size() ; i++){
+                System.out.println("Pos " + i + " : " + testeMemoria.get(i));
+                // Como pegar o dado da Memória
+                // Funcao teste = (Funcao) testeMemoria.get(i);
+                // System.out.println(teste.getOpcode());
+            }
+
 
 
     }
