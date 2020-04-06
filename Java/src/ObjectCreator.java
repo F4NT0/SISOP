@@ -48,21 +48,21 @@ public class ObjectCreator {
                     // STD
                     if((split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[2]);
-                        int valueA = Integer.parseInt(String.valueOf(split[1].substring(1, 3)));
+                        Integer valueA = Integer.parseInt(String.valueOf(split[1].substring(1, 3)));
                         f.setA(valueA);
                     }
 
                     // LDD
                     if((split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
                         f.setRd(split[1]);
-                        int valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
+                        Integer valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
                         System.out.println("Teste de A: " + valueA);
                         f.setA(valueA);
                     }
 
                     // JMP
                     if( (split[0] == "JMP") && (isNumeric(split[1]))){
-                        int valueK = Integer.parseInt(String.valueOf(split[1]));
+                        Integer valueK = Integer.parseInt(String.valueOf(split[1]));
                         f.setA(valueK);
                     }
 
@@ -73,14 +73,14 @@ public class ObjectCreator {
 
                     // Atribui o k ao Objeto
                     if(isNumeric(split[2])){
-                        int valueK = Integer.parseInt(String.valueOf(split[2]));
+                        Integer valueK = Integer.parseInt(String.valueOf(split[2]));
                         f.setK(valueK);
                     }
 
                     // // Atribui o Rd e o k ao Objeto (ADDI SUBI ANDI ORI LDI )
                     if((split[1].charAt(0) == 'R') && (isNumeric(split[2]))){
                         f.setRd(split[1]);
-                        int valueK = Integer.parseInt(String.valueOf(split[2]));
+                        Integer valueK = Integer.parseInt(String.valueOf(split[2]));
                         f.setK(valueK);
                     }
 
