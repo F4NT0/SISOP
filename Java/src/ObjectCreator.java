@@ -40,24 +40,28 @@ public class ObjectCreator {
                     }
 
                     // Atribui o Rs e Rc ao Objeto (JMPIG JMPIL JMPIE)
-                    if ((split[1].charAt(0) == 'R') && (split[2].charAt(0) == 'R')){
+                    if ((split[0].substring(0, 3).equals("JMP")) &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[1]);
                         f.setRc(split[2]);  
                     }
 
-                    // // Atribui a Posição A ao Objeto (LDD STD)
-                    if(split[1].charAt(0) == '['){
-                        int valueA = Integer.parseInt(String.valueOf(split[1].charAt(1)));
+                    // STD
+                    if((split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
+                        f.setRs(split[2]);
+                        int valueA = Integer.parseInt(String.valueOf(split[1].substring(1, 3)));
                         f.setA(valueA);
                     }
 
-                    if(split[2].charAt(0) == '['){
-                        int valueA = Integer.parseInt(String.valueOf(split[2].charAt(1)));
+                    // LDD
+                    if((split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
+                        f.setRd(split[1]);
+                        int valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
+                        System.out.println("Teste de A: " + valueA);
                         f.setA(valueA);
                     }
 
-                    // Atribui o k ao Objeto (JMP)
-                    if(isNumeric(split[1])){
+                    // JMP
+                    if( (split[0] == "JMP") && (isNumeric(split[1]))){
                         int valueK = Integer.parseInt(String.valueOf(split[1]));
                         f.setA(valueK);
                     }
@@ -92,7 +96,7 @@ public class ObjectCreator {
                     }
 
                     // // Atribui o Rd Rs se as Funções forem (ADD SUB MULT AND OR)
-                    if((split[0] == "AND") || (split[0] == "SUB") || (split[0] == "MULT") || (split[0] == "AND") || (split[0] == "OR")){
+                    if((split[0].equals("AND")) || (split[0].equals("SUB")| (split[0].equals("MULT")) || (split[0].equals("AND")) || (split[0].equals("OR")))){
                         f.setRd(split[1]);
                         f.setRs(split[2]);
                     }

@@ -15,8 +15,8 @@ public class Funcao {
         this.rs = "";
         this.rc = "";
         this.rd = "";
-        this.k = 0;
-        this.a = 0;
+        this.k = -1;
+        this.a = -1;
     }
 
    
