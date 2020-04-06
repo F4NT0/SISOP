@@ -13,7 +13,7 @@ final class Memory {
     // ------------------------- Função que inicia a memória ----------------
     public Memory() {
         memoryArray = new ArrayList<>(memorySize);
-        for(int i = 0 ; i < memorySize ; i++){ memoryArray.add(null);}
+        // for(int i = 0 ; i < memorySize ; i++){ memoryArray.set(i, null);}
     }
 
     // ------------------------ Função que adiciona os Objetos do programa --------

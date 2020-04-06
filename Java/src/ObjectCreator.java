@@ -24,16 +24,21 @@ public class ObjectCreator {
             while (true) {
                 String line = buffer.readLine();
                 if (line != null) {
+                    
                     String split[] = line.split(" ");
 
+                     // cria objeto Funcao
+                     Funcao f = new Funcao();   
+
+                    System.out.println(split[0]);
+
                     if(split[0].equals("STOP")){
+                        String stop = split[0];
+                        f.setOpcode(stop);
+                        funcoes.add(f);
                         continue;
                     }
-                    
-                    // cria objeto Funcao
-                    Funcao f = new Funcao();
-
-
+                     
                     // Atribui o OPCODE (split[0]) ao Objeto
                     if (split[0].length() != 0) {
                         f.setOpcode(split[0]);
@@ -56,7 +61,6 @@ public class ObjectCreator {
                     if((split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
                         f.setRd(split[1]);
                         Integer valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
-                        System.out.println("Teste de A: " + valueA);
                         f.setA(valueA);
                     }
 
