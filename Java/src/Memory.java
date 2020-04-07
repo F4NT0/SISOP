@@ -41,8 +41,14 @@ final class Memory {
     }
 
     //------------ Função para retornar o objeto de uma posição --------------
-    public ObjectRegister getValue(int position){   
-        ObjectRegister object = (ObjectRegister) memoryArray.get(position);
+    public ObjectRegister getValue(int position) throws IndexOutOfBoundsException{   
+        ObjectRegister object = new ObjectRegister();
+        try{
+            object = (ObjectRegister) memoryArray.get(position);
+
+        }catch(IndexOutOfBoundsException e){
+            //System.out.println("Index fora da Memória");
+        }
         return object;
     }
 

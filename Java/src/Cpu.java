@@ -173,11 +173,7 @@ public class Cpu{
         }
         
     }
-
-    public void startReading(){
-        // Teste se o programa está na memória
-        
-    }
+    
 
 
 
