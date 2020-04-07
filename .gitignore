@@ -69,4 +69,7 @@ Temporary Items
 # Ignore all local history of files
 .history
 
+### IDEA FOLDER ###
+.idea
+
 # End of https://www.gitignore.io/api/java,macos,visualstudiocode

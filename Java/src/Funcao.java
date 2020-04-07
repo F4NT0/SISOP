@@ -7,16 +7,16 @@ public class Funcao {
     private String rs;
     private String rc;
     private String rd;
-    private int k;
-    private int a;
+    private Integer k;
+    private Integer a;
 
     public Funcao() {
         this.opcode = "";
         this.rs = "";
         this.rc = "";
         this.rd = "";
-        this.k = 0;
-        this.a = 0;
+        this.k = null;
+        this.a = null;
     }
 
    
@@ -31,7 +31,7 @@ public class Funcao {
     /**
      * @return the k
      */
-    public int getK() {
+    public Integer getK() {
         return k;
     }
 
@@ -59,7 +59,7 @@ public class Funcao {
     /**
      * @return the Position from an array
      */
-    public int getA(){
+    public Integer getA(){
         return a;
     }
 
@@ -95,14 +95,14 @@ public class Funcao {
     /**
      * @param k the k to set
      */
-    public void setK(int k) {
+    public void setK(Integer k) {
         this.k = k;
     }
 
     /**
      * @param a the a to set
      */
-    public void setA(int a){
+    public void setA(Integer a){
         this.a = a;
     }
 }

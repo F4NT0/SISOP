@@ -24,41 +24,47 @@ public class ObjectCreator {
             while (true) {
                 String line = buffer.readLine();
                 if (line != null) {
+                    
                     String split[] = line.split(" ");
 
+                     // cria objeto Funcao
+                     Funcao f = new Funcao();   
+
                     if(split[0].equals("STOP")){
+                        String stop = split[0];
+                        f.setOpcode(stop);
+                        funcoes.add(f);
                         continue;
                     }
-                    
-                    // cria objeto Funcao
-                    Funcao f = new Funcao();
-
-
+                     
                     // Atribui o OPCODE (split[0]) ao Objeto
                     if (split[0].length() != 0) {
                         f.setOpcode(split[0]);
                     }
 
                     // Atribui o Rs e Rc ao Objeto (JMPIG JMPIL JMPIE)
-                    if ((split[1].charAt(0) == 'R') && (split[2].charAt(0) == 'R')){
+                    if ((split[0].substring(0, 3).equals("JMP")) &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[1]);
                         f.setRc(split[2]);  
                     }
 
-                    // // Atribui a Posição A ao Objeto (LDD STD)
-                    if(split[1].charAt(0) == '['){
-                        int valueA = Integer.parseInt(String.valueOf(split[1].charAt(1)));
+                    // STD
+                    if((split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
+                        f.setRs(split[2]);
+                        Integer valueA = Integer.parseInt(String.valueOf(split[1].substring(1, 3)));
                         f.setA(valueA);
                     }
 
-                    if(split[2].charAt(0) == '['){
-                        int valueA = Integer.parseInt(String.valueOf(split[2].charAt(1)));
+                    // LDD
+                    if((split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
+                        f.setRd(split[1]);
+                        Integer valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
                         f.setA(valueA);
                     }
 
-                    // Atribui o k ao Objeto (JMP)
-                    if(isNumeric(split[1])){
-                        int valueK = Integer.parseInt(String.valueOf(split[1]));
+                    // JMP
+                    if( (split[0] == "JMP") && (isNumeric(split[1]))){
+                        Integer valueK = Integer.parseInt(String.valueOf(split[1]));
                         f.setA(valueK);
                     }
 
@@ -69,14 +75,14 @@ public class ObjectCreator {
 
                     // Atribui o k ao Objeto
                     if(isNumeric(split[2])){
-                        int valueK = Integer.parseInt(String.valueOf(split[2]));
+                        Integer valueK = Integer.parseInt(String.valueOf(split[2]));
                         f.setK(valueK);
                     }
 
                     // // Atribui o Rd e o k ao Objeto (ADDI SUBI ANDI ORI LDI )
                     if((split[1].charAt(0) == 'R') && (isNumeric(split[2]))){
                         f.setRd(split[1]);
-                        int valueK = Integer.parseInt(String.valueOf(split[2]));
+                        Integer valueK = Integer.parseInt(String.valueOf(split[2]));
                         f.setK(valueK);
                     }
 
@@ -92,7 +98,7 @@ public class ObjectCreator {
                     }
 
                     // // Atribui o Rd Rs se as Funções forem (ADD SUB MULT AND OR)
-                    if((split[0] == "AND") || (split[0] == "SUB") || (split[0] == "MULT") || (split[0] == "AND") || (split[0] == "OR")){
+                    if((split[0].equals("AND")) || (split[0].equals("SUB")| (split[0].equals("MULT")) || (split[0].equals("AND")) || (split[0].equals("OR")))){
                         f.setRd(split[1]);
                         f.setRs(split[2]);
                     }

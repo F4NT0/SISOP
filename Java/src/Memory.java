@@ -13,52 +13,57 @@ final class Memory {
     // ------------------------- Função que inicia a memória ----------------
     public Memory() {
         memoryArray = new ArrayList<>(memorySize);
-        for(int i = 0 ; i < memorySize ; i++){ memoryArray.add(null);}
+        for(int i = 0 ; i < memorySize ; i++){ memoryArray.add(i, null);}
     }
 
     // ------------------------ Função que adiciona os Objetos do programa --------
     public void setProgram (int sizeProgram, ArrayList<Funcao> programa) {
         for(int i = 0 ; i < sizeProgram ; i++){
-            memoryArray.add(programa.get(i));
+            memoryArray.set(i,programa.get(i));
         }
     }
 
     // -------------- Função que adiciona um valor de Registrador na memória ------------
-    public void addRegister (Object value) throws OutOfMemoryError {
-        if (memoryArray.size() >= memorySize) {
-            throw new OutOfMemoryError("Tried to add Object " + value + " while memory is full.");
-        }
-        memoryArray.add(value);
+    public void addRegister (Object value){   
+        int pos = memoryArray.indexOf(null);
+        memoryArray.set(pos, value);
     }
 
     // --------------- Função que adiciona um Registrador direto em uma posição -------------
-    public void setRegisterOnPosition(int position, ObjectRegister object) throws OutOfMemoryError{
-        if (memoryArray.size() >= memorySize) {
-            throw new OutOfMemoryError("Tried to add Object " + object + " while memory is full.");
-        }
-        memoryArray.add(position, object);
+    public void setRegisterOnPosition(int position, ObjectRegister object){
+        memoryArray.set(position, object);
     }
     
     // ------------ Função que retorna a posição de um registrador ------------------------
     public int findRegister(ObjectRegister object){
-        int position = memoryArray.lastIndexOf(object.getRegister());
+        int position = memoryArray.indexOf(object);
         return position;
     }
 
     //------------ Função para retornar o objeto de uma posição --------------
-    public ObjectRegister getValue(int position){   
-        ObjectRegister object = (ObjectRegister) memoryArray.get(position);
+    public ObjectRegister getValue(int position) throws IndexOutOfBoundsException{   
+        ObjectRegister object = new ObjectRegister();
+        try{
+            object = (ObjectRegister) memoryArray.get(position);
+
+        }catch(IndexOutOfBoundsException e){
+            //System.out.println("Index fora da Memória");
+        }
         return object;
     }
 
 
     //------------- Função que atualiza um valor na memória ------------------
-    public void updateRegister(ObjectRegister object){
-        int position = memoryArray.lastIndexOf(object.getRegister());
-        if(position == -1){
-            addRegister(object);
+    public void updateRegister(ObjectRegister object) throws IndexOutOfBoundsException{
+        int position = memoryArray.indexOf(object);
+        try{
+            if(position == -1){
+                addRegister(object);
+            }
+            memoryArray.set(position,object);
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("Posicao não permitida");
         }
-        memoryArray.add(position,object);
     }
 
     // --------------- Função que remove o Objeto da Memória por index ------------------------
