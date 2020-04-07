@@ -30,16 +30,13 @@ final class Memory {
     }
 
     // --------------- Função que adiciona um Registrador direto em uma posição -------------
-    public void setRegisterOnPosition(int position, ObjectRegister object) throws OutOfMemoryError{
-        if (memoryArray.size() >= memorySize) {
-            throw new OutOfMemoryError("Tried to add Object " + object + " while memory is full.");
-        }
-        memoryArray.add(position, object);
+    public void setRegisterOnPosition(int position, ObjectRegister object){
+        memoryArray.set(position, object);
     }
     
     // ------------ Função que retorna a posição de um registrador ------------------------
     public int findRegister(ObjectRegister object){
-        int position = memoryArray.lastIndexOf(object.getRegister());
+        int position = memoryArray.indexOf(object);
         return position;
     }
 
@@ -51,12 +48,16 @@ final class Memory {
 
 
     //------------- Função que atualiza um valor na memória ------------------
-    public void updateRegister(ObjectRegister object){
-        int position = memoryArray.lastIndexOf(object.getRegister());
-        if(position == -1){
-            addRegister(object);
+    public void updateRegister(ObjectRegister object) throws IndexOutOfBoundsException{
+        int position = memoryArray.indexOf(object);
+        try{
+            if(position == -1){
+                addRegister(object);
+            }
+            memoryArray.set(position,object);
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("Posicao não permitida");
         }
-        memoryArray.add(position,object);
     }
 
     // --------------- Função que remove o Objeto da Memória por index ------------------------
