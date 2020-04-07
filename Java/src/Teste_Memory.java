@@ -3,7 +3,7 @@
  * TESTE DE FUNÇÕES DA MEMÓRIA
  *****************************/
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
  public class Teste_Memory {
     public static void main(String[] args){

@@ -6,20 +6,20 @@ import java.util.List;
  *************************/
 
 public class Cpu{
-    private int r0,r1,r2,r3,r4,r5,r6,r7; //localização do Registrador na memória
-    private int pc;
+    private Integer R0,R1,R2,R3,R4,R5,R6,R7; //localização do Registrador na memória
+    private Integer pc;
     private Memory memory = new Memory();
 
 
     public Cpu(){ // Valores começam em -1 para não armazenar um valor de memoria real
-        this.r0 = -1;
-        this.r1 = -1;
-        this.r2 = -1;
-        this.r3 = -1;
-        this.r4 = -1;
-        this.r5 = -1;
-        this.r6 = -1;
-        this.r7 = -1;
+        this.R0 = -1;
+        this.R1 = -1;
+        this.R2 = -1;
+        this.R3 = -1;
+        this.R4 = -1;
+        this.R5 = -1;
+        this.R6 = -1;
+        this.R7 = -1;
         this.pc = 0;
     }
 
@@ -30,53 +30,53 @@ public class Cpu{
 
 
     //----------------------- Getters -----------------------------------
-    public int getR0(){return r0;}
-    public int getR1(){return r1;}
-    public int getR2(){return r2;}
-    public int getR3(){return r3;}
-    public int getR4(){return r4;}
-    public int getR5(){return r5;}
-    public int getR6(){return r6;}
-    public int getR7(){return r7;}
-    public int getPc(){return pc;}
+    public Integer getR0(){return R0;}
+    public Integer getR1(){return R1;}
+    public Integer getR2(){return R2;}
+    public Integer getR3(){return R3;}
+    public Integer getR4(){return R4;}
+    public Integer getR5(){return R5;}
+    public Integer getR6(){return R6;}
+    public Integer getR7(){return R7;}
+    public Integer getPc(){return pc;}
     public Memory getMemory(){return memory;}
 
     //----------------------- Setters -------------------------------------
-    public void setR0(int r0){this.r0 = r0;}
-    public void setR1(int r1){this.r1 = r1;}
-    public void setR2(int r2){this.r2 = r2;}
-    public void setR3(int r3){this.r3 = r3;}
-    public void setR4(int r4){this.r4 = r4;}
-    public void setR5(int r5){this.r5 = r5;}
-    public void setR6(int r6){this.r6 = r6;}
-    public void setR7(int r7){this.r7 = r7;}
-    public void setPc(int pc){this.pc = pc;}
+    public void setR0(Integer R0){this.R0 = R0;}
+    public void setR1(Integer R1){this.R1 = R1;}
+    public void setR2(Integer R2){this.R2 = R2;}
+    public void setR3(Integer R3){this.R3 = R3;}
+    public void setR4(Integer R4){this.R4 = R4;}
+    public void setR5(Integer R5){this.R5 = R5;}
+    public void setR6(Integer R6){this.R6 = R6;}
+    public void setR7(Integer R7){this.R7 = R7;}
+    public void setPc(Integer pc){this.pc = pc;}
 
     //----------------------- Armazena a posição de um Registrador -----------------
-    public void setRegisterPosition(String register, int position){
+    public void setRegisterPosition(String register, Integer position){
         switch(register){
-            case "r0":
+            case "R0":
                 setR0(position);
             break;
-            case "r1":
+            case "R1":
                 setR1(position);
             break;
-            case "r2":
+            case "R2":
                 setR2(position);
             break;
-            case "r3":
+            case "R3":
                 setR3(position);
             break;
-            case "r4":
+            case "R4":
                 setR4(position);
             break;
-            case "r5":
+            case "R5":
                 setR5(position);
             break;
-            case "r6":
+            case "R6":
                 setR6(position);
             break;
-            case "r7":
+            case "R7":
                 setR7(position);
             break;
         }
@@ -88,13 +88,13 @@ public class Cpu{
         object.setRegister(register);
         object.setValue(value);
         memory.addRegister(object);
-        int position = memory.findRegister(object);
+        Integer position = memory.findRegister(object);
         setRegisterPosition(register, position);
     }
 
     //--------------- Define que um registrador irá mudar uma pos especifica do registrador -------
-    public void setRegValuePosition(ObjectRegister object, int position){
-        int positionFind = memory.findRegister(object);
+    public void setRegValuePosition(ObjectRegister object, Integer position){
+        Integer positionFind = memory.findRegister(object);
         if(positionFind == -1){
             memory.addRegister(object);
         }
@@ -106,29 +106,29 @@ public class Cpu{
     public ObjectRegister getValue(String register){
         ObjectRegister value = null;
         switch(register){
-            case "r0":
-                value = memory.getValue(r0);
+            case "R0":
+                value = memory.getValue(R0);
                 break;
-            case "r1":
-                value = memory.getValue(r1);
+            case "R1":
+                value = memory.getValue(R1);
                 break;
-            case "r2":
-                value = memory.getValue(r2);
+            case "R2":
+                value = memory.getValue(R2);
                 break;
-            case "r3":
-                value = memory.getValue(r3);
+            case "R3":
+                value = memory.getValue(R3);
                 break;
-            case "r4":
-                value = memory.getValue(r4);
+            case "R4":
+                value = memory.getValue(R4);
                 break;
-            case "r5":
-                value = memory.getValue(r5);
+            case "R5":
+                value = memory.getValue(R5);
                 break;
-            case "r6":
-                value = memory.getValue(r6);
+            case "R6":
+                value = memory.getValue(R6);
                 break;
-            case "r7":
-                value = memory.getValue(r7);
+            case "R7":
+                value = memory.getValue(R7);
                 break;
         }
         return value;
@@ -136,7 +136,7 @@ public class Cpu{
     }
 
     //--------------- Retorna um objeto completo somente pela posição ------------------
-    public ObjectRegister getValueDirect(int position){
+    public ObjectRegister getValueDirect(Integer position){
         ObjectRegister value = memory.getValue(position);
         return value;
     }
@@ -165,11 +165,11 @@ public class Cpu{
         pc = 0;
     }
 
-
+    //---------------------- Função que testa a Memória----------------
     public void testMemory(){
         List<Object> teste = memory.array();
-        for(int i = 0 ; i <= 14 ; i++){
-            System.out.println("Opcode na memória: " + teste.get(i).toString());
+        for(Integer i = 0 ; i <= 20 ; i++){
+            System.out.println("Pos: " + i + ": " + teste.get(i));
         }
         
     }
