@@ -24,17 +24,9 @@ final class Memory {
     }
 
     // -------------- Função que adiciona um valor de Registrador na memória ------------
-    public void addRegister (Object value) throws OutOfMemoryError {
-        if (memoryArray.size() >= memorySize) {
-            throw new OutOfMemoryError("Tried to add Object " + value + " while memory is full.");
-        }
-        int pos = 0;
-        while(memoryArray.size() <= memorySize){
-            if(memoryArray.get(pos) == null){
-                memoryArray.set(pos, value);
-                break;
-            }
-        }
+    public void addRegister (Object value){   
+        int pos = memoryArray.indexOf(null);
+        memoryArray.set(pos, value);
     }
 
     // --------------- Função que adiciona um Registrador direto em uma posição -------------

@@ -26,14 +26,28 @@ import java.util.List;
         // }
 
         //Teste de salvamento do programa na memória
-            memory.setProgram(funcoes.size(), funcoes);
-            List<Object> testeMemoria = memory.array(); //pegando a memoria para ver
-            for(int i = 0 ; i < testeMemoria.size() ; i++){
-                System.out.println("Pos " + i + " : " + testeMemoria.get(i));
-                // Como pegar o dado da Memória
-                // Funcao teste = (Funcao) testeMemoria.get(i);
-                // System.out.println(teste.getOpcode());
-            }
+        memory.setProgram(funcoes.size(), funcoes);
+        List<Object> testeMemoria = memory.array(); //pegando a memoria para ver
+        //for(int i = 0 ; i < testeMemoria.size() ; i++){
+            //System.out.println("Pos " + i + " : " + testeMemoria.get(i));
+            // Como pegar o dado da Memória
+            // Funcao teste = (Funcao) testeMemoria.get(i);
+            // System.out.println(teste.getOpcode());
+        //}
+        
+        // Testando para adicionar um Registrador na memória
+        ObjectRegister registradorTeste = new ObjectRegister();
+        registradorTeste.setRegister("R1");
+        registradorTeste.setValue(1);
+        memory.addRegister(registradorTeste); //add o objeto de registrador
+        List<Object> testeMemDoRegistrador = memory.array();
+        // for(int i = 0 ; i < testeMemDoRegistrador.size() ; i++){
+        //     System.out.println("Pos " + i + " : " + testeMemoria.get(i));
+        // }
+
+        
+
+
 
 
 
