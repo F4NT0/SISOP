@@ -1,4 +1,8 @@
-# Sistema Operacional SISOP
+# Sistema Operacional S.O.V.A.C.O
+
+**S.O.V.A.C.O** = **S**istema **O**peracional **V**ersionado **A**o **C**ompartilhamento **O**rganizacional
+
+* Informações para Desenvolvimento clique [AQUI](https://github.com/F4NT0/SISOP/wiki)
 
 * Este Repositório possui o Sistema Operacional criado na Cadeira de `Sistemas Operacionais`.
 

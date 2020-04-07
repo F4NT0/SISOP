@@ -1,5 +1,7 @@
 # Arquivos dentro do Diretório src
 
+## Arquivos do Sistema
+
 Nome do Arquivo|Para que serve
 |---|---|
 **Shell.java**| É o terminal do nosso S.O, onde possui os comandos que irão gerenciar tudo
@@ -9,4 +11,12 @@ Nome do Arquivo|Para que serve
 **Memory.java**| Onde se encontra todas as Funções de Gerênciamento da Memória
 **Cpu.java**| Onde se encontram os Registradores e faz a interação entre as Funções Lidas com as Funções nos Objetos criados
 **ObjectRegister.java**| Os objetos salvos na memória são a String do Registrador e o seu valor, podendo ser Integer ou Char
-**SystemFunctions.java**| Todas as Verificações das Funções do nosso programa e a implementação delas se encontra nessa Classe   
+**SystemFunctions.java**| Todas as Verificações das Funções do nosso programa e a implementação delas se encontra nessa Classe  
+
+## Arquivos de Testes
+
+Nome do Arquivo|Para que serve
+|---|---|
+**Teste_ObjectCreator.java**| Para testar as Funções que leem o arquivo do programa e salva dentro de um ArrayList com os dados separados.
+**Teste_Memory.java**| Para testar as Funções que mexem na memória do nosso Sistema Operacional
+**Teste_CPU.java**| Para testar as Funções que interagem com a memória para fazer as Funções que serão ativadas sendo lidas das Funções
