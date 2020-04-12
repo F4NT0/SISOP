@@ -97,6 +97,7 @@ public class Cpu{
         setRegisterPosition(register, position);
     }
 
+
     //--------------- Define que um registrador irá mudar uma pos especifica do registrador -------
     public void setRegValuePosition(ObjectRegister object, Integer position){
         Integer positionFind = memory.findRegister(object);
@@ -276,10 +277,9 @@ public class Cpu{
         Integer valueRs = (Integer) object1.getValue();
         ObjectRegister object2 = getValue(rc);
         Integer valueRc = (Integer) object2.getValue();
-        if(valueRs > 0){
-            setPc(valueRc);
-        }
-        setPc(getPc() + 1);
+        if(valueRs > 0){setPc(valueRc);}
+        else{setPc(getPc() + 1);}
+        
     }
 
     private void JMPIL(String rs, String rc) {
