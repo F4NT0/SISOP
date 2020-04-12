@@ -84,10 +84,10 @@ import java.util.ArrayList;
         /**
          * Teste de Update de um registrador
          */
-        ObjectRegister objectValue = new ObjectRegister();
-        objectValue.setRegister("R3");
-        objectValue.setValue(3);
-        memory.updateRegister(objectValue);
+        // ObjectRegister objectValue = new ObjectRegister();
+        // objectValue.setRegister("R3");
+        // objectValue.setValue(3);
+        // memory.updateRegister(objectValue);
         // List<Object> novoNaMemoria = memory.array();
         // for(int i = 0 ; i < novoNaMemoria.size() ; i++){System.out.println("Pos " + i + ": " + novoNaMemoria.get(i));}
         // ObjectRegister exemploSalvo = memory.getValue(16);

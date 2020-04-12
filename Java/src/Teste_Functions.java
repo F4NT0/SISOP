@@ -5,7 +5,7 @@
 public class Teste_Functions{
     public static void main(String[] args){
         // Criando um CPU
-        Cpu cpu = new Cpu();
+        //Cpu cpu = new Cpu();
 
         // ---------- Teste de Leitura --------------
         // cpu.loadProgram("prog2.txt");
