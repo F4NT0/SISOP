@@ -49,14 +49,14 @@ public class ObjectCreator {
                     }
 
                     // STD
-                    if((split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
+                    if((split[0] == "STD") && (split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[2]);
                         Integer valueA = Integer.parseInt(String.valueOf(split[1].substring(1, 3)));
                         f.setA(valueA);
                     }
 
                     // LDD
-                    if((split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
+                    if((split[0] == "LDD") &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
                         f.setRd(split[1]);
                         Integer valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
                         f.setA(valueA);

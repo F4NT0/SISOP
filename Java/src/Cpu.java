@@ -250,13 +250,12 @@ public class Cpu{
     //---------------------- Função que faz as Funções de Assembly  ------------
     public void runningProgram(){
         System.out.println("Entrou Aqui!");
-        for(int i = 0 ; i < getProgramSize() ; i++){
-            Funcao object = memory.getProgram(getPc());
-            System.out.println("PC: " + getPc());
-            System.out.println("OPCODE: " + object.getOpcode());
-            runningFunctions(object);
-        }
-    }
+        Funcao object = memory.getProgram(getPc());
+        runningFunctions(object);
+        System.out.println("OPCODE: " + object.getOpcode());
+        System.out.println("K: " + object.getK());
+        System.out.println("Rd: " + object.getRd());
+    }   
 
     //====================
     // FUNÇÕES DE ASSEMBLY
