@@ -50,9 +50,75 @@ public class Teste_Functions{
         //---------- Teste de JMPIG ------------------
 
             // Primeiro Registrador
+            // Funcao testeRs = new Funcao();
+            // testeRs.setOpcode("LDI");
+            // testeRs.setK(2);
+            // testeRs.setRd("R1");
+            // cpu.runningFunctions(testeRs);
+            // Integer valuePc1 = cpu.getPc();
+            // System.out.println("Rc: \n");
+            // System.out.println("Valor de PC [APÓS LDI]: " + valuePc1 + "\n");
+            // cpu.testMemory(); 
+
+            // Segundo Registrador
+            // Funcao testeRc = new Funcao();
+            // testeRc.setOpcode("LDI");
+            // testeRc.setK(7); //Já que R1 > 0, pc = 7
+            // testeRc.setRd("R2");
+            // cpu.runningFunctions(testeRc);
+            // Integer valuePc2 = cpu.getPc();
+            // System.out.println("Teste do LDI \n");
+            // System.out.println("Valor de PC [APÓS LDI]: " + valuePc2 + "\n");
+            // cpu.testMemory();
+            
+            // JMPIG
+            // Funcao testeJMPIG = new Funcao();
+            // testeJMPIG.setOpcode("JMPIG");
+            // testeJMPIG.setRs("R1");
+            // testeJMPIG.setRc("R2");
+            // cpu.runningFunctions(testeJMPIG);
+            // Integer valuePc3 = cpu.getPc();
+            // System.out.println("Valor de PC [APÓS JMPIG]: " + valuePc3 + "\n");
+        
+        //---------- Teste de JMPIL ------------------
+            // Primeiro Registrador
+            // Funcao testeRs = new Funcao();
+            // testeRs.setOpcode("LDI");
+            // testeRs.setK(-1);
+            // testeRs.setRd("R1");
+            // cpu.runningFunctions(testeRs);
+            // Integer valuePc1 = cpu.getPc();
+            // System.out.println("Rc: \n");
+            // System.out.println("Valor de PC [APÓS LDI]: " + valuePc1 + "\n");
+            // cpu.testMemory(); 
+
+            // Segundo Registrador
+            // Funcao testeRc = new Funcao();
+            // testeRc.setOpcode("LDI");
+            // testeRc.setK(7); //Já que R1 < 0, pc = 7
+            // testeRc.setRd("R2");
+            // cpu.runningFunctions(testeRc);
+            // Integer valuePc2 = cpu.getPc();
+            // System.out.println("Teste do LDI \n");
+            // System.out.println("Valor de PC [APÓS LDI]: " + valuePc2 + "\n");
+            // cpu.testMemory();
+
+            // JMPIL
+            // Funcao testeJMPIL = new Funcao();
+            // testeJMPIL.setOpcode("JMPIL");
+            // testeJMPIL.setRs("R1");
+            // testeJMPIL.setRc("R2");
+            // cpu.runningFunctions(testeJMPIL);
+            // Integer valuePc3 = cpu.getPc();
+            // System.out.println("Valor de PC [APÓS JMPIL]: " + valuePc3 + "\n");
+
+
+        //----------- Teste de JMPIE --------------------
+
+            // Primeiro Registrador
             Funcao testeRs = new Funcao();
             testeRs.setOpcode("LDI");
-            testeRs.setK(2);
+            testeRs.setK(0);
             testeRs.setRd("R1");
             cpu.runningFunctions(testeRs);
             Integer valuePc1 = cpu.getPc();
@@ -63,26 +129,22 @@ public class Teste_Functions{
             // Segundo Registrador
             Funcao testeRc = new Funcao();
             testeRc.setOpcode("LDI");
-            testeRc.setK(7); //Já que R1 > 0, pc = 7
+            testeRc.setK(7); //Já que R1 = 0, pc = 7
             testeRc.setRd("R2");
             cpu.runningFunctions(testeRc);
             Integer valuePc2 = cpu.getPc();
             System.out.println("Teste do LDI \n");
             System.out.println("Valor de PC [APÓS LDI]: " + valuePc2 + "\n");
             cpu.testMemory();
-            
-            // JMPIG
-            Funcao testeJMPIG = new Funcao();
-            testeJMPIG.setOpcode("JMPIG");
-            testeJMPIG.setRs("R1");
-            testeJMPIG.setRc("R2");
-            cpu.runningFunctions(testeJMPIG);
+
+            // JMPIL
+            Funcao testeJMPIE = new Funcao();
+            testeJMPIE.setOpcode("JMPIE");
+            testeJMPIE.setRs("R1");
+            testeJMPIE.setRc("R2");
+            cpu.runningFunctions(testeJMPIE);
             Integer valuePc3 = cpu.getPc();
-            System.out.println("Valor de PC [APÓS JMPIG]: " + valuePc3 + "\n");
-        
-
-
-
+            System.out.println("Valor de PC [APÓS JMPIE]: " + valuePc3 + "\n");
 
     }
 }

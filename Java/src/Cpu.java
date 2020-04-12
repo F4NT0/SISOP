@@ -287,10 +287,8 @@ public class Cpu{
         Integer valueRs = (Integer) object1.getValue();
         ObjectRegister object2 = getValue(rc);
         Integer valueRc = (Integer) object2.getValue();
-        if(valueRs < 0){
-            setPc(valueRc);
-        }
-        setPc(getPc() + 1);
+        if(valueRs < 0){setPc(valueRc);}
+        else{setPc(getPc() + 1);}
     }
 
     private void JMPIE(String rs, String rc) {
@@ -298,10 +296,8 @@ public class Cpu{
         Integer valueRs = (Integer) object1.getValue();
         ObjectRegister object2 = getValue(rc);
         Integer valueRc = (Integer) object2.getValue();
-        if(valueRs == 0){
-            setPc(valueRc);
-        }
-        setPc(getPc() + 1);
+        if(valueRs == 0){setPc(valueRc);}
+        else{setPc(getPc() + 1);}
     }
 
     private void ADDI(String rd, Integer k) {
