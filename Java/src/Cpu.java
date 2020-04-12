@@ -175,7 +175,7 @@ public class Cpu{
     //---------------------- Função que testa a Memória ----------------
     public void testMemory(){
         List<Object> teste = memory.array();
-        for(Integer i = 0 ; i <= 20 ; i++){
+        for(Integer i = 0 ; i <= 30 ; i++){
             System.out.println("Pos: " + i + ": " + teste.get(i));
         }
         
@@ -248,14 +248,15 @@ public class Cpu{
     }
 
     //---------------------- Função que faz as Funções de Assembly  ------------
-    // public void runningProgram(){
-    //     for(int i = 0 ; i < getProgramSize() ; i++){
-    //         Cpu pc = new Cpu();
-    //         Funcao object = memory.getProgram(pc.getPc());
-    //         //assemblyFunctions.runningFunctions(object);
-    //     }
-        
-    //}
+    public void runningProgram(){
+        System.out.println("Entrou Aqui!");
+        for(int i = 0 ; i < getProgramSize() ; i++){
+            Funcao object = memory.getProgram(getPc());
+            System.out.println("PC: " + getPc());
+            System.out.println("OPCODE: " + object.getOpcode());
+            runningFunctions(object);
+        }
+    }
 
     //====================
     // FUNÇÕES DE ASSEMBLY
@@ -395,7 +396,7 @@ public class Cpu{
       
     }
 
-    
+
 
 
 

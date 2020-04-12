@@ -7,7 +7,9 @@ public class Teste_Functions{
         // Criando um CPU
         Cpu cpu = new Cpu();
         cpu.loadProgram("prog.txt");
-        cpu.testMemory();
+        System.out.println("Rodando Programa");
+        cpu.runningProgram();
+        System.out.println("PC: " + cpu.getPc());
 
 
 
