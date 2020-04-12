@@ -162,7 +162,7 @@ public class Cpu{
         ObjectCreator objects = new ObjectCreator();
         objects.readAndCreateFunctions(file);
         storeProgram(objects.getFuncoes());
-        // setProgramSize(objects.getProgramSize());
+        setProgramSize(objects.getProgramSize()-1);
 
     }
 
@@ -248,20 +248,20 @@ public class Cpu{
     }
 
     //---------------------- Função que faz as Funções de Assembly  ------------
-    public void runningProgram(){
+    public void runningProgram(Integer size){
         System.out.println("Entrou Aqui!");
         Funcao object = memory.getProgram(getPc());
         runningFunctions(object);
         System.out.println("OPCODE: " + object.getOpcode());
-        System.out.println("K: " + object.getK());
-        System.out.println("Rd: " + object.getRd());
+        if(size == 0){System.out.println("Finish Program!");}
+        else{runningProgram(size-1);}  
     }   
 
     //====================
     // FUNÇÕES DE ASSEMBLY
     //====================
 
-    private void JMP(int k) {
+    private void JMP(Integer k) {
         setPc(k);
     }
 
@@ -306,7 +306,7 @@ public class Cpu{
 
     private void ADDI(String rd, Integer k) {
         ObjectRegister registerValue = getValue(rd);
-        int oldValue = (Integer) registerValue.getValue();
+        Integer oldValue = (Integer) registerValue.getValue();
         registerValue.setValue(oldValue + k);
         updateRegister(registerValue);
         setPc(getPc() + 1);
@@ -314,7 +314,7 @@ public class Cpu{
 
     private void SUBI(String rd, Integer k) {
         ObjectRegister registerValue = getValue(rd);
-        int oldValue = (Integer) registerValue.getValue();
+        Integer oldValue = (Integer) registerValue.getValue();
         registerValue.setValue(oldValue - k);
         setPc(getPc() + 1);
     }
@@ -324,14 +324,14 @@ public class Cpu{
         setPc(getPc() + 1);
     }
 
-    private void LDD(String rd, int a) {
+    private void LDD(String rd, Integer a) {
         ObjectRegister object = getValueDirect(a);
         Object value = object.getValue();
         setRegValue(value, rd);
         setPc(getPc() + 1);
     }
 
-    private void STD(int a, String rd) {
+    private void STD(Integer a, String rd) {
         ObjectRegister objectRd = getValue(rd);
         setRegValuePosition(objectRd, a);
         setPc(getPc() + 1);
