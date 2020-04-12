@@ -81,16 +81,10 @@ final class Memory {
 
 
     //------------- Função que atualiza um valor na memória ------------------
-    public void updateRegister(ObjectRegister object) throws IndexOutOfBoundsException{
-        int position = memoryArray.indexOf(object);
-        try{
-            if(position == -1){
-                addRegister(object);
-            }
-            memoryArray.set(position,object);
-        }catch(IndexOutOfBoundsException e){
-            System.out.println("Posicao não permitida");
-        }
+    public void updateRegister(Integer location, ObjectRegister newRegister){
+        memoryArray.remove(location);
+        memoryArray.set(location,newRegister);
+        
     }
 
     // --------------- Função que remove o Objeto da Memória por index ------------------------

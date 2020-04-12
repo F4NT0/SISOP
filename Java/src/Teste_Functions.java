@@ -178,7 +178,7 @@ public class Teste_Functions{
             // SUBI
             // Funcao testeSUBI = new Funcao();
             // testeSUBI.setOpcode("SUBI");
-            // testeSUBI.setK(4); // Para subtrair 
+            // testeSUBI.setK(3); // Para subtrair 
             // testeSUBI.setRd("R1");
             // cpu.runningFunctions(testeSUBI);
             // ObjectRegister getRd = cpu.getValue("R1");
@@ -218,35 +218,147 @@ public class Teste_Functions{
 
         //------------ Teste de ADD -----------------
             // Primeiro Registrador
-            Funcao testeRd = new Funcao();
-            testeRd.setOpcode("LDI");
-            testeRd.setK(4); //valor vai ser somado
-            testeRd.setRd("R1");
-            cpu.runningFunctions(testeRd);
-            System.out.println("Valor Antigo do R1: " + testeRd.getK());
+            // Funcao testeRd = new Funcao();
+            // testeRd.setOpcode("LDI");
+            // testeRd.setK(4); //valor vai ser somado
+            // testeRd.setRd("R1");
+            // cpu.runningFunctions(testeRd);
+            // System.out.println("Valor Antigo do R1: " + testeRd.getK());
             
             // Segundo Registrador
-            Funcao testeRs = new Funcao();
-            testeRs.setOpcode("LDI");
-            testeRs.setK(4);
-            testeRs.setRs("R2");
-            cpu.runningFunctions(testeRs);
+            // Funcao testeRs = new Funcao();
+            // testeRs.setOpcode("LDI");
+            // testeRs.setK(4);
+            // testeRs.setRd("R2");
+            // cpu.runningFunctions(testeRs);
 
             // ADD
-            Funcao testeADD = new Funcao();
-            testeADD.setOpcode("ADD");
-            testeADD.setRd("R1");
-            testeADD.setRs("R2");
-            cpu.runningFunctions(testeADD);
+            // Funcao testeADD = new Funcao();
+            // testeADD.setOpcode("ADD");
+            // testeADD.setRd("R1");
+            // testeADD.setRs("R2");
+            // cpu.runningFunctions(testeADD);
 
             // Testando
-            ObjectRegister getR1 = cpu.getValue("R1");
-            System.out.println("Valor novo do R1: " + getR1.getValue());
+            // ObjectRegister getR1 = cpu.getValue("R1");
+            // System.out.println("Valor novo do R1: " + getR1.getValue());
 
+        //-------------- Teste de SUB -----------------------
+            // // Primeiro Registrador
+            // Funcao testeRd = new Funcao();
+            // testeRd.setOpcode("LDI");
+            // testeRd.setK(6); //valor vai ser somado
+            // testeRd.setRd("R1");
+            // cpu.runningFunctions(testeRd);
+            // System.out.println("Valor Antigo do R1: " + testeRd.getK());
+            
+            // // Segundo Registrador
+            // Funcao testeRs = new Funcao();
+            // testeRs.setOpcode("LDI");
+            // testeRs.setK(4);
+            // testeRs.setRd("R2");
+            // cpu.runningFunctions(testeRs);
 
+            // // SUB
+            // Funcao testeSUB = new Funcao();
+            // testeSUB.setOpcode("SUB");
+            // testeSUB.setRd("R1");
+            // testeSUB.setRs("R2");
+            // cpu.runningFunctions(testeSUB);
 
+            // //Testando
+            // ObjectRegister getR1 = cpu.getValue("R1");
+            // System.out.println("Valor novo do R1: " + getR1.getValue());
 
+        //----------------- Teste de MULT --------------------
+            // Primeiro Registrador
+            // Funcao testeRd = new Funcao();
+            // testeRd.setOpcode("LDI");
+            // testeRd.setK(6); //valor vai ser somado
+            // testeRd.setRd("R1");
+            // cpu.runningFunctions(testeRd);
+            // System.out.println("Valor Antigo do R1: " + testeRd.getK());
+            
+            // Segundo Registrador
+            // Funcao testeRs = new Funcao();
+            // testeRs.setOpcode("LDI");
+            // testeRs.setK(4);
+            // testeRs.setRd("R2");
+            // cpu.runningFunctions(testeRs);
 
+            // SUB
+            // Funcao testeMULT = new Funcao();
+            // testeMULT.setOpcode("MULT");
+            // testeMULT.setRd("R1");
+            // testeMULT.setRs("R2");
+            // cpu.runningFunctions(testeMULT);
+
+            // Testando
+            // ObjectRegister getR1 = cpu.getValue("R1");
+            // System.out.println("Valor novo do R1: " + getR1.getValue());
+
+        //----------- Teste de LDX -----------------
+            // Registrador para STD
+            // Funcao testeRs = new Funcao();
+            // testeRs.setOpcode("LDI");
+            // testeRs.setK(50);
+            // testeRs.setRd("R1");
+            // cpu.runningFunctions(testeRs);
+            // System.out.println("LDI: \n");
+            // cpu.testMemory();
+
+            // Registrador para LDX
+            // Funcao testeRsLDX = new Funcao();
+            // testeRsLDX.setOpcode("LDI");
+            // testeRsLDX.setK(4); //onde está o valor no vetor
+            // testeRsLDX.setRd("R2");
+            // cpu.runningFunctions(testeRsLDX);
+
+            // Valor Adicionado na memória(STD)
+            // Funcao testeSTD = new Funcao();
+            // testeSTD.setOpcode("STD");
+            // testeSTD.setA(4); //para onde vai o valor
+            // testeSTD.setRs("R1");
+            // cpu.runningFunctions(testeSTD);
+            // System.out.println("STD: \n");
+            // cpu.testMemory();
+
+            // LDX
+            // Funcao testeLDX = new Funcao();
+            // testeLDX.setOpcode("LDX");
+            // testeLDX.setRs("R2");
+            // testeLDX.setRd("R3"); // o novo registrador que vai ser criado
+            // cpu.runningFunctions(testeLDX);
+
+            // Testando
+            // System.out.println("\n");
+            // cpu.testMemory();
+            // ObjectRegister testR3 = cpu.getValue("R3");
+            // System.out.println("Registrador: " + testR3.getRegister());
+            // System.out.println("Value: " + testR3.getValue());
+
+        //--------------- Teste de STX ----------------------
+            // // Primeiro Registrador(para posição no vetor)
+            // Funcao testeRd = new Funcao();
+            // testeRd.setOpcode("LDI");
+            // testeRd.setK(5); // posição para onde vai o valor
+            // testeRd.setRd("R1");
+            // cpu.runningFunctions(testeRd);
+
+            // // Segundo Registrador(daonde o valor vai ser tirado)
+            // Funcao testeRs = new Funcao();
+            // testeRs.setOpcode("LDI");
+            // testeRs.setK(200); // valor que vai ser pego
+            // testeRs.setRd("R2");
+            // cpu.runningFunctions(testeRs);
+
+            // // STX
+            // Funcao testeSTX = new Funcao();
+            // testeSTX.setOpcode("STX");
+            // testeSTX.setRd("R1");
+            // testeSTX.setRs("R2");
+            // cpu.runningFunctions(testeSTX);
+            // cpu.testMemory();
 
 
 

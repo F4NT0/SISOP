@@ -60,30 +60,14 @@ public class Cpu{
     //----------------------- Armazena a posição de um Registrador -----------------
     public void setRegisterPosition(String register, Integer position){
         switch(register){
-            case "R0":
-                setR0(position);
-            break;
-            case "R1":
-                setR1(position);
-            break;
-            case "R2":
-                setR2(position);
-            break;
-            case "R3":
-                setR3(position);
-            break;
-            case "R4":
-                setR4(position);
-            break;
-            case "R5":
-                setR5(position);
-            break;
-            case "R6":
-                setR6(position);
-            break;
-            case "R7":
-                setR7(position);
-            break;
+            case "R0":setR0(position);break;
+            case "R1":setR1(position);break;
+            case "R2":setR2(position);break;
+            case "R3":setR3(position);break;
+            case "R4":setR4(position);break;
+            case "R5":setR5(position);break;
+            case "R6":setR6(position);break;
+            case "R7":setR7(position);break;
         }
     }
 
@@ -117,33 +101,16 @@ public class Cpu{
     public ObjectRegister getValue(String register){
         ObjectRegister value = null;
         switch(register){
-            case "R0":
-                value = memory.getValue(R0);
-                break;
-            case "R1":
-                value = memory.getValue(R1);
-                break;
-            case "R2":
-                value = memory.getValue(R2);
-                break;
-            case "R3":
-                value = memory.getValue(R3);
-                break;
-            case "R4":
-                value = memory.getValue(R4);
-                break;
-            case "R5":
-                value = memory.getValue(R5);
-                break;
-            case "R6":
-                value = memory.getValue(R6);
-                break;
-            case "R7":
-                value = memory.getValue(R7);
-                break;
+            case "R0":value = memory.getValue(R0);break;
+            case "R1":value = memory.getValue(R1);break;
+            case "R2":value = memory.getValue(R2);break;
+            case "R3":value = memory.getValue(R3);break;
+            case "R4":value = memory.getValue(R4);break;
+            case "R5":value = memory.getValue(R5);break;
+            case "R6":value = memory.getValue(R6);break;
+            case "R7":value = memory.getValue(R7);break;
         }
         return value;
-
     }
 
     //--------------- Retorna um Registrador completo somente pela posição ------------------
@@ -159,8 +126,26 @@ public class Cpu{
     }
 
     //---------------- Atualiza um Registrador -----------------------------------------
-    public void updateRegister(ObjectRegister object){
-        memory.updateRegister(object);
+    public void updateRegister(Integer location, ObjectRegister newRegister){
+        memory.updateRegister(location, newRegister);
+    }
+
+    //---------------- Retorna a localização de um Registrador ------------
+    public Integer getRegisterLocation(String register){
+        Integer location = -1;
+        switch(register){
+            case "R0": location = getR0(); break;
+            case "R1": location = getR1(); break;
+            case "R2": location = getR2(); break;
+            case "R3": location = getR3(); break;
+            case "R4": location = getR4(); break;
+            case "R5": location = getR5(); break;
+            case "R6": location = getR6(); break;
+            case "R7": location = getR7(); break;
+
+        }
+        return location;
+
     }
 
 
@@ -207,55 +192,21 @@ public class Cpu{
         Integer k = object.getK();
         Integer a = object.getA();
         switch(opcode){
-            case "JMP":
-                JMP(k);
-                break;
-            case "JMPI":
-                JMPI(rs);
-                break;
-            case "JMPIG":
-                JMPIG(rs, rc);
-                break;
-            case "JMPIL":
-                JMPIL(rs, rc);
-                break;
-            case "JMPIE":
-                JMPIE(rs, rc);
-                break;
-            case "ADDI":
-                ADDI(rd, k);
-                break;
-            case "SUBI":
-                SUBI(rd, k);
-                break;
-            case "LDI":
-                LDI(rd, k);
-                break;
-            case "LDD":
-                LDD(rd, a);
-                break;
-            case "STD":
-                STD(a, rs);
-                break;
-            case "ADD":
-                ADD(rd, rs);
-                break;
-            case "SUB":
-                SUB(rd, rs);
-                break;
-            case "MULT":
-                MULT(rd, rs);
-                break;
-            case "LDX":
-                LDX(rd, rs);
-                break;
-            case "STX":
-                STX(rd, rs);
-                break;
-            default:
-                
-            
-                
+            case "JMP":JMP(k);break;
+            case "JMPI":JMPI(rs);break;
+            case "JMPIG":JMPIG(rs, rc);break;
+            case "JMPIL":JMPIL(rs, rc);break;
+            case "JMPIE":JMPIE(rs, rc);break;
+            case "ADDI":ADDI(rd, k);break;
+            case "SUBI":SUBI(rd, k);break;
+            case "LDI":LDI(rd, k);break;
+            case "LDD":LDD(rd, a);break;
+            case "STD":STD(a, rs);break;
+            case "ADD":ADD(rd, rs);break;
+            case "SUB":SUB(rd, rs);break;
+            case "MULT":MULT(rd, rs);break;
+            case "LDX":LDX(rd, rs);break;
+            case "STX":STX(rd, rs);break;    
         }
     }
 
@@ -315,14 +266,15 @@ public class Cpu{
         ObjectRegister registerValue = getValue(rd);
         Integer oldValue = (Integer) registerValue.getValue();
         registerValue.setValue(oldValue + k);
-        updateRegister(registerValue);
-        setPc(getPc() + 1);
+        updateRegister(getRegisterLocation(rd),registerValue);
+        setPc(getPc() + 1); 
     }
 
     private void SUBI(String rd, Integer k) {
         ObjectRegister registerValue = getValue(rd);
         Integer oldValue = (Integer) registerValue.getValue();
         registerValue.setValue(oldValue - k);
+        updateRegister(getRegisterLocation(rd), registerValue);
         setPc(getPc() + 1);
     }
 
@@ -354,8 +306,8 @@ public class Cpu{
         Integer valueRd = (Integer) objectRd.getValue();
         Integer valueRs = (Integer) objectRs.getValue();
         Integer soma = valueRd + valueRs;
-        
-        updateRegister(newRd);
+        objectRd.setValue(soma);
+        updateRegister(getRegisterLocation(rd), objectRd);
         setPc(getPc() + 1);
     }
 
@@ -365,10 +317,8 @@ public class Cpu{
         Integer valueRd = (Integer) objectRd.getValue();
         Integer valueRs = (Integer) objectRs.getValue();
         Integer sub = valueRd - valueRs;
-        ObjectRegister newRd = new ObjectRegister();
-        newRd.setRegister(rd);
-        newRd.setValue(sub);
-        updateRegister(newRd);
+        objectRd.setValue(sub);
+        updateRegister(getRegisterLocation(rd), objectRd);
         setPc(getPc() + 1);
     }
 
@@ -378,18 +328,16 @@ public class Cpu{
         Integer valueRd = (Integer) objectRd.getValue();
         Integer valueRs = (Integer) objectRs.getValue();
         Integer mult = valueRd * valueRs;
-        ObjectRegister newRd = new ObjectRegister();
-        newRd.setRegister(rd);
-        newRd.setValue(mult);
-        updateRegister(newRd);
+        objectRd.setValue(mult);
+        updateRegister(getRegisterLocation(rd), objectRd);
         setPc(getPc() + 1);
     }
 
     private void LDX(String rd, String rs) {
         ObjectRegister rsObject = getValue(rs); //pega o objeto rs
         Integer value = (Integer) rsObject.getValue(); // pega o valor do objeto rs
-        ObjectRegister getObject = getValueDirect(value); //pega o objeto da posicao armazenada em rs
-        Object valueRd = getObject.getValue(); // valor que sera armazenado em rd
+        Object getObject = memory.getObjectOnPosition(value); //pega o objeto da posicao armazenada em rs
+        Object valueRd = getObject; // valor que sera armazenado em rd
         setRegValue(valueRd, rd); // novo objeto na memória conectado no vetor rd
         setPc(getPc() + 1); //atualiza o pc
     }
@@ -397,9 +345,9 @@ public class Cpu{
     private void STX(String rd, String rs) {
         ObjectRegister rdObject = getValue(rd);
         Integer value = (Integer) rdObject.getValue();
-        ObjectRegister getObject = getValueDirect(value);
-        Object valueRs = getObject.getValue();
-        setRegValue(valueRs, rs);
+        ObjectRegister rsObject = getValue(rs);
+        Object rsValue = rsObject.getValue();    
+        memory.addValueOnPosition(rsValue, value);
         setPc(getPc() + 1);
       
     }
