@@ -28,6 +28,16 @@ final class Memory {
         int pos = memoryArray.indexOf(null);
         memoryArray.set(pos, value);
     }
+    // --------------- Função que adiciona um objeto direto na memória ---------------
+    public void addValue(Object value){
+        int pos = memoryArray.indexOf(null);
+        memoryArray.set(pos,value);
+    }
+
+    //----------------Função que adiciona um objeto avulso em uma Posição da memória --------------
+    public void addValueOnPosition(Object value, Integer position){
+        memoryArray.set(position,value);
+    }
 
     // --------------- Função que adiciona um Registrador direto em uma posição -------------
     public void setRegisterOnPosition(int position, ObjectRegister object){
@@ -50,6 +60,17 @@ final class Memory {
             //System.out.println("Index fora da Memória");
         }
         return object;
+    }
+
+    //------------- Função que pega um objeto avulso da memória pela posição --------
+    public Object getObjectOnPosition(Integer position){
+        Object value = new Object();
+        try{
+            value = memoryArray.get(position);
+        }catch(IndexOutOfBoundsException e){
+
+        }
+        return value;
     }
 
     //----------- Função para ler o programa -------------------

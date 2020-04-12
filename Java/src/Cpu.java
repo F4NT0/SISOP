@@ -87,7 +87,7 @@ public class Cpu{
         }
     }
 
-    //---------------- Armazena um valor de um Registrador na Memória -----------------
+    //---------------- Armazena um valor em um Registrador na Memória -----------------
     public void setRegValue(Object value, String register){ 
         ObjectRegister object = new ObjectRegister();
         object.setRegister(register);
@@ -95,6 +95,11 @@ public class Cpu{
         memory.addRegister(object);
         Integer position = memory.findRegister(object);
         setRegisterPosition(register, position);
+    }
+
+    //--------------- Armazena um valor avulso na memória ---------------
+    public void setValueOnMemory(Object value, Integer position){
+        memory.addValueOnPosition(value, position);
     }
 
 
@@ -141,9 +146,15 @@ public class Cpu{
 
     }
 
-    //--------------- Retorna um objeto completo somente pela posição ------------------
+    //--------------- Retorna um Registrador completo somente pela posição ------------------
     public ObjectRegister getValueDirect(Integer position){
         ObjectRegister value = memory.getValue(position);
+        return value;
+    }
+
+    //-------------- Retorna um valor armazenado direto na memmória ---------------
+    public Object getIntegerDirect(Integer position){
+        Object value = memory.getObjectOnPosition(position);
         return value;
     }
 
@@ -224,7 +235,7 @@ public class Cpu{
                 LDD(rd, a);
                 break;
             case "STD":
-                STD(a, rd);
+                STD(a, rs);
                 break;
             case "ADD":
                 ADD(rd, rs);
@@ -321,16 +332,20 @@ public class Cpu{
     }
 
     private void LDD(String rd, Integer a) {
-        ObjectRegister object = getValueDirect(a);
-        Object value = object.getValue();
+        Object value = getIntegerDirect(a);
         setRegValue(value, rd);
         setPc(getPc() + 1);
     }
 
     private void STD(Integer a, String rd) {
-        ObjectRegister objectRd = getValue(rd);
-        setRegValuePosition(objectRd, a);
-        setPc(getPc() + 1);
+        try{
+            ObjectRegister objectRd = getValue(rd);
+            Object value = objectRd.getValue();
+            setValueOnMemory(value, a);
+            setPc(getPc() + 1);
+        }catch(NullPointerException e){
+            System.err.println(e);
+        }
     }
 
     private void ADD(String rd, String rs) {
@@ -339,9 +354,7 @@ public class Cpu{
         Integer valueRd = (Integer) objectRd.getValue();
         Integer valueRs = (Integer) objectRs.getValue();
         Integer soma = valueRd + valueRs;
-        ObjectRegister newRd = new ObjectRegister();
-        newRd.setRegister(rd);
-        newRd.setValue(soma);
+        
         updateRegister(newRd);
         setPc(getPc() + 1);
     }
