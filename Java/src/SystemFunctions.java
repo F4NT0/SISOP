@@ -6,104 +6,87 @@
 public class SystemFunctions {
 
     //---------------- Variáveis Globais --------------------------------------------
-    private Cpu cpu = new Cpu();
+    private Cpu cpu = new Cpu();    
 
-
-    //------------------------- Execução das Funções dependendo do tipo ------------------ 
-    public void execDirectValues(String opcode, String rd, int k){
+    //---------------- Função que pega o Objeto e faz uma Função --------------------
+    public void runningFunctions(Funcao object){
+        String opcode = object.getOpcode();
+        String rs = object.getRs();
+        String rd = object.getRd();
+        String rc = object.getRc();
+        Integer k = object.getK();
+        Integer a = object.getA();
         switch(opcode){
-            case "ADDI" : 
-            ADDI(rd, k);
-            break;
-            case "SUBI" : 
-            SUBI(rd, k);
-            break;
-            case "LDI" :
-            LDI(rd, k);
-            break;
-        }
-    }
-
-    public void execVectorOperations(String opcode, String rd , int a){
-        switch(opcode){
-            case "LDD" : 
+            case "JMP":
+                JMP(k);
+                break;
+            case "JMPI":
+                JMPI(rs);
+                break;
+            case "JMPIG":
+                JMPIG(rs, rc);
+                break;
+            case "JMPIL":
+                JMPIL(rs, rc);
+                break;
+            case "JMPIE":
+                JMPIE(rs, rc);
+                break;
+            case "ADDI":
+                ADDI(rd, k);
+                break;
+            case "SUBI":
+                SUBI(rd, k);
+                break;
+            case "LDI":
+                LDI(rd, k);
+                break;
+            case "LDD":
                 LDD(rd, a);
                 break;
-            case "STD" : 
+            case "STD":
                 STD(a, rd);
                 break;
-        }
-    }
-
-    public void execRegisterOperations(String opcode, String rd , String rs){
-        switch(opcode){
-            case "ADD" :
+            case "ADD":
                 ADD(rd, rs);
                 break;
-            case "SUB" : 
+            case "SUB":
                 SUB(rd, rs);
                 break;
-            case "MULT" : 
+            case "MULT":
                 MULT(rd, rs);
                 break;
-        }
-    }
-
-    public void execJumpOperations(String opcode, String rs, String rc) {
-        switch(opcode) {
-          case "JMPIG" : 
-            JMPIG(rs, rc);
-            break;
-          case "JMPIL" : 
-            JMPIL(rs,rc);
-            break;
-          case "JMPIE" :
-            JMPIE(rs, rc);
-            break;
-          default :
-            break;        
-        }
-    }
-
-    public void execRegisterVectorOperations(String opcode, String rd, String rs){
-        switch(opcode){
-            case "LDX" :
+            case "LDX":
                 LDX(rd, rs);
-            break;
-            case "STX" :
+                break;
+            case "STX":
                 STX(rd, rs);
-            break;  
+                break;
+            default:
+                
+            
+                
         }
     }
-
-    // ------------------ Funções de movimentação do PC ------------------------------
-    public void execJMPI(String opcode, String rs) {
-        JMPI(rs);   
-    }
-
-    public void execJMP(String opcode, int k){
-        JMP(k);
-    }
-
     
     /**************************************
     *  LISTA DE FUNÇÕES EXERCIDOS PELA VM
     **************************************/
 
 
-    // UPDATED
+    // TRANSFERED
     private void JMP(int k) {
         cpu.setPc(k);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void JMPI(String rs) {
         ObjectRegister object = cpu.getValue(rs);
         Integer value = (Integer) object.getValue();
         cpu.setPc(value);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void JMPIG(String rs, String rc) {
         ObjectRegister object1 = cpu.getValue(rs);
         Integer valueRs = (Integer) object1.getValue();
@@ -115,7 +98,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
     
-    // UPDATED
+    // TRANSFERED
     private void JMPIL(String rs, String rc) {
         ObjectRegister object1 = cpu.getValue(rs);
         Integer valueRs = (Integer) object1.getValue();
@@ -127,7 +110,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void JMPIE(String rs, String rc) {
         ObjectRegister object1 = cpu.getValue(rs);
         Integer valueRs = (Integer) object1.getValue();
@@ -139,7 +122,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void ADDI(String rd, Integer k) {
         ObjectRegister registerValue = cpu.getValue(rd);
         int oldValue = (Integer) registerValue.getValue();
@@ -148,7 +131,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void SUBI(String rd, Integer k) {
         ObjectRegister registerValue = cpu.getValue(rd);
         int oldValue = (Integer) registerValue.getValue();
@@ -156,13 +139,13 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void LDI(String rd, Integer k) {
         cpu.setRegValue(k, rd);
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void LDD(String rd, int a) {
         ObjectRegister object = cpu.getValueDirect(a);
         Object value = object.getValue();
@@ -170,14 +153,14 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void STD(int a, String rd) {
         ObjectRegister objectRd = cpu.getValue(rd);
         cpu.setRegValuePosition(objectRd, a);
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void ADD(String rd, String rs) {
         ObjectRegister objectRd = cpu.getValue(rd);
         ObjectRegister objectRs = cpu.getValue(rs);
@@ -191,7 +174,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void SUB(String rd, String rs) {
         ObjectRegister objectRd = cpu.getValue(rd);
         ObjectRegister objectRs = cpu.getValue(rs);
@@ -205,7 +188,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void MULT(String rd, String rs) {
         ObjectRegister objectRd = cpu.getValue(rd);
         ObjectRegister objectRs = cpu.getValue(rs);
@@ -219,7 +202,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
     }
 
-    // UPDATED
+    // TRANSFERED
     private void LDX(String rd, String rs) {
         ObjectRegister rsObject = cpu.getValue(rs); //pega o objeto rs
         Integer value = (Integer) rsObject.getValue(); // pega o valor do objeto rs
@@ -229,7 +212,7 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1); //atualiza o pc
     }
 
-    // UPDATED
+    // TRANSFERED
     private void STX(String rd, String rs) {
         ObjectRegister rdObject = cpu.getValue(rd);
         Integer value = (Integer) rdObject.getValue();
@@ -239,4 +222,6 @@ public class SystemFunctions {
         cpu.setPc(cpu.getPc() + 1);
       
     }
+    
+
 }

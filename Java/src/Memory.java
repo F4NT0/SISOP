@@ -52,6 +52,12 @@ final class Memory {
         return object;
     }
 
+    //----------- Função para ler o programa -------------------
+    public Funcao getProgram(Integer pc){
+        Funcao object = (Funcao) memoryArray.get(pc);
+        return object;
+    }
+
 
     //------------- Função que atualiza um valor na memória ------------------
     public void updateRegister(ObjectRegister object) throws IndexOutOfBoundsException{

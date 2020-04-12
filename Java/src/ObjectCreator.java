@@ -133,6 +133,11 @@ public class ObjectCreator {
         return funcoes;
     }
 
+    // ------------------------- Função que retorna o tamanho do programa -----------------
+    public Integer getProgramSize(){
+        return funcoes.size();
+    }
+
     // ------------------------- Função para verificar se a String é um Numero -----------------
     public boolean isNumeric(String str){
         try{

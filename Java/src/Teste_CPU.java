@@ -5,7 +5,7 @@
 public class Teste_CPU{
     public static void main(String[] args){
         // Funções que não necessitam da Memória
-        Cpu cpu = new Cpu();
+        //Cpu cpu = new Cpu();
         
         // ----------------- GETTERS INICIAIS ------------
         // System.out.println("GETTERS INICIAIS");

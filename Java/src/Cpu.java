@@ -9,6 +9,8 @@ public class Cpu{
     private Integer R0,R1,R2,R3,R4,R5,R6,R7; //localização do Registrador na memória
     private Integer pc;
     private Memory memory = new Memory();
+    //private SystemFunctions assemblyFunctions = new SystemFunctions();
+    private Integer programSize;
 
 
     public Cpu(){ // Valores começam em -1 para não armazenar um valor de memoria real
@@ -21,6 +23,7 @@ public class Cpu{
         this.R6 = -1;
         this.R7 = -1;
         this.pc = 0;
+        this.programSize = 0;
     }
 
 
@@ -39,6 +42,7 @@ public class Cpu{
     public Integer getR6(){return R6;}
     public Integer getR7(){return R7;}
     public Integer getPc(){return pc;}
+    public Integer getProgramSize(){return programSize;}
     public Memory getMemory(){return memory;}
 
     //----------------------- Setters -------------------------------------
@@ -51,6 +55,7 @@ public class Cpu{
     public void setR6(Integer R6){this.R6 = R6;}
     public void setR7(Integer R7){this.R7 = R7;}
     public void setPc(Integer pc){this.pc = pc;}
+    public void setProgramSize(Integer programSize){this.programSize = programSize;}
 
     //----------------------- Armazena a posição de um Registrador -----------------
     public void setRegisterPosition(String register, Integer position){
@@ -147,9 +152,9 @@ public class Cpu{
     }
 
 
-    /****************************************
-    * FUNÇÕES DE LEITURA E AÇÃO DAS FUNÇÕES 
-    ****************************************/
+    /************************************************
+    * FUNÇÕES DE LEITURA E ARMAZENAMENTO DO PROGRAMA 
+    *************************************************/
 
 
     //----------------------- Carrega Programa  ------------------------------------
@@ -157,6 +162,8 @@ public class Cpu{
         ObjectCreator objects = new ObjectCreator();
         objects.readAndCreateFunctions(file);
         storeProgram(objects.getFuncoes());
+        // setProgramSize(objects.getProgramSize());
+
     }
 
     //----------------------- Armazena o Programa na Memória ------------------------
@@ -165,7 +172,7 @@ public class Cpu{
         pc = 0;
     }
 
-    //---------------------- Função que testa a Memória----------------
+    //---------------------- Função que testa a Memória ----------------
     public void testMemory(){
         List<Object> teste = memory.array();
         for(Integer i = 0 ; i <= 20 ; i++){
@@ -173,6 +180,221 @@ public class Cpu{
         }
         
     }
+    
+
+    /***************************************** 
+    * RODANDO O PROGRAMA E FUNÇÕES DE ASSEMBLY 
+    ******************************************/
+
+    //---------------- Função que pega o Objeto e faz uma Função --------------------
+    public void runningFunctions(Funcao object){
+        String opcode = object.getOpcode();
+        String rs = object.getRs();
+        String rd = object.getRd();
+        String rc = object.getRc();
+        Integer k = object.getK();
+        Integer a = object.getA();
+        switch(opcode){
+            case "JMP":
+                JMP(k);
+                break;
+            case "JMPI":
+                JMPI(rs);
+                break;
+            case "JMPIG":
+                JMPIG(rs, rc);
+                break;
+            case "JMPIL":
+                JMPIL(rs, rc);
+                break;
+            case "JMPIE":
+                JMPIE(rs, rc);
+                break;
+            case "ADDI":
+                ADDI(rd, k);
+                break;
+            case "SUBI":
+                SUBI(rd, k);
+                break;
+            case "LDI":
+                LDI(rd, k);
+                break;
+            case "LDD":
+                LDD(rd, a);
+                break;
+            case "STD":
+                STD(a, rd);
+                break;
+            case "ADD":
+                ADD(rd, rs);
+                break;
+            case "SUB":
+                SUB(rd, rs);
+                break;
+            case "MULT":
+                MULT(rd, rs);
+                break;
+            case "LDX":
+                LDX(rd, rs);
+                break;
+            case "STX":
+                STX(rd, rs);
+                break;
+            default:
+                
+            
+                
+        }
+    }
+
+    //---------------------- Função que faz as Funções de Assembly  ------------
+    // public void runningProgram(){
+    //     for(int i = 0 ; i < getProgramSize() ; i++){
+    //         Cpu pc = new Cpu();
+    //         Funcao object = memory.getProgram(pc.getPc());
+    //         //assemblyFunctions.runningFunctions(object);
+    //     }
+        
+    //}
+
+    //====================
+    // FUNÇÕES DE ASSEMBLY
+    //====================
+
+    private void JMP(int k) {
+        setPc(k);
+    }
+
+    private void JMPI(String rs) {
+        ObjectRegister object = getValue(rs);
+        Integer value = (Integer) object.getValue();
+        setPc(value);
+    }
+
+    private void JMPIG(String rs, String rc) {
+        ObjectRegister object1 = getValue(rs);
+        Integer valueRs = (Integer) object1.getValue();
+        ObjectRegister object2 = getValue(rc);
+        Integer valueRc = (Integer) object2.getValue();
+        if(valueRs > 0){
+            setPc(valueRc);
+        }
+        setPc(getPc() + 1);
+    }
+
+    private void JMPIL(String rs, String rc) {
+        ObjectRegister object1 = getValue(rs);
+        Integer valueRs = (Integer) object1.getValue();
+        ObjectRegister object2 = getValue(rc);
+        Integer valueRc = (Integer) object2.getValue();
+        if(valueRs < 0){
+            setPc(valueRc);
+        }
+        setPc(getPc() + 1);
+    }
+
+    private void JMPIE(String rs, String rc) {
+        ObjectRegister object1 = getValue(rs);
+        Integer valueRs = (Integer) object1.getValue();
+        ObjectRegister object2 = getValue(rc);
+        Integer valueRc = (Integer) object2.getValue();
+        if(valueRs == 0){
+            setPc(valueRc);
+        }
+        setPc(getPc() + 1);
+    }
+
+    private void ADDI(String rd, Integer k) {
+        ObjectRegister registerValue = getValue(rd);
+        int oldValue = (Integer) registerValue.getValue();
+        registerValue.setValue(oldValue + k);
+        updateRegister(registerValue);
+        setPc(getPc() + 1);
+    }
+
+    private void SUBI(String rd, Integer k) {
+        ObjectRegister registerValue = getValue(rd);
+        int oldValue = (Integer) registerValue.getValue();
+        registerValue.setValue(oldValue - k);
+        setPc(getPc() + 1);
+    }
+
+    private void LDI(String rd, Integer k) {
+        setRegValue(k, rd);
+        setPc(getPc() + 1);
+    }
+
+    private void LDD(String rd, int a) {
+        ObjectRegister object = getValueDirect(a);
+        Object value = object.getValue();
+        setRegValue(value, rd);
+        setPc(getPc() + 1);
+    }
+
+    private void STD(int a, String rd) {
+        ObjectRegister objectRd = getValue(rd);
+        setRegValuePosition(objectRd, a);
+        setPc(getPc() + 1);
+    }
+
+    private void ADD(String rd, String rs) {
+        ObjectRegister objectRd = getValue(rd);
+        ObjectRegister objectRs = getValue(rs);
+        Integer valueRd = (Integer) objectRd.getValue();
+        Integer valueRs = (Integer) objectRs.getValue();
+        Integer soma = valueRd + valueRs;
+        ObjectRegister newRd = new ObjectRegister();
+        newRd.setRegister(rd);
+        newRd.setValue(soma);
+        updateRegister(newRd);
+        setPc(getPc() + 1);
+    }
+
+    private void SUB(String rd, String rs) {
+        ObjectRegister objectRd = getValue(rd);
+        ObjectRegister objectRs = getValue(rs);
+        Integer valueRd = (Integer) objectRd.getValue();
+        Integer valueRs = (Integer) objectRs.getValue();
+        Integer sub = valueRd - valueRs;
+        ObjectRegister newRd = new ObjectRegister();
+        newRd.setRegister(rd);
+        newRd.setValue(sub);
+        updateRegister(newRd);
+        setPc(getPc() + 1);
+    }
+
+    private void MULT(String rd, String rs) {
+        ObjectRegister objectRd = getValue(rd);
+        ObjectRegister objectRs = getValue(rs);
+        Integer valueRd = (Integer) objectRd.getValue();
+        Integer valueRs = (Integer) objectRs.getValue();
+        Integer mult = valueRd * valueRs;
+        ObjectRegister newRd = new ObjectRegister();
+        newRd.setRegister(rd);
+        newRd.setValue(mult);
+        updateRegister(newRd);
+        setPc(getPc() + 1);
+    }
+
+    private void LDX(String rd, String rs) {
+        ObjectRegister rsObject = getValue(rs); //pega o objeto rs
+        Integer value = (Integer) rsObject.getValue(); // pega o valor do objeto rs
+        ObjectRegister getObject = getValueDirect(value); //pega o objeto da posicao armazenada em rs
+        Object valueRd = getObject.getValue(); // valor que sera armazenado em rd
+        setRegValue(valueRd, rd); // novo objeto na memória conectado no vetor rd
+        setPc(getPc() + 1); //atualiza o pc
+    }
+
+    private void STX(String rd, String rs) {
+        ObjectRegister rdObject = getValue(rd);
+        Integer value = (Integer) rdObject.getValue();
+        ObjectRegister getObject = getValueDirect(value);
+        Object valueRs = getObject.getValue();
+        setRegValue(valueRs, rs);
+        setPc(getPc() + 1);
+      
+    }
+
     
 
 
