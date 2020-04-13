@@ -20,3 +20,4 @@ Nome do Arquivo|Para que serve
 **Teste_ObjectCreator.java**| Para testar as Funções que leem o arquivo do programa e salva dentro de um ArrayList com os dados separados.
 **Teste_Memory.java**| Para testar as Funções que mexem na memória do nosso Sistema Operacional
 **Teste_CPU.java**| Para testar as Funções que interagem com a memória para fazer as Funções que serão ativadas sendo lidas das Funções
+**Teste_Functions.java**| Para testar as Funções em Assembly e como elas se interagem com as Funções do CPU
