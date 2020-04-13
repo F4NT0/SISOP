@@ -23,3 +23,9 @@
     
     * **EXPLICAÇÃO DE COMO A VM DEVE SER MONTADA**
         * Toda a info passada pelo professor está [Aqui](./info/resolucao.md)
+
+### Parte 2 do Projeto
+
+**Criar o Gerente de Memória**
+
+* Agora nosso programa pode ter mais que um programa sendo lido, por isso temos que ter um Gerente de Memória que interrompe a leitura de um programa para se poder ler outro.

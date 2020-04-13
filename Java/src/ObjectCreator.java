@@ -42,6 +42,18 @@ public class ObjectCreator {
                         f.setOpcode(split[0]);
                     }
 
+                    // JMP
+                    if( (split[0].equals("JMP")) && (isNumeric(split[1]))){
+                        Integer valueK = Integer.parseInt(String.valueOf(split[1]));
+                        f.setA(valueK);
+                    }
+
+
+                    // JMPI
+                    if((split[0].equals("JMPI")) && (split[1].charAt(0) == 'R') && (split[2] == null)){
+                        f.setRs(split[1]);
+                    }
+
                     // Atribui o Rs e Rc ao Objeto (JMPIG JMPIL JMPIE)
                     if ((split[0].substring(0, 3).equals("JMP")) &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[1]);
@@ -49,29 +61,19 @@ public class ObjectCreator {
                     }
 
                     // STD
-                    if((split[0] == "STD") && (split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
+                    if((split[0].equals("STD")) && (split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[2]);
                         Integer valueA = Integer.parseInt(String.valueOf(split[1].substring(1, 3)));
                         f.setA(valueA);
                     }
 
                     // LDD
-                    if((split[0] == "LDD") &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
+                    if((split[0].equals("LDD")) &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
                         f.setRd(split[1]);
                         Integer valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
                         f.setA(valueA);
                     }
 
-                    // JMP
-                    if( (split[0] == "JMP") && (isNumeric(split[1]))){
-                        Integer valueK = Integer.parseInt(String.valueOf(split[1]));
-                        f.setA(valueK);
-                    }
-
-                    // Atribui o Rs ao Objeto (JMPI)
-                    if((split[1].charAt(0) == 'R') && (split[2] == null)){
-                        f.setRs(split[1]);
-                    }
 
                     // Atribui o k ao Objeto
                     if(isNumeric(split[2])){
@@ -87,23 +89,31 @@ public class ObjectCreator {
                     }
 
                     // // Atribui o Rd se ele for uma posição do Vetor (LDX STX)
-                    if((split[1].charAt(0) == '[') && (split[1].charAt(1) == 'R')){
-                        f.setRd(split[1].substring(1,2));
+                    if(split[0].equals("STX")){
+                        f.setRd(split[1].substring(1,3));
+                        System.out.println("STX RD: " + split[1].substring(1,2));
                         f.setRs(split[2]);
                     }
 
-                    if((split[2].charAt(0) == '[') && (split[2].charAt(1) == 'R')){
+                    if((split[0].equals("LDX")) && (split[2].charAt(0) == '[') && (split[2].charAt(1) == 'R')){
                         f.setRd(split[1]);
                         f.setRs(split[2].substring(1,2));
                     }
 
                     // // Atribui o Rd Rs se as Funções forem (ADD SUB MULT AND OR)
-                    if((split[0].equals("AND")) || (split[0].equals("SUB")| (split[0].equals("MULT")) || (split[0].equals("AND")) || (split[0].equals("OR")))){
+                    if((split[0].equals("ADD")) || (split[0].equals("SUB")| (split[0].equals("MULT")) || (split[0].equals("AND")) || (split[0].equals("OR")))){
                         f.setRd(split[1]);
                         f.setRs(split[2]);
                     }
 
 
+                    // Para testar os valores salvos
+                    // System.out.println("OPCODE: " +  f.getOpcode());
+                    // System.out.println("K: " + f.getK());
+                    // System.out.println("A: " +  f.getA());
+                    // System.out.println("Rs: " + f.getRs());
+                    // System.out.println("Rc: " + f.getRc());
+                    // System.out.println("Rd: " + f.getRd());
 
                     //adiciona o OBJETO na lista de FUNCOES
                     funcoes.add(f);

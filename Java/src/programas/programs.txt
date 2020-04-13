@@ -1,2 +1,4 @@
 prog.txt
 prog2.txt
+exemplo.txt
+test.txt

@@ -6,7 +6,7 @@ import java.util.List;
  *************************/
 
 public class Cpu{
-    private Integer R0,R1,R2,R3,R4,R5,R6,R7; //localização do Registrador na memória
+    private Integer R1,R2,R3,R4,R5,R6,R7,R8; //localização do Registrador na memória
     private Integer pc;
     private Memory memory = new Memory();
     //private SystemFunctions assemblyFunctions = new SystemFunctions();
@@ -14,7 +14,6 @@ public class Cpu{
 
 
     public Cpu(){ // Valores começam em -1 para não armazenar um valor de memoria real
-        this.R0 = -1;
         this.R1 = -1;
         this.R2 = -1;
         this.R3 = -1;
@@ -22,6 +21,7 @@ public class Cpu{
         this.R5 = -1;
         this.R6 = -1;
         this.R7 = -1;
+        this.R8 = -1;
         this.pc = 0;
         this.programSize = 0;
     }
@@ -33,7 +33,6 @@ public class Cpu{
 
 
     //----------------------- Getters -----------------------------------
-    public Integer getR0(){return R0;}
     public Integer getR1(){return R1;}
     public Integer getR2(){return R2;}
     public Integer getR3(){return R3;}
@@ -41,12 +40,12 @@ public class Cpu{
     public Integer getR5(){return R5;}
     public Integer getR6(){return R6;}
     public Integer getR7(){return R7;}
+    public Integer getR8(){return R8;}
     public Integer getPc(){return pc;}
     public Integer getProgramSize(){return programSize;}
     public Memory getMemory(){return memory;}
 
     //----------------------- Setters -------------------------------------
-    public void setR0(Integer R0){this.R0 = R0;}
     public void setR1(Integer R1){this.R1 = R1;}
     public void setR2(Integer R2){this.R2 = R2;}
     public void setR3(Integer R3){this.R3 = R3;}
@@ -54,13 +53,13 @@ public class Cpu{
     public void setR5(Integer R5){this.R5 = R5;}
     public void setR6(Integer R6){this.R6 = R6;}
     public void setR7(Integer R7){this.R7 = R7;}
+    public void setR8(Integer R8){this.R8 = R8;}
     public void setPc(Integer pc){this.pc = pc;}
     public void setProgramSize(Integer programSize){this.programSize = programSize;}
 
     //----------------------- Armazena a posição de um Registrador -----------------
     public void setRegisterPosition(String register, Integer position){
         switch(register){
-            case "R0":setR0(position);break;
             case "R1":setR1(position);break;
             case "R2":setR2(position);break;
             case "R3":setR3(position);break;
@@ -68,6 +67,7 @@ public class Cpu{
             case "R5":setR5(position);break;
             case "R6":setR6(position);break;
             case "R7":setR7(position);break;
+            case "R8":setR8(position);break;
         }
     }
 
@@ -101,7 +101,6 @@ public class Cpu{
     public ObjectRegister getValue(String register){
         ObjectRegister value = null;
         switch(register){
-            case "R0":value = memory.getValue(R0);break;
             case "R1":value = memory.getValue(R1);break;
             case "R2":value = memory.getValue(R2);break;
             case "R3":value = memory.getValue(R3);break;
@@ -109,6 +108,7 @@ public class Cpu{
             case "R5":value = memory.getValue(R5);break;
             case "R6":value = memory.getValue(R6);break;
             case "R7":value = memory.getValue(R7);break;
+            case "R8":value = memory.getValue(R8);break;
         }
         return value;
     }
@@ -134,7 +134,6 @@ public class Cpu{
     public Integer getRegisterLocation(String register){
         Integer location = -1;
         switch(register){
-            case "R0": location = getR0(); break;
             case "R1": location = getR1(); break;
             case "R2": location = getR2(); break;
             case "R3": location = getR3(); break;
@@ -142,6 +141,7 @@ public class Cpu{
             case "R5": location = getR5(); break;
             case "R6": location = getR6(); break;
             case "R7": location = getR7(); break;
+            case "R8": location = getR8(); break;
 
         }
         return location;
@@ -172,7 +172,7 @@ public class Cpu{
     //---------------------- Função que testa a Memória ----------------
     public void testMemory(){
         List<Object> teste = memory.array();
-        for(Integer i = 0 ; i <= 30 ; i++){
+        for(Integer i = 0 ; i <= 60 ; i++){
             System.out.println("Pos: " + i + ": " + teste.get(i));
         }
         
@@ -186,6 +186,7 @@ public class Cpu{
     //---------------- Função que pega o Objeto e faz uma Função --------------------
     public void runningFunctions(Funcao object){
         String opcode = object.getOpcode();
+        System.out.println("OPCODE LIDO: " + opcode);
         String rs = object.getRs();
         String rd = object.getRd();
         String rc = object.getRc();
@@ -212,13 +213,31 @@ public class Cpu{
 
     //---------------------- Função que faz as Funções de Assembly  ------------
     public void runningProgram(Integer size){
-        System.out.println("Entrou Aqui!");
         Funcao object = memory.getProgram(getPc());
         runningFunctions(object);
-        System.out.println("OPCODE: " + object.getOpcode());
         if(size == 0){System.out.println("Finish Program!");}
+        if(object.getOpcode().equals("STOP")){size = 0;}
         else{runningProgram(size-1);}  
     }   
+    //---------------------- Saida para o Terminal --------------------
+    public void finalValues(){
+        if(getR1() != -1){ObjectRegister object1 = memory.getValue(getR1());
+        System.out.println("R1: " + object1.getValue());}
+        if(getR2() != -1){ObjectRegister object1 = memory.getValue(getR2());
+        System.out.println("R2: " + object1.getValue());}
+        if(getR3() != -1){ObjectRegister object1 = memory.getValue(getR3());
+        System.out.println("R3: " + object1.getValue());}
+        if(getR4() != -1){ObjectRegister object1 = memory.getValue(getR4());
+        System.out.println("R4: " + object1.getValue());}
+        if(getR5() != -1){ObjectRegister object1 = memory.getValue(getR5());
+        System.out.println("R5: " + object1.getValue());}
+        if(getR6() != -1){ObjectRegister object1 = memory.getValue(getR6());
+        System.out.println("R6: " + object1.getValue());}
+        if(getR7() != -1){ObjectRegister object1 = memory.getValue(getR7());
+        System.out.println("R7: " + object1.getValue());}
+        if(getR8() != -1){ObjectRegister object1 = memory.getValue(getR8());
+        System.out.println("R8: " + object1.getValue());}
+    }
 
     //====================
     // FUNÇÕES DE ASSEMBLY
@@ -351,6 +370,7 @@ public class Cpu{
         setPc(getPc() + 1);
       
     }
+
 
 
 
