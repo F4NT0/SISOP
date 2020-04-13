@@ -28,6 +28,16 @@ final class Memory {
         int pos = memoryArray.indexOf(null);
         memoryArray.set(pos, value);
     }
+    // --------------- Função que adiciona um objeto direto na memória ---------------
+    public void addValue(Object value){
+        int pos = memoryArray.indexOf(null);
+        memoryArray.set(pos,value);
+    }
+
+    //----------------Função que adiciona um objeto avulso em uma Posição da memória --------------
+    public void addValueOnPosition(Object value, Integer position){
+        memoryArray.set(position,value);
+    }
 
     // --------------- Função que adiciona um Registrador direto em uma posição -------------
     public void setRegisterOnPosition(int position, ObjectRegister object){
@@ -52,18 +62,29 @@ final class Memory {
         return object;
     }
 
+    //------------- Função que pega um objeto avulso da memória pela posição --------
+    public Object getObjectOnPosition(Integer position){
+        Object value = new Object();
+        try{
+            value = memoryArray.get(position);
+        }catch(IndexOutOfBoundsException e){
+
+        }
+        return value;
+    }
+
+    //----------- Função para ler o programa -------------------
+    public Funcao getProgram(Integer pc){
+        Funcao object = (Funcao) memoryArray.get(pc);
+        return object;
+    }
+
 
     //------------- Função que atualiza um valor na memória ------------------
-    public void updateRegister(ObjectRegister object) throws IndexOutOfBoundsException{
-        int position = memoryArray.indexOf(object);
-        try{
-            if(position == -1){
-                addRegister(object);
-            }
-            memoryArray.set(position,object);
-        }catch(IndexOutOfBoundsException e){
-            System.out.println("Posicao não permitida");
-        }
+    public void updateRegister(Integer location, ObjectRegister newRegister){
+        memoryArray.remove(location);
+        memoryArray.set(location,newRegister);
+        
     }
 
     // --------------- Função que remove o Objeto da Memória por index ------------------------

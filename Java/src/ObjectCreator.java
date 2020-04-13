@@ -49,14 +49,14 @@ public class ObjectCreator {
                     }
 
                     // STD
-                    if((split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
+                    if((split[0] == "STD") && (split[1].charAt(0) == '[') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[2]);
                         Integer valueA = Integer.parseInt(String.valueOf(split[1].substring(1, 3)));
                         f.setA(valueA);
                     }
 
                     // LDD
-                    if((split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
+                    if((split[0] == "LDD") &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == '[')){
                         f.setRd(split[1]);
                         Integer valueA = Integer.parseInt(String.valueOf(split[2].substring(1, 3)));
                         f.setA(valueA);
@@ -131,6 +131,11 @@ public class ObjectCreator {
     // ------------------------- Função para ler o ArrayList Externamente ---------------------
     public ArrayList<Funcao> getFuncoes(){
         return funcoes;
+    }
+
+    // ------------------------- Função que retorna o tamanho do programa -----------------
+    public Integer getProgramSize(){
+        return funcoes.size();
     }
 
     // ------------------------- Função para verificar se a String é um Numero -----------------
