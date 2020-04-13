@@ -24,7 +24,7 @@ Nome da Função|Descrição|Sintaxe|Operação
 JMP|Envia o PC para uma posição específica|JMP k|PC <- k
 JMPI|Envia o PC para uma posição armazenada em um Registrador|JMPI Rs|PC <- Rs
 JMPIG|Verifica se um valor de um Registrador é maior que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIG Rs,Rc| if Rs > 0 <br> then <br> PC <- Rc <br> Else <br> PC <- PC+1
-JMPIL|Verifica se um valor de um Registrador é menor que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIL Rs,Rc| if Rs < 0 <br> then <br> PC -< Rs <br> Else <br> PC <- PC+1
+JMPIL|Verifica se um valor de um Registrador é menor que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIL Rs,Rc| if Rs < 0 <br> then <br> PC <- Rs <br> Else <br> PC <- PC+1
 JMPIE|Verifica se um valor de um Registrador é igual que Zero, se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, senão ele somente vai para a proxima linha do programa| JMPIE Rs,Rc| if Rs = 0 <br> then <br> PC <- Rs <br> Else <br> PC <- PC+1
 
 ### Operações com valores Diretos
@@ -46,8 +46,8 @@ SUB | Subtraimos o valor armazenado entre dois Registradores no primeiro Registr
 MULT| Multiplica o valor armazenado entre dois Registradores no primeiro Registrador inserido|MULT Rd,Rs| Rd <- <br> Rd * Rs
 AND | Faz a Operação Lógica AND|AND Rd,Rs|Rd <- <br> Rd AND Rs
 OR  | Faz a Operação Lógica OR|OR Rd,Rs| Rd <- <br> Rd OR Rs
-LDX | Pega uma Posição do vetor por um valor de um Registrador e salva o valor em outro Registrador|LDX Rd,[Rs]|Rd <- [Rs]
-STX | Adiciona o valor do Registrador em uma Posição da Memória|STX [Rd],Rs|[Rd] <- Rs
+LDX | Pega o valor que está no Rs e acessa a posição da memória desse valor e armazena em um Novo Registrador|LDX Rd,[Rs]|Rd <- [Rs]
+STX | Pega o valor que está no Rd e envia o valor em Rs para a posição de memória que era o valor do Rd|STX [Rd],Rs|[Rd] <- Rs
 
 ### Operações em um Registrador
 Nome da Função|Descrição|Sintaxe|Operação
