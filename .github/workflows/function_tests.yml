@@ -21,4 +21,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Java Test
-      run: javac Java/src/*.java && java Teste_Functions.java
+      run: javac Java/src/*.java && cd Java/src/ && java Teste_Functions.java
