@@ -8,12 +8,13 @@ public class Teste_Functions{
         Cpu cpu = new Cpu();
 
         // ---------- Teste de Leitura --------------
-        cpu.loadProgram("test.txt");
+        cpu.loadProgram("prog.txt");
         System.out.println("PC: " + cpu.getPc());
         System.out.println("Size: " + cpu.getProgramSize());
         cpu.runningProgram(cpu.getProgramSize());
         System.out.println("PC: " + cpu.getPc());
         cpu.testMemory();
+        cpu.finalValues();
 
         // ----------- Teste do JMP ---------------
             // Funcao testeJMP = new Funcao();

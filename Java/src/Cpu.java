@@ -215,9 +215,29 @@ public class Cpu{
     public void runningProgram(Integer size){
         Funcao object = memory.getProgram(getPc());
         runningFunctions(object);
-        if(size == 0 || object.getOpcode().equals("STOP")){System.out.println("Finish Program!");}
+        if(size == 0){System.out.println("Finish Program!");}
+        if(object.getOpcode().equals("STOP")){size = 0;}
         else{runningProgram(size-1);}  
     }   
+    //---------------------- Saida para o Terminal --------------------
+    public void finalValues(){
+        if(getR1() != -1){ObjectRegister object1 = memory.getValue(getR1());
+        System.out.println("R1: " + object1.getValue());}
+        if(getR2() != -1){ObjectRegister object1 = memory.getValue(getR2());
+        System.out.println("R2: " + object1.getValue());}
+        if(getR3() != -1){ObjectRegister object1 = memory.getValue(getR3());
+        System.out.println("R3: " + object1.getValue());}
+        if(getR4() != -1){ObjectRegister object1 = memory.getValue(getR4());
+        System.out.println("R4: " + object1.getValue());}
+        if(getR5() != -1){ObjectRegister object1 = memory.getValue(getR5());
+        System.out.println("R5: " + object1.getValue());}
+        if(getR6() != -1){ObjectRegister object1 = memory.getValue(getR6());
+        System.out.println("R6: " + object1.getValue());}
+        if(getR7() != -1){ObjectRegister object1 = memory.getValue(getR7());
+        System.out.println("R7: " + object1.getValue());}
+        if(getR8() != -1){ObjectRegister object1 = memory.getValue(getR8());
+        System.out.println("R8: " + object1.getValue());}
+    }
 
     //====================
     // FUNÇÕES DE ASSEMBLY
@@ -350,6 +370,7 @@ public class Cpu{
         setPc(getPc() + 1);
       
     }
+
 
 
 
