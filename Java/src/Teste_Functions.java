@@ -5,15 +5,15 @@
 public class Teste_Functions{
     public static void main(String[] args){
         // Criando um CPU
-        //Cpu cpu = new Cpu();
+        Cpu cpu = new Cpu();
 
         // ---------- Teste de Leitura --------------
-        // cpu.loadProgram("prog2.txt");
-        // System.out.println("PC: " + cpu.getPc());
-        // System.out.println("Size: " + cpu.getProgramSize());
-        // cpu.runningProgram(cpu.getProgramSize());
-        // System.out.println("PC: " + cpu.getPc());
-        // cpu.testMemory();
+        cpu.loadProgram("test.txt");
+        System.out.println("PC: " + cpu.getPc());
+        System.out.println("Size: " + cpu.getProgramSize());
+        cpu.runningProgram(cpu.getProgramSize());
+        System.out.println("PC: " + cpu.getPc());
+        cpu.testMemory();
 
         // ----------- Teste do JMP ---------------
             // Funcao testeJMP = new Funcao();
@@ -201,7 +201,7 @@ public class Teste_Functions{
             // testeSTD.setRs("R1");
             // cpu.runningFunctions(testeSTD);
             // System.out.println("STD: \n");
-            // // cpu.testMemory();
+            // cpu.testMemory();
 
             // // Teste do LDD
             // Funcao testeLDD = new Funcao();
