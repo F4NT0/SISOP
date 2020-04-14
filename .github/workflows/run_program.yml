@@ -8,13 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Setup do JDK
-      - uses: actions/setup-java@v1
+        uses: actions/setup-java@v1
         with:
           java-version: 8
       - name: Acessando o Script
         run: cd ci_cd/
+        shell: bash
       - name: Ativando Script
         run: chmod +x teste.sh
+        shell: bash
       - name: Iniciando o Script
         run: ./teste.sh
+        shell: bash
     
