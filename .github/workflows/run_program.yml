@@ -1,0 +1,14 @@
+name: Testando Leitura de Programa
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install OpenJDK on Ubuntu
+    - run: apt-get install openjdk-8-jdk
+    - uses: ./ci_cd
+    - name: Enable Script
+    - run: chmod +x teste.sh
+    - name: Run Script
+      run: ./teste.sh
