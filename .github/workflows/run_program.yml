@@ -1,9 +1,20 @@
 name: Testando Leitura de Programa
 on: push
 jobs:
-  build:
-    name: Update System
+  test:
+    name: Teste de Programa
     runs-on: ubuntu-latest
+    
     steps:
-    - uses: actions/checkout@v2
-    - run: apt-get update
+      - uses: actions/checkout@v1
+      - name: Setup do JDK
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Acessando o Script
+        run: cd ci_cd/
+      - name: Ativando Script
+        run: chmod +x teste.sh
+      - name: Iniciando o Script
+        run: ./teste.sh
+    
