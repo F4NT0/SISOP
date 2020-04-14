@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9e30d456-8596-4af1-ab23-f428af097938" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/src/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/CPU.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/Memory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/src/ProcessorRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/OPCODE.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +23,6 @@
   <component name="ProjectId" id="1Zao1nMbUx06LWFz97Cs5oW568H" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
