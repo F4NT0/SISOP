@@ -24,14 +24,12 @@ final class Memory {
     }
 
     // -------------- Função que adiciona um valor de Registrador na memória ------------
-    public void addRegister (Object value){   
-        int pos = memoryArray.indexOf(null);
-        memoryArray.set(pos, value);
+    public void addRegister (Object value){
+        memoryArray.set(memoryArray.indexOf(null), value);
     }
     // --------------- Função que adiciona um objeto direto na memória ---------------
     public void addValue(Object value){
-        int pos = memoryArray.indexOf(null);
-        memoryArray.set(pos,value);
+        memoryArray.set(memoryArray.indexOf(null),value);
     }
 
     //----------------Função que adiciona um objeto avulso em uma Posição da memória --------------
@@ -46,8 +44,7 @@ final class Memory {
     
     // ------------ Função que retorna a posição de um registrador ------------------------
     public int findRegister(ObjectRegister object){
-        int position = memoryArray.indexOf(object);
-        return position;
+        return memoryArray.indexOf(object);
     }
 
     //------------ Função para retornar o objeto de uma posição --------------
@@ -55,7 +52,6 @@ final class Memory {
         ObjectRegister object = new ObjectRegister();
         try{
             object = (ObjectRegister) memoryArray.get(position);
-
         }catch(IndexOutOfBoundsException e){
             //System.out.println("Index fora da Memória");
         }
@@ -75,14 +71,12 @@ final class Memory {
 
     //----------- Função para ler o programa -------------------
     public Funcao getProgram(Integer pc){
-        Funcao object = (Funcao) memoryArray.get(pc);
-        return object;
+        return (Funcao) memoryArray.get(pc);
     }
 
 
     //------------- Função que atualiza um valor na memória ------------------
     public void updateRegister(Integer location, ObjectRegister newRegister){
-        memoryArray.remove(location);
         memoryArray.set(location,newRegister);
         
     }
@@ -92,12 +86,12 @@ final class Memory {
         if (memoryArray.size() < index) {
             throw new IndexOutOfBoundsException("Tried to acess ");
         }
-        memoryArray.remove(index);
+        memoryArray.set(index, null);
     }
 
     // ---------------- Função que remove um objeto especifico --------------------------------
     public void remove(Object object) {
-        this.memoryArray.remove(object);
+        this.memoryArray.set(this.memoryArray.indexOf(object), null);
     }
 
 
