@@ -92,7 +92,7 @@ final class Memory {
         if (memoryArray.size() < index) {
             throw new IndexOutOfBoundsException("Tried to acess ");
         }
-        memoryArray.remove(index);
+        memoryArray.set(index,null);
     }
 
     // ---------------- Função que remove um objeto especifico --------------------------------
@@ -100,18 +100,26 @@ final class Memory {
         this.memoryArray.remove(object);
     }
 
-
-
-
-    public void createPartition () {
-    }
-
-    public void realocate () {
-
+    /// --------------- Função que limpa a memória após utilizar -----------------------
+    public void clearMemory(){
+        for(int i = 0 ; i < memoryArray.size() ; i++){
+                memoryArray.set(i, null);
+        }
     }
 
     public List<Object> array() {
         return this.memoryArray;
     }
+
+    // ----------------- Funções gerênciadoras ---------------------
+    // public int memSize(){
+    //     return this.memoryArray.size();
+    // }
+    // public Object getObject(int position){
+    //     return this.memoryArray.get(position);
+    // }
+    // public void setObject(int position, Object object){
+    //     this.memoryArray.set(position,object);
+    // }
 
 }

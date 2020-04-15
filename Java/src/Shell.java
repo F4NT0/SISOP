@@ -133,9 +133,20 @@ public class Shell implements KeyListener {
                 output.append("Lendo arquivo " + arquivo + ".... \n");
                 output.append("");
                 cpu.loadProgram(arquivo);
+                // cpu.runningProgram(cpu.getProgramSize());
+                // String finalValues = cpu.finalValues();
+                // output.setText("");
+                // output.append(finalValues);
+                cpu.testMemory();
                 input.setText("");
             }
 
+        }
+        if(text.equals("clear memory")){
+            System.out.println("------------------------------");
+            cpu.clearMemory();
+            output.append("Memória Foi zerada!!");
+            cpu.testMemory();
         }
     }
 

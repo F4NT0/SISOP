@@ -20,6 +20,8 @@ public class ObjectCreator {
     public void readAndCreateFunctions(String path) {
         setup(path);
         try {
+            eraseOldReading();
+            // int position = 0;
             //File myObj = new File(path);
             while (true) {
                 String line = buffer.readLine();
@@ -91,7 +93,6 @@ public class ObjectCreator {
                     // // Atribui o Rd se ele for uma posição do Vetor (LDX STX)
                     if(split[0].equals("STX")){
                         f.setRd(split[1].substring(1,3));
-                        System.out.println("STX RD: " + split[1].substring(1,2));
                         f.setRs(split[2]);
                     }
 
@@ -117,8 +118,6 @@ public class ObjectCreator {
 
                     //adiciona o OBJETO na lista de FUNCOES
                     funcoes.add(f);
-
-
                 } else {
                     break;
                 }
@@ -155,6 +154,14 @@ public class ObjectCreator {
             return true;
         } catch (NumberFormatException e){
             return false;
+        }
+    }
+
+    // --------------------------- Função para apagar antigo arquivo para nova leitura -------------
+    public void eraseOldReading(){
+        // ----------- Apagando o programa anterior
+        for(int i = 0 ; i < funcoes.size() ; i++){
+            funcoes.removeAll(funcoes);
         }
     }
 }

@@ -14,6 +14,6 @@
 12. Soma 1(R2) com 0(R3) e guarda no R2
 13. Adiciona 1(R2) na posição 52(R8)
 14. Soma 52(R8) com 1(R1) e guarda em R8
-15. Subtrai 61(R7) com 53(R8) e guarda em R7
+15. Subtrai 61(R7) com 53(R8) e guarda em R7()
 16. pega 6(R6) e como é maior ele envia o PC para 8
 17. Para o Programa

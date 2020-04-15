@@ -14,7 +14,18 @@ public class Teste_Functions{
         cpu.runningProgram(cpu.getProgramSize());
         System.out.println("PC: " + cpu.getPc());
         cpu.testMemory();
-        cpu.finalValues();
+        String finalValues = cpu.finalValues();
+        System.out.println(finalValues);
+        //cpu.clearMemory();
+        cpu.loadProgram("prog2.txt");
+        System.out.println("PC: " + cpu.getPc());
+        System.out.println("Size: " + cpu.getProgramSize());
+        cpu.runningProgram(cpu.getProgramSize());
+        System.out.println("PC: " + cpu.getPc());
+        cpu.testMemory();
+        System.out.println("Final Values");
+        String finalValues2 = cpu.finalValues();
+        System.out.println(finalValues2);
 
         // ----------- Teste do JMP ---------------
             // Funcao testeJMP = new Funcao();
