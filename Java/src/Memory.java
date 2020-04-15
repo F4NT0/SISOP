@@ -24,14 +24,12 @@ final class Memory {
     }
 
     // -------------- Função que adiciona um valor de Registrador na memória ------------
-    public void addRegister (Object value){   
-        int pos = memoryArray.indexOf(null);
-        memoryArray.set(pos, value);
+    public void addRegister (Object value){
+        memoryArray.set( memoryArray.indexOf(null), value);
     }
     // --------------- Função que adiciona um objeto direto na memória ---------------
     public void addValue(Object value){
-        int pos = memoryArray.indexOf(null);
-        memoryArray.set(pos,value);
+        memoryArray.set(memoryArray.indexOf(null),value);
     }
 
     //----------------Função que adiciona um objeto avulso em uma Posição da memória --------------
@@ -46,8 +44,7 @@ final class Memory {
     
     // ------------ Função que retorna a posição de um registrador ------------------------
     public int findRegister(ObjectRegister object){
-        int position = memoryArray.indexOf(object);
-        return position;
+        return memoryArray.indexOf(object);
     }
 
     //------------ Função para retornar o objeto de uma posição --------------
@@ -75,8 +72,7 @@ final class Memory {
 
     //----------- Função para ler o programa -------------------
     public Funcao getProgram(Integer pc){
-        Funcao object = (Funcao) memoryArray.get(pc);
-        return object;
+        return (Funcao) memoryArray.get(pc);
     }
 
 
@@ -110,16 +106,5 @@ final class Memory {
     public List<Object> array() {
         return this.memoryArray;
     }
-
-    // ----------------- Funções gerênciadoras ---------------------
-    // public int memSize(){
-    //     return this.memoryArray.size();
-    // }
-    // public Object getObject(int position){
-    //     return this.memoryArray.get(position);
-    // }
-    // public void setObject(int position, Object object){
-    //     this.memoryArray.set(position,object);
-    // }
 
 }
