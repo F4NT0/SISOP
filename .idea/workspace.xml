@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9e30d456-8596-4af1-ab23-f428af097938" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/Memory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +12,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -40,14 +40,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.App">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="App" />
-      <module name="SISOP" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Shell">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SISOP" />
@@ -62,9 +55,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Shell" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Shell" />
+      <module name="SISOP" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Shell" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Memory" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
+        <item itemvalue="Application.Shell" />
         <item itemvalue="Application.Memory" />
         <item itemvalue="Application.Main" />
       </list>
@@ -98,14 +103,20 @@
       <screen x="0" y="23" width="1680" height="978" />
     </state>
     <state x="440" y="177" key="#Project_Structure/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086528213" />
-    <state x="304" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585086595571">
-      <screen x="0" y="23" width="1680" height="978" />
+    <state x="261" y="158" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586892160424">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="304" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086595571" />
-    <state x="577" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1585086444013">
-      <screen x="0" y="23" width="1680" height="978" />
+    <state x="261" y="158" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1586892160424" />
+    <state x="533" y="152" key="#com.intellij.ide.util.MemberChooser" timestamp="1586892756642">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="533" y="152" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1586892756642" />
+    <state x="495" y="274" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586892158493">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="577" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog/-1920.-39.1920.1057/0.23.1680.978@0.23.1680.978" timestamp="1585086444013" />
+    <state x="495" y="274" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1440.877@0.23.1440.877" timestamp="1586892158493" />
     <state x="689" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585086366039">
       <screen x="0" y="23" width="1680" height="978" />
     </state>
