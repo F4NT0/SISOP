@@ -34,7 +34,7 @@ public class CI_CD {
         System.out.println("LEITURA DO PROGRAMA TEST.TXT");
         System.out.println("----------------------------");
         System.out.println("\n");
-        cpu.loadProgram("exemplo.txt");
+        cpu.loadProgram("test.txt");
         System.out.println("PC: " + cpu.getPc());
         System.out.println("Size: " + cpu.getProgramSize());
         cpu.runningProgram(cpu.getProgramSize());
