@@ -14,4 +14,9 @@ jobs:
       - name: Iniciando Script
         run: cd ci_cd/ && chmod +x teste.sh && ./teste.sh
         shell: bash
+      - name: mostrando Status de Leitura
+        if: always()
+        run: echo $status
+        env: 
+          status: ${{job.status}}
     
