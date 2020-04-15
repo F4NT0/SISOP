@@ -24,14 +24,12 @@ final class Memory {
     }
 
     // -------------- Função que adiciona um valor de Registrador na memória ------------
-    public void addRegister (Object value){   
-        int pos = memoryArray.indexOf(null);
-        memoryArray.set(pos, value);
+    public void addRegister (Object value){
+        memoryArray.set( memoryArray.indexOf(null), value);
     }
     // --------------- Função que adiciona um objeto direto na memória ---------------
     public void addValue(Object value){
-        int pos = memoryArray.indexOf(null);
-        memoryArray.set(pos,value);
+        memoryArray.set(memoryArray.indexOf(null),value);
     }
 
     //----------------Função que adiciona um objeto avulso em uma Posição da memória --------------
@@ -46,8 +44,7 @@ final class Memory {
     
     // ------------ Função que retorna a posição de um registrador ------------------------
     public int findRegister(ObjectRegister object){
-        int position = memoryArray.indexOf(object);
-        return position;
+        return memoryArray.indexOf(object);
     }
 
     //------------ Função para retornar o objeto de uma posição --------------
@@ -75,8 +72,7 @@ final class Memory {
 
     //----------- Função para ler o programa -------------------
     public Funcao getProgram(Integer pc){
-        Funcao object = (Funcao) memoryArray.get(pc);
-        return object;
+        return (Funcao) memoryArray.get(pc);
     }
 
 
@@ -92,7 +88,7 @@ final class Memory {
         if (memoryArray.size() < index) {
             throw new IndexOutOfBoundsException("Tried to acess ");
         }
-        memoryArray.remove(index);
+        memoryArray.set(index,null);
     }
 
     // ---------------- Função que remove um objeto especifico --------------------------------
@@ -100,14 +96,11 @@ final class Memory {
         this.memoryArray.remove(object);
     }
 
-
-
-
-    public void createPartition () {
-    }
-
-    public void realocate () {
-
+    /// --------------- Função que limpa a memória após utilizar -----------------------
+    public void clearMemory(){
+        for(int i = 0 ; i < memoryArray.size() ; i++){
+                memoryArray.set(i, null);
+        }
     }
 
     public List<Object> array() {

@@ -57,6 +57,7 @@ public class Cpu{
     public void setPc(Integer pc){this.pc = pc;}
     public void setProgramSize(Integer programSize){this.programSize = programSize;}
 
+    
     //----------------------- Armazena a posição de um Registrador -----------------
     public void setRegisterPosition(String register, Integer position){
         switch(register){
@@ -158,6 +159,7 @@ public class Cpu{
     public void loadProgram(String file){
         ObjectCreator objects = new ObjectCreator();
         objects.readAndCreateFunctions(file);
+        clearMemory();
         storeProgram(objects.getFuncoes());
         setProgramSize(objects.getProgramSize()-1);
 
@@ -172,10 +174,19 @@ public class Cpu{
     //---------------------- Função que testa a Memória ----------------
     public void testMemory(){
         List<Object> teste = memory.array();
-        for(Integer i = 0 ; i <= 60 ; i++){
+        for(Integer i = 0 ; i <= 20 ; i++){
             System.out.println("Pos: " + i + ": " + teste.get(i));
         }
         
+    }
+
+    //----------------------- Limpar a memória para ler outro programa --------------
+    public void clearMemory(){
+        memory.clearMemory();
+        setR1(-1);setR2(-1);
+        setR3(-1);setR4(-1);
+        setR5(-1);setR6(-1);
+        setR7(-1);setR8(-1);
     }
     
 
@@ -186,7 +197,6 @@ public class Cpu{
     //---------------- Função que pega o Objeto e faz uma Função --------------------
     public void runningFunctions(Funcao object){
         String opcode = object.getOpcode();
-        System.out.println("OPCODE LIDO: " + opcode);
         String rs = object.getRs();
         String rd = object.getRd();
         String rc = object.getRc();
@@ -220,23 +230,39 @@ public class Cpu{
         else{runningProgram(size-1);}  
     }   
     //---------------------- Saida para o Terminal --------------------
-    public void finalValues(){
-        if(getR1() != -1){ObjectRegister object1 = memory.getValue(getR1());
-        System.out.println("R1: " + object1.getValue());}
-        if(getR2() != -1){ObjectRegister object1 = memory.getValue(getR2());
-        System.out.println("R2: " + object1.getValue());}
-        if(getR3() != -1){ObjectRegister object1 = memory.getValue(getR3());
-        System.out.println("R3: " + object1.getValue());}
-        if(getR4() != -1){ObjectRegister object1 = memory.getValue(getR4());
-        System.out.println("R4: " + object1.getValue());}
-        if(getR5() != -1){ObjectRegister object1 = memory.getValue(getR5());
-        System.out.println("R5: " + object1.getValue());}
-        if(getR6() != -1){ObjectRegister object1 = memory.getValue(getR6());
-        System.out.println("R6: " + object1.getValue());}
-        if(getR7() != -1){ObjectRegister object1 = memory.getValue(getR7());
-        System.out.println("R7: " + object1.getValue());}
-        if(getR8() != -1){ObjectRegister object1 = memory.getValue(getR8());
-        System.out.println("R8: " + object1.getValue());}
+    public String finalValues(){
+        try{
+            String r1 = "";
+            String r2 = "";
+            String r3 = "";
+            String r4 = "";
+            String r5 = "";
+            String r6 = "";
+            String r7 = "";
+            String r8 = "";
+            if(getR1() != -1){ObjectRegister object1 = memory.getValue(getR1());
+                r1 = "R1: " + object1.getValue();}
+            if(getR2() != -1){ObjectRegister object1 = memory.getValue(getR2());
+                r2 = "R2: " + object1.getValue();}
+            if(getR3() != -1){ObjectRegister object1 = memory.getValue(getR3());
+                r3 = "R3: " + object1.getValue();}
+            if(getR4() != -1){ObjectRegister object1 = memory.getValue(getR4());
+                r4 = "R4: " + object1.getValue();}
+            if(getR5() != -1){ObjectRegister object1 = memory.getValue(getR5());
+                r5 = "R5: " + object1.getValue();}
+            if(getR6() != -1){ObjectRegister object1 = memory.getValue(getR6());
+                r6 = "R6: " + object1.getValue();}
+            if(getR7() != -1){ObjectRegister object1 = memory.getValue(getR7());
+                r7 = "R7: " + object1.getValue();}
+            if(getR8() != -1){ObjectRegister object1 = memory.getValue(getR8());
+                r8 = "R8: " + object1.getValue();}
+            String exit = r1 + "\n" + r2 + "\n" + r3 + "\n" + r4 + "\n" + r5 + "\n" + r6 + "\n" + r7 + "\n" + r8 + "\n"; 
+            return exit;
+
+        }catch(NullPointerException e){
+            System.err.println("Erro: " + e);
+        }
+        return "";
     }
 
     //====================

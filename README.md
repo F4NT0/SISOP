@@ -2,9 +2,12 @@
 
 **S.O.V.A.C.O** = **S**istema **O**peracional **V**ersionado **A**o **C**ompartilhamento **O**rganizacional
 
+![Testando Leitura de Programa](https://github.com/F4NT0/SISOP/workflows/Testando%20Leitura%20de%20Programa/badge.svg)
+
 * Informações para Desenvolvimento clique [AQUI](https://github.com/F4NT0/SISOP/wiki)
 
-* Este Repositório possui o Sistema Operacional criado na Cadeira de `Sistemas Operacionais`.
+* Este Repositório possui o Sistema Operacional criado 
+na Cadeira de `Sistemas Operacionais`.
 
 ### Parte 1 do Projeto
 
@@ -26,6 +29,7 @@
 
 ### Parte 2 do Projeto
 
-**Criar o Gerente de Memória**
+**Sistema Operacional Multiprogramado**
 
-* Agora nosso programa pode ter mais que um programa sendo lido, por isso temos que ter um Gerente de Memória que interrompe a leitura de um programa para se poder ler outro.
+* Devemos agora criar dois Sistemas de Gerênciamento para o Nosso Sistema Operacional
+* Sobre o que precisamos, veja nesse [ARQUIVO](./info/SO_multiprogramado.md)

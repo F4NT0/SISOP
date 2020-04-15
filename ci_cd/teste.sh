@@ -2,5 +2,5 @@
 cd ..
 cd Java/src/
 javac *.java
-java Teste_Functions
+java CI_CD
 echo "TESTE FINALIZADO"
