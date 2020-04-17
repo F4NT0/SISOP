@@ -56,6 +56,13 @@ public class ProcessManager {
         return queue.isEmpty() || currentProcess == null;
     }
 
+    public void addProcessToQueue (Process process) throws NullPointerException {
+        if (process == null) {
+            throw new NullPointerException("Tried to add null process");
+        }
+        queue.add(process);
+    }
+
 
 
 //    get free/occupied partition
