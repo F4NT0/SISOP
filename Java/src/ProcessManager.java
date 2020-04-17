@@ -3,15 +3,14 @@ import java.util.Queue;
 
 public class ProcessManager {
 
-    Queue <Process> queue;
+    private Queue <Process> queue;
+    private Process currentProcess;
+    private static Integer MAX_PC_DIVISOR = 10;
 
     public ProcessManager() {
         this.queue = new LinkedList<>();
     }
 
-//    metodo pra pegar partição
-//    comparar
-//    parar
-//    pegar partição livre
+    
 
 }
