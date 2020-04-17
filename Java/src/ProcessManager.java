@@ -17,6 +17,15 @@ public class ProcessManager {
 
     
 
+    private void updateCurrentProcess () {
+        if (currentProcess.getProcessControlBlock().addStepToProgramCounter() % MAX_PC_DIVISOR == 0) {
+            queue.add(currentProcess);
+            currentProcess.getProcessControlBlock().setProgramState(ProcessControlBlock.ProgramState.NOT_RUNNING);
+            currentProcess = queue.remove();
+            currentProcess.getProcessControlBlock().setProgramState(ProcessControlBlock.ProgramState.RUNNING);
+        }
+    }
+
     public Boolean isEmpty () {
         return queue.isEmpty() || currentProcess == null;
     }
