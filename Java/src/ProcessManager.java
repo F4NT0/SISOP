@@ -11,7 +11,9 @@ public class ProcessManager {
         this.queue = new LinkedList<>();
     }
 
-    
+    public Process getNextProcess () {
+        return queue.remove();
+    }
 
 
 
