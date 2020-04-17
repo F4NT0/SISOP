@@ -17,6 +17,12 @@ public class ProcessManager {
 
     
 
+    private void finalizeCurrentProcess () {
+        currentProcess.getProcessControlBlock().setProgramState(ProcessControlBlock.ProgramState.ENDED);
+        // perform removal from memory
+        // screen prints
+    }
+
     private void updateCurrentProcess () {
         if (currentProcess.getProcessControlBlock().addStepToProgramCounter() % MAX_PC_DIVISOR == 0) {
             queue.add(currentProcess);
