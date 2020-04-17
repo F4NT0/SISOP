@@ -13,4 +13,11 @@ public class ProcessManager {
 
     
 
+
+
+//    get free/occupied partition
+//    compare
+//    stop
+//    memory method contact
+
 }
