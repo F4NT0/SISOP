@@ -9,6 +9,9 @@ public class ProcessManager {
         this.queue = new LinkedList<>();
     }
 
-
+//    metodo pra pegar partição
+//    comparar
+//    parar
+//    pegar partição livre
 
 }
