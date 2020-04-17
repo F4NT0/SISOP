@@ -28,8 +28,8 @@ public class ProcessManager {
             if (!queue.isEmpty()) {
                 currentProcess = queue.remove();
                 runNextFunction();
-                return;
             }
+            return;
         }
 
 //        run function
