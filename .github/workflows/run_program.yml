@@ -1,0 +1,23 @@
+name: Testando Leitura de Programa
+on: push
+jobs:
+  test:
+    name: Teste de Programa
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup do JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      #- name: Iniciando Script
+       # run: cd ci_cd/ && chmod +x teste.sh && ./teste.sh
+        #shell: bash
+      - name: testando os comandos
+        run: cd Java/src/ && javac *.java && java CI_CD
+      - name: mostrando Status de Leitura
+        if: always()
+        run: echo $status
+        env: 
+          status: ${{job.status}}
