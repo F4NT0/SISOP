@@ -15,6 +15,12 @@ public class ProcessManager {
         return queue.remove();
     }
 
+    
+
+    public Boolean isEmpty () {
+        return queue.isEmpty() || currentProcess == null;
+    }
+
 
 
 //    get free/occupied partition
