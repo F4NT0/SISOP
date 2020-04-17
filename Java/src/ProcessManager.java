@@ -16,16 +16,19 @@ public class ProcessManager {
     }
 
     public void runNextFunction () throws NullPointerException {
-        if (currentProcess == null || queue.isEmpty()) {
+        if (currentProcess == null) {
             throw new NullPointerException("No new function assigned to run");
         }
-        Integer currentStepIndex = currentProcess.getProcessControlBlock().getProgramCounter();
+
+        Integer currentStepIndex = currentProcess.getProcessControlBlock().addStepToProgramCounter();
         Funcao funcao = currentProcess.getFunctions().get(currentStepIndex);
 
         if (funcao.getOpcode().equals("STOP")) {
             finalizeCurrentProcess();
             if (!queue.isEmpty()) {
                 currentProcess = queue.remove();
+                runNextFunction();
+                return;
             }
         }
 
