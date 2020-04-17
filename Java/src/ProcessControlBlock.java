@@ -66,6 +66,11 @@ class ProcessControlBlock {
     public ProcessControlBlock (Integer id) {
         this.id = id;
         this.programState = ProgramState.NOT_RUNNING;
+        this.programCounter = 0;
+    }
+
+    public Integer addStepToProgramCounter () {
+        return ++this.programCounter;
     }
 
     public void setProgramCounter(Integer programCounter) {
