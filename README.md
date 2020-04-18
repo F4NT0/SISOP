@@ -9,7 +9,7 @@
 * Este Repositório possui o Sistema Operacional criado 
 na Cadeira de `Sistemas Operacionais`.
 
-### Parte 1 do Projeto
+### Fase I do Projeto
 
 **Criar uma Máquina Virtual Simples**
 
@@ -27,9 +27,10 @@ na Cadeira de `Sistemas Operacionais`.
     * **EXPLICAÇÃO DE COMO A VM DEVE SER MONTADA**
         * Toda a info passada pelo professor está [Aqui](./info/resolucao.md)
 
-### Parte 2 do Projeto
+### Fase II do Projeto
 
 **Sistema Operacional Multiprogramado**
 
 * Devemos agora criar dois Sistemas de Gerênciamento para o Nosso Sistema Operacional
-* Sobre o que precisamos, veja nesse [ARQUIVO](./info/SO_multiprogramado.md)
+* Informações sobre a Fase II do Projeto se encontram [Aqui](./info/SO_multiprogramado.md)
+* Entenda como funciona [Gerênciamento de Processos e o Gerênciamento de Memória](./info/gerencia_processo_memoria.md) dessa Fase do Projeto.
