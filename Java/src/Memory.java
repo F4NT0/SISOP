@@ -9,6 +9,7 @@ final class Memory {
 
     private final Integer memorySize = 1024;
     private List <Object> memoryArray;
+    private ProcessManager _ProcessManager = new ProcessManager();
 
     // ------------------------- Função que inicia a memória ----------------
     public Memory() {
@@ -101,12 +102,26 @@ final class Memory {
     }
 
 
+    public void add(Object value, int index) {
+        memoryArray.set(index, value);
+    }
 
+    public Object getObject(int index) {
+        return memoryArray.get(index);
+    }
+
+    public void setValue(Object value, int index) {
+        memoryArray.set(index, value);
+    }
 
     public void createPartition () {
     }
 
     public void realocate () {
+
+    }
+
+    public void alocateProgram(Process program, Partition p ) {
 
     }
 
