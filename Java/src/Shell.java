@@ -133,6 +133,10 @@ public class Shell implements KeyListener {
                 output.append("Lendo arquivo " + arquivo + ".... \n");
                 output.append("");
                 cpu.loadProgram(arquivo);
+                cpu.runningProgram(cpu.getProgramSize());
+                String finalValues = cpu.finalValues();
+                output.append(finalValues);
+                cpu.testMemory();
                 input.setText("");
             }
 
