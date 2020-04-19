@@ -1,108 +1,168 @@
-import java.util.List;
-import java.util.ArrayList;
-
 /***********************************************
 * CLASSE DAS FUNÇÕES DE INTERAÇÃO COM A MEMÓRIA
 ***********************************************/
+
+import java.util.List;
+import java.util.ArrayList;
 
 final class Memory {
 
     private final Integer memorySize = 1024;
     private List <Object> memoryArray;
 
-    // ------------------------- Função que inicia a memória ----------------
+
     public Memory() {
         memoryArray = new ArrayList<>(memorySize);
         for(int i = 0 ; i < memorySize ; i++){ memoryArray.add(i, null);}
     }
 
-    // ------------------------ Função que adiciona os Objetos do programa --------
+    /**--------------------------------------------
+    * ADICIONANDO E RECUPERANDO OBJETOS DA MEMÓRIA
+    ---------------------------------------------*/
+
+    /**
+     * Adiciona os Objetos Funcao criados no ObjectCreator na Memória
+     * @param sizeProgram
+     * @param programa
+     */
     public void setProgram (int sizeProgram, ArrayList<Funcao> programa) {
         for(int i = 0 ; i < sizeProgram ; i++){
             memoryArray.set(i,programa.get(i));
         }
     }
 
-    // -------------- Função que adiciona um valor de Registrador na memória ------------
+    /**
+     * Adiciona o Objeto Registrador na Memória
+     * @param value
+     */
     public void addRegister (Object value){
         memoryArray.set( memoryArray.indexOf(null), value);
     }
-    // --------------- Função que adiciona um objeto direto na memória ---------------
+    
+    /**
+     * Adiciona um Objeto Integer/Char direto na memória
+     * @param value
+     */
     public void addValue(Object value){
         memoryArray.set(memoryArray.indexOf(null),value);
     }
 
-    //----------------Função que adiciona um objeto avulso em uma Posição da memória --------------
+    /**
+     * Adiciona um Objeto Integer/Char em uma Posição na Memória
+     * @param value
+     * @param position
+     */
     public void addValueOnPosition(Object value, Integer position){
         memoryArray.set(position,value);
     }
 
-    // --------------- Função que adiciona um Registrador direto em uma posição -------------
+    /**
+     * Adiciona um Objeto Registrador direto em uma Posição de Memória
+     * @param position
+     * @param object
+     */
     public void setRegisterOnPosition(int position, ObjectRegister object){
         memoryArray.set(position, object);
     }
     
-    // ------------ Função que retorna a posição de um registrador ------------------------
+    /**
+     * Retorna a Posição de um Objeto Registrador da Memória
+     * @param object
+     * @return Integer
+     */
     public int findRegister(ObjectRegister object){
         return memoryArray.indexOf(object);
     }
 
-    //------------ Função para retornar o objeto de uma posição --------------
+    /**
+     * Retorna o Objeto de uma Posição da Memória
+     * @param position
+     * @return object ObjectRegister
+     * @throws IndexOutOfBoundsException
+     */
     public ObjectRegister getValue(int position) throws IndexOutOfBoundsException{   
         ObjectRegister object = new ObjectRegister();
         try{
             object = (ObjectRegister) memoryArray.get(position);
 
         }catch(IndexOutOfBoundsException e){
-            //System.out.println("Index fora da Memória");
+            System.out.println("Index fora da Memória");
         }
         return object;
     }
 
-    //------------- Função que pega um objeto avulso da memória pela posição --------
+    /**
+     * Retorna um Objeto Integer/Char pela posição de Memória
+     * @param position
+     * @return object Object
+     */
     public Object getObjectOnPosition(Integer position){
-        Object value = new Object();
+        Object object = new Object();
         try{
-            value = memoryArray.get(position);
+            object = memoryArray.get(position);
         }catch(IndexOutOfBoundsException e){
 
         }
-        return value;
+        return object;
     }
-
-    //----------- Função para ler o programa -------------------
+    
+    /**
+     * Retorna um Objeto Funcao pelo valor do Program Counter da CPU
+     * @param pc
+     * @return object Funcao
+     */
     public Funcao getProgram(Integer pc){
         return (Funcao) memoryArray.get(pc);
     }
 
-
-    //------------- Função que atualiza um valor na memória ------------------
+    /**
+     * Atualiza um Objeto Registrador da Memória
+     * @param location
+     * @param newRegister
+     */
     public void updateRegister(Integer location, ObjectRegister newRegister){
         memoryArray.remove(location);
         memoryArray.set(location,newRegister);
         
     }
 
-    // --------------- Função que remove o Objeto da Memória por index ------------------------
-    public void remove (int index) throws IndexOutOfBoundsException {
-        if (memoryArray.size() < index) {
+    /**--------------------------------------
+    * FUNÇÕES QUE REMOVEM E LIMPAM A MEMÓRIA
+    ----------------------------------------*/
+
+    /**
+     * Remove um Objeto pela sua posição
+     * @param position
+     * @throws IndexOutOfBoundsException
+     */
+    public void remove (int position) throws IndexOutOfBoundsException {
+        if (memoryArray.size() < position) {
             throw new IndexOutOfBoundsException("Tried to acess ");
         }
-        memoryArray.set(index,null);
+        memoryArray.set(position,null);
     }
 
-    // ---------------- Função que remove um objeto especifico --------------------------------
+    /**
+     * Remove um Objeto Específico
+     * @param object
+     */
     public void remove(Object object) {
         this.memoryArray.remove(object);
     }
 
-    /// --------------- Função que limpa a memória após utilizar -----------------------
+    /**
+     * Limpa a memória após carregar um Programa
+     */
     public void clearMemory(){
         for(int i = 0 ; i < memoryArray.size() ; i++){
                 memoryArray.set(i, null);
         }
     }
 
+    /**
+     * Retorna a memória externamente
+     * @return Memory
+     */
     public List<Object> array() {
         return this.memoryArray;
     }

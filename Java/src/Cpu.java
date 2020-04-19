@@ -9,11 +9,11 @@ public class Cpu{
     private Integer R1,R2,R3,R4,R5,R6,R7,R8; //localização do Registrador na memória
     private Integer pc;
     private Memory memory = new Memory();
-    //private SystemFunctions assemblyFunctions = new SystemFunctions();
     private Integer programSize;
 
 
-    public Cpu(){ // Valores começam em -1 para não armazenar um valor de memoria real
+    public Cpu(){
+        // Valores começam em -1 para não armazenar um valor de memoria real 
         this.R1 = -1;
         this.R2 = -1;
         this.R3 = -1;
@@ -27,9 +27,9 @@ public class Cpu{
     }
 
 
-    /*************************************************************************
-     *  FUNÇÕES PARA GERENCIAMENTO DOS REGISTRADORES E INTERAÇÃO COM A MEMÓRIA
-     ************************************************************************/
+    /**------------------------------------------------------------------------
+    *  FUNÇÕES PARA GERENCIAMENTO DOS REGISTRADORES E INTERAÇÃO COM A MEMÓRIA
+    ------------------------------------------------------------------------*/
 
 
     //----------------------- Getters -----------------------------------
@@ -58,8 +58,12 @@ public class Cpu{
     public void setProgramSize(Integer programSize){this.programSize = programSize;}
 
     
-    //----------------------- Armazena a posição de um Registrador -----------------
-    public void setRegisterPosition(String register, Integer position){
+    /**
+     * Armazena a posição de um Registrador dentro da CPU
+     * @param register
+     * @param position
+     */
+    private void setRegisterPosition(String register, Integer position){
         switch(register){
             case "R1":setR1(position);break;
             case "R2":setR2(position);break;
@@ -72,7 +76,11 @@ public class Cpu{
         }
     }
 
-    //---------------- Armazena um valor em um Registrador na Memória -----------------
+    /**
+     * Armazena um valor em um Registrador na Memória
+     * @param value
+     * @param register
+     */
     public void setRegValue(Object value, String register){ 
         ObjectRegister object = new ObjectRegister();
         object.setRegister(register);
@@ -82,13 +90,20 @@ public class Cpu{
         setRegisterPosition(register, position);
     }
 
-    //--------------- Armazena um valor avulso na memória ---------------
+    /**
+     * Armazena um Objeto(Integer,Char) direto na memória
+     * @param value
+     * @param position
+     */
     public void setValueOnMemory(Object value, Integer position){
         memory.addValueOnPosition(value, position);
     }
 
-
-    //--------------- Define que um registrador irá mudar uma pos especifica do registrador -------
+    /**
+     * Define que um registrador irá mudar uma posição especifica do registrador
+     * @param object
+     * @param position
+     */
     public void setRegValuePosition(ObjectRegister object, Integer position){
         Integer positionFind = memory.findRegister(object);
         if(positionFind == -1){
@@ -98,7 +113,11 @@ public class Cpu{
         memory.remove(positionFind);
    }
 
-    //--------------- Retorna o valor de um Registrador -------------------------------
+    /**
+     * Retorna o Objeto Registrador da memória
+     * @param register 
+     * @return value
+     */
     public ObjectRegister getValue(String register){
         ObjectRegister value = null;
         switch(register){
@@ -114,24 +133,40 @@ public class Cpu{
         return value;
     }
 
-    //--------------- Retorna um Registrador completo somente pela posição ------------------
+    /**
+     * Retorna um Registrador completo somente pela posição da Memória
+     * @param position
+     * @return value
+     */
     public ObjectRegister getValueDirect(Integer position){
         ObjectRegister value = memory.getValue(position);
         return value;
     }
 
-    //-------------- Retorna um valor armazenado direto na memmória ---------------
+    /**
+     * Retorna um Objeto armazenado direto na memória
+     * @param position
+     * @return value
+     */
     public Object getIntegerDirect(Integer position){
         Object value = memory.getObjectOnPosition(position);
         return value;
     }
 
-    //---------------- Atualiza um Registrador -----------------------------------------
+    /**
+     * Atualiza os valores de um Objeto Registrador
+     * @param location
+     * @param newRegister
+     */
     public void updateRegister(Integer location, ObjectRegister newRegister){
         memory.updateRegister(location, newRegister);
     }
 
-    //---------------- Retorna a localização de um Registrador ------------
+    /**
+     * Retorna a localização de um Registrador
+     * @param register
+     * @return
+     */
     public Integer getRegisterLocation(String register){
         Integer location = -1;
         switch(register){
@@ -150,12 +185,15 @@ public class Cpu{
     }
 
 
-    /************************************************
+    /*-----------------------------------------------
     * FUNÇÕES DE LEITURA E ARMAZENAMENTO DO PROGRAMA 
-    *************************************************/
+    ------------------------------------------------*/
 
 
-    //----------------------- Carrega Programa  ------------------------------------
+    /**
+     * Função de interação do Programa para enviar á memória
+     * @param file
+     */
     public void loadProgram(String file){
         ObjectCreator objects = new ObjectCreator();
         objects.readAndCreateFunctions(file);
@@ -165,13 +203,18 @@ public class Cpu{
 
     }
 
-    //----------------------- Armazena o Programa na Memória ------------------------
-    public void storeProgram(ArrayList<Funcao> program){
+    /**
+     * Salva a Lista de Objetos Funcao para a Memória
+     * @param program
+     */
+    private void storeProgram(ArrayList<Funcao> program){
         memory.setProgram(program.size(), program);
         pc = 0;
     }
 
-    //---------------------- Função que testa a Memória ----------------
+    /**
+     * Função que testa como a Memória está no momento
+     */
     public void testMemory(){
         List<Object> teste = memory.array();
         for(Integer i = 0 ; i <= 20 ; i++){
@@ -180,7 +223,9 @@ public class Cpu{
         
     }
 
-    //----------------------- Limpar a memória para ler outro programa --------------
+    /**
+     * Limpa a Memória para ler outro programa
+     */
     public void clearMemory(){
         memory.clearMemory();
         setR1(-1);setR2(-1);
@@ -190,11 +235,14 @@ public class Cpu{
     }
     
 
-    /***************************************** 
+    /*----------------------------------------- 
     * RODANDO O PROGRAMA E FUNÇÕES DE ASSEMBLY 
-    ******************************************/
+    ------------------------------------------*/
 
-    //---------------- Função que pega o Objeto e faz uma Função --------------------
+    /**
+     * Pega o Objeto Funcao de entrada e realiza a Função Assembly de entrada
+     * @param object
+     */
     public void runningFunctions(Funcao object){
         String opcode = object.getOpcode();
         String rs = object.getRs();
@@ -221,7 +269,9 @@ public class Cpu{
         }
     }
 
-    //---------------------- Função que faz as Funções de Assembly  ------------
+    /**
+     * Função que roda o programa de forma Recursiva
+     */
     public void runningProgram(Integer size){
         Funcao object = memory.getProgram(getPc());
         runningFunctions(object);
@@ -229,7 +279,10 @@ public class Cpu{
         if(object.getOpcode().equals("STOP")){size = 0;}
         else{runningProgram(size-1);}  
     }   
-    //---------------------- Saida para o Terminal --------------------
+    
+    /**
+     * Função de Saída para o Terminal
+     */
     public String finalValues(){
         try{
             String r1 = "";
@@ -265,10 +318,12 @@ public class Cpu{
         return "";
     }
 
-    //====================
-    // FUNÇÕES DE ASSEMBLY
-    //====================
+    
+    /**----------------
+    * FUNÇÕES ASSEMBLY
+    -----------------*/
 
+    
     private void JMP(Integer k) {
         setPc(k);
     }
@@ -379,12 +434,12 @@ public class Cpu{
     }
 
     private void LDX(String rd, String rs) {
-        ObjectRegister rsObject = getValue(rs); //pega o objeto rs
-        Integer value = (Integer) rsObject.getValue(); // pega o valor do objeto rs
-        Object getObject = memory.getObjectOnPosition(value); //pega o objeto da posicao armazenada em rs
-        Object valueRd = getObject; // valor que sera armazenado em rd
-        setRegValue(valueRd, rd); // novo objeto na memória conectado no vetor rd
-        setPc(getPc() + 1); //atualiza o pc
+        ObjectRegister rsObject = getValue(rs);
+        Integer value = (Integer) rsObject.getValue();
+        Object getObject = memory.getObjectOnPosition(value); 
+        Object valueRd = getObject; 
+        setRegValue(valueRd, rd); 
+        setPc(getPc() + 1); 
     }
 
     private void STX(String rd, String rs) {
@@ -396,10 +451,4 @@ public class Cpu{
         setPc(getPc() + 1);
       
     }
-
-
-
-
-
-
 }
