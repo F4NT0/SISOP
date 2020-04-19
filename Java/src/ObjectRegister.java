@@ -1,3 +1,8 @@
+/*************************************************
+* OBJETOS OBJECTREGISTER 
+* - Objeto que salva os Registradores na Memória
+**************************************************/
+
 public class ObjectRegister{
     private String register;
     private Object value;
