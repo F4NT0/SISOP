@@ -9,6 +9,9 @@ public class Cpu{
     private Integer R1,R2,R3,R4,R5,R6,R7,R8; //localização do Registrador na memória
     private Integer pc;
     private Memory memory = new Memory();
+    private ProcessManager pManager;
+    private MemoryManager mManager;
+    //private SystemFunctions assemblyFunctions = new SystemFunctions();
     private Integer programSize;
 
 

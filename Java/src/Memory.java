@@ -9,6 +9,7 @@ final class Memory {
 
     private final Integer memorySize = 1024;
     private List <Object> memoryArray;
+    private ProcessManager _ProcessManager = new ProcessManager();
 
 
     public Memory() {
@@ -150,19 +151,30 @@ final class Memory {
         this.memoryArray.remove(object);
     }
 
-    /**
-     * Limpa a memória após carregar um Programa
-     */
-    public void clearMemory(){
-        for(int i = 0 ; i < memoryArray.size() ; i++){
-                memoryArray.set(i, null);
-        }
+
+    public void add(Object value, int index) {
+        memoryArray.set(index, value);
     }
 
-    /**
-     * Retorna a memória externamente
-     * @return Memory
-     */
+    public Object getObject(int index) {
+        return memoryArray.get(index);
+    }
+
+    public void setValue(Object value, int index) {
+        memoryArray.set(index, value);
+    }
+
+    public void createPartition () {
+    }
+
+    public void realocate () {
+
+    }
+
+    public void alocateProgram(Process program, Partition p ) {
+
+    }
+
     public List<Object> array() {
         return this.memoryArray;
     }
