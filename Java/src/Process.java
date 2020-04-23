@@ -1,35 +1,40 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Process {
 
-    private ProcessControlBlock pcb;
-    private List <Funcao> program;
-    private Stack<Funcao> syscalls;
+    private ProcessControlBlock processControlBlock;
+    private List<Funcao> functions; // program
+//    need to pull necessary program data
+//    should it be a hashmap, with variable name and its value?
+//    private Map<String, Object> data;
 
-    public Process(ArrayList<Funcao> program, int identifier) {
-        this.pcb = new ProcessControlBlock(identifier, program.size());
-        this.program = new ArrayList<>();
-        this.syscalls = new Stack<>();
+    public Process (ArrayList<Funcao> program, Integer pcbLocationID) {
+        this.functions = program;
+        this.processControlBlock = new ProcessControlBlock(pcbLocationID);
+//        data = new HashMap<>();
     }
 
-    public List<Funcao> getProgram() {return this.program;}
-    public Stack<Funcao> getSyscalls() {return this.syscalls;}
-    public ProcessControlBlock getPCB() {return this.pcb;}
-
-    public void saveContextData(Cpu c) {
-
+    void setPCBContextData(ProcessControlBlock.ContextData contextData) {
+        this.processControlBlock.setContextData(contextData);
     }
 
-    // public void run(MemoryManager me, Memory m) {
-    //     Partition p = me.getProcessPartition(pcb.getID(), m);
-    //     for(int i = 0; i < program.size(); i ++) {
-    //         Class c = Cpu.class;
-    //         Method m = c.getMethod("runningFunctions", Object);
-    //         // Cpu.class.getMethod("runningFunctions", Funcao);
-    //     }
-    // }
+    public ProcessControlBlock getProcessControlBlock() {
+        return processControlBlock;
+    }
 
+    public void setProcessControlBlock(ProcessControlBlock processControlBlock) {
+        this.processControlBlock = processControlBlock;
+    }
+
+    public List<Funcao> getFunctions() {
+        return functions;
+    }
+
+    public void setFunctions(List<Funcao> functions) {
+        this.functions = functions;
+    }
 
 }

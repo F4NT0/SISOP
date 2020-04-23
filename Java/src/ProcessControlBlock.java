@@ -1,65 +1,99 @@
+class ProcessControlBlock {
 
-public class ProcessControlBlock {
+    class ContextData {
 
-    private enum State {
-        NOT_RUNNING,
-        RUNNING
-    }
+        private Integer r1, r2, r3, r4, r5, r6, r7, r8;
 
-    private class ContextData {
-        Integer R0,R1,R2,R3,R4,R5,R6,R7;
-
-        public ContextData() {
-            this.R0 = 0;
-            this.R1 = 0;
-            this.R2 = 0;
-            this.R3 = 0;
-            this.R4 = 0;
-            this.R5 = 0;
-            this.R6 = 0;
-            this.R7 = 0;
+        public Integer getR1() {
+            return r1;
         }
-        //Get
-        public int getR0() { return this.R0;}
-        public int getR1() { return this.R1;}
-        public int getR2() { return this.R2;}
-        public int getR3() { return this.R3;}
-        public int getR4() { return this.R4;}
-        public int getR5() { return this.R5;}
-        public int getR6() { return this.R6;}
-        public int getR7() { return this.R7;}
-        //Set
-        public void setR0(int r) {this.R0 = r;}
-        public void setR1(int r) {this.R1 = r;}
-        public void setR2(int r) {this.R2 = r;}
-        public void setR3(int r) {this.R3 = r;}
-        public void setR4(int r) {this.R4 = r;}
-        public void setR5(int r) {this.R5 = r;}
-        public void setR6(int r) {this.R6 = r;}
-        public void setR7(int r) {this.R7 = r;}
+        public void setR1(Integer r1) {
+            this.r1 = r1;
+        }
+        public Integer getR2() {
+            return r2;
+        }
+        public void setR2(Integer r2) {
+            this.r2 = r2;
+        }
+        public Integer getR3() {
+            return r3;
+        }
+        public void setR3(Integer r3) {
+            this.r3 = r3;
+        }
+        public Integer getR4() {
+            return r4;
+        }
+        public void setR4(Integer r4) {
+            this.r4 = r4;
+        }
+        public Integer getR5() {
+            return r5;
+        }
+        public void setR5(Integer r5) {
+            this.r5 = r5;
+        }
+        public Integer getR6() {
+            return r6;
+        }
+        public void setR6(Integer r6) {
+            this.r6 = r6;
+        }
+        public Integer getR7() {
+            return r7;
+        }
+        public void setR7(Integer r7) {
+            this.r7 = r7;
+        }
+        public Integer getR8() {
+            return r8;
+        }
+        public void setR8(Integer r8) {
+            this.r8 = r8;
+        }
     }
 
-    private final int identifier;
-    private State state;
-    private int program_counter;
-    private ContextData context;
-    
-    public ProcessControlBlock(int id, int program_counter) {
-        this.identifier = id;
-        this.state = State.NOT_RUNNING;
-        this.program_counter = program_counter;
-        this.context = new ContextData();
+    enum ProgramState {
+        RUNNING, NOT_RUNNING, ENDED
     }
 
-    public int getID() {return this.identifier;}
-    public int getPC() {return this.program_counter;}
+    private final Integer id;
+    private Integer programCounter;
+    private ProgramState programState;
+    private ContextData contextData;
 
+    public ProcessControlBlock (Integer id) {
+        this.id = id;
+        this.programState = ProgramState.NOT_RUNNING;
+        this.programCounter = 0;
+    }
 
-    public void switchState() {
-        if(state.equals(State.NOT_RUNNING))
-            state = State.RUNNING;
-        else
-            state = State.NOT_RUNNING;
+    public Integer addStepToProgramCounter () {
+        return ++this.programCounter;
+    }
+
+    public void setProgramCounter(Integer programCounter) {
+        this.programCounter = programCounter;
+    }
+    public void setContextData(ContextData contextData) {
+        this.contextData = contextData;
+    }
+    public void setProgramState(ProgramState programState) {
+        this.programState = programState;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+    public Integer getProgramCounter() {
+        return programCounter;
+    }
+    public ProgramState getProgramState() {
+        return programState;
+    }
+    public ContextData getContextData() {
+        return contextData;
     }
 
 }

@@ -37,7 +37,7 @@ final class Memory {
      * @param value
      */
     public void addRegister (Object value){
-        memoryArray.set( memoryArray.indexOf(null), value);
+        memoryArray.set(memoryArray.indexOf(null), value);
     }
     
     /**
@@ -85,7 +85,6 @@ final class Memory {
         ObjectRegister object = new ObjectRegister();
         try{
             object = (ObjectRegister) memoryArray.get(position);
-
         }catch(IndexOutOfBoundsException e){
             System.out.println("Index fora da Memória");
         }
@@ -122,7 +121,6 @@ final class Memory {
      * @param newRegister
      */
     public void updateRegister(Integer location, ObjectRegister newRegister){
-        memoryArray.remove(location);
         memoryArray.set(location,newRegister);
         
     }
@@ -148,7 +146,7 @@ final class Memory {
      * @param object
      */
     public void remove(Object object) {
-        this.memoryArray.remove(object);
+        this.memoryArray.set(this.memoryArray.indexOf(object), null);
     }
 
 

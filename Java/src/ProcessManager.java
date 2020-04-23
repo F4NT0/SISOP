@@ -1,58 +1,73 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class ProcessManager {
-    
-    private Queue<Process> processList;
-    private Stack<Process> activeProcessList;
-    // private MemoryManager mm;
-    private final int time_slice = 4;
 
+    private Queue <Process> queue;
+    private Process currentProcess;
+    private static Integer MAX_PC_DIVISOR = 10;
 
     public ProcessManager() {
-        this.processList = new LinkedList<Process>();
-        this.activeProcessList = new Stack<>();
-        // this.mm = new MemoryManager(4);
+        this.queue = new LinkedList<>();
     }
 
-    public void addProcess(Process p) {
-        processList.add(p);
+    public Process getNextProcess () {
+        return queue.remove();
     }
 
-    public void removeProcess() {
-        activeProcessList.add(processList.remove());
-    }
+    public void runNextFunction () throws NullPointerException {
+        if (currentProcess == null) {
+            throw new NullPointerException("No new function assigned to run");
+        }
 
-    public void swapProcess() {
-        Process aux = processList.poll();
-        processList.add(aux);
-    }
+        Integer currentStepIndex = currentProcess.getProcessControlBlock().addStepToProgramCounter();
+        Funcao funcao = currentProcess.getFunctions().get(currentStepIndex);
 
-    public Process checkNextProcess() {return processList.peek();}
-
-
-    public void selectPartition(Memory m, MemoryManager mm) {
-        Process next = checkNextProcess();
-        // Partition p; pode ser mudado.
-        //Mudar o getLimit por mm.getPartitions().size()
-        for(int i = 0; i <= mm.getLimit() - 1; i++) {
-            if(next.getProgram().size() < mm.getPartitions().get(i).getSize() && mm.getPartitions().get(i).isAvailable()) {
-                mm.realocate(next.getProgram(), mm.getPartitions().get(i));
-                mm.malloc(next, m, mm.getPartitions().get(i));
-                // mm.getPartitions().get(i).malloc(next, m);
-                processList.remove();
-                return;
+        if (funcao.getOpcode().equals("STOP")) {
+            finalizeCurrentProcess();
+            if (!queue.isEmpty()) {
+                currentProcess = queue.remove();
+                runNextFunction();
             }
+            return;
+        }
+
+//        run function
+
+        updateCurrentProcess();
+    }
+
+    private void finalizeCurrentProcess () {
+        currentProcess.getProcessControlBlock().setProgramState(ProcessControlBlock.ProgramState.ENDED);
+        // perform removal from memory
+        // screen prints
+    }
+
+    private void updateCurrentProcess () {
+        if (currentProcess.getProcessControlBlock().getProgramCounter() % MAX_PC_DIVISOR == 0) {
+            queue.add(currentProcess);
+            currentProcess.getProcessControlBlock().setProgramState(ProcessControlBlock.ProgramState.NOT_RUNNING);
+            currentProcess = queue.remove();
+            currentProcess.getProcessControlBlock().setProgramState(ProcessControlBlock.ProgramState.RUNNING);
         }
     }
 
-    public void updateProcessState(int process_id) {
-        for(Process p : processList) {
-            if(p.getPCB().getID() == process_id)
-                p.getPCB().switchState();
-        }
+    public Boolean isEmpty () {
+        return queue.isEmpty() || currentProcess == null;
     }
 
+    public void addProcessToQueue (Process process) throws NullPointerException {
+        if (process == null) {
+            throw new NullPointerException("Tried to add null process");
+        }
+        queue.add(process);
+    }
+
+
+
+//    get free/occupied partition
+//    compare
+//    stop
+//    memory method contact
 
 }

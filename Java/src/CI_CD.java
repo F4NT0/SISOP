@@ -44,4 +44,3 @@ public class CI_CD {
         String finalValues3 = cpu.finalValues();
         System.out.println(finalValues3);
     }
-}
