@@ -1,5 +1,7 @@
 /**********************************
- * LEITOR DE ARQUIVOS PARA OBJETOS
+* OBJETOS OBJECTCREATOR 
+* - Objetos depois que cada linha do arquivo foi organizado
+* - para rodar as Funções, servem para salvar o programa na Memória 
 **********************************/
 
 // Imports Externos
@@ -16,7 +18,10 @@ public class ObjectCreator {
     private static ArrayList<Funcao> funcoes = new ArrayList<Funcao>();
 
 
-    // ------------------ Função para ler e construir os Objetos --------------------------
+    /**
+     * Leitura do Programa e criação dos Objetos que serão armazenados na Memória
+     * @param path
+     */
     public void readAndCreateFunctions(String path) {
         setup(path);
         try {
@@ -131,23 +136,36 @@ public class ObjectCreator {
 
     
 
-    // ------------------------ Função para definir o arquivo --------------------------------
+    /**
+     * Definir o PATH do arquivo
+     * @param path
+     */
     public void setup(String path) {
         Reader reader = new Reader();
         buffer = reader.setupFilePath(path);
     }
 
-    // ------------------------- Função para ler o ArrayList Externamente ---------------------
+    /**
+     * Ler o ArrayList Externamente
+     * @return funcoes
+     */
     public ArrayList<Funcao> getFuncoes(){
         return funcoes;
     }
 
-    // ------------------------- Função que retorna o tamanho do programa -----------------
+    /**
+     * Retorna o tamanho do Programa
+     * @return size
+     */
     public Integer getProgramSize(){
         return funcoes.size();
     }
 
-    // ------------------------- Função para verificar se a String é um Numero -----------------
+    /**
+     * Verifica se a String é um Número
+     * @param str
+     * @return
+     */
     public boolean isNumeric(String str){
         try{
             Integer.parseInt(str);
@@ -157,9 +175,10 @@ public class ObjectCreator {
         }
     }
 
-    // --------------------------- Função para apagar antigo arquivo para nova leitura -------------
+    /**
+     * Apaga o antigo arquivo para a nova Leitura
+     */
     public void eraseOldReading(){
-        // ----------- Apagando o programa anterior
         for(int i = 0 ; i < funcoes.size() ; i++){
             funcoes.removeAll(funcoes);
         }

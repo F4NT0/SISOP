@@ -1,6 +1,6 @@
-/**************************************
- * FUNÇÕES PaRa OS OBJETOS DaS FUNÇÕES
- *************************************/
+/*************************************************
+* OBJETOS FUNCAO - Objetos de Leitura do Programa
+************************************************/
 
 public class Funcao {
     private String opcode ;
