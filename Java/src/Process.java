@@ -16,6 +16,20 @@ public class Process {
 
     public List<Funcao> getProgram() {return this.program;}
     public Stack<Funcao> getSyscalls() {return this.syscalls;}
+    public ProcessControlBlock getPCB() {return this.pcb;}
+
+    public void saveContextData(Cpu c) {
+
+    }
+
+    // public void run(MemoryManager me, Memory m) {
+    //     Partition p = me.getProcessPartition(pcb.getID(), m);
+    //     for(int i = 0; i < program.size(); i ++) {
+    //         Class c = Cpu.class;
+    //         Method m = c.getMethod("runningFunctions", Object);
+    //         // Cpu.class.getMethod("runningFunctions", Funcao);
+    //     }
+    // }
 
 
 }

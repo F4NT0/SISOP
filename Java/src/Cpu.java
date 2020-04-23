@@ -9,6 +9,8 @@ public class Cpu{
     private Integer R0,R1,R2,R3,R4,R5,R6,R7; //localização do Registrador na memória
     private Integer pc;
     private Memory memory = new Memory();
+    private ProcessManager pManager;
+    private MemoryManager mManager;
     //private SystemFunctions assemblyFunctions = new SystemFunctions();
     private Integer programSize;
 
@@ -352,7 +354,12 @@ public class Cpu{
       
     }
 
-
+    // public void run(MemoryManager me, Memory m) {
+    //     Partition p = me.getProcessPartition(pcb.getID(), m);
+    //     for(int i = 0; i < program.size(); i ++) {
+            
+    //     }
+    // }
 
 
 

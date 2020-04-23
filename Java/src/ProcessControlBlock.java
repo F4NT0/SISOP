@@ -51,5 +51,15 @@ public class ProcessControlBlock {
         this.context = new ContextData();
     }
 
-    
+    public int getID() {return this.identifier;}
+    public int getPC() {return this.program_counter;}
+
+
+    public void switchState() {
+        if(state.equals(State.NOT_RUNNING))
+            state = State.RUNNING;
+        else
+            state = State.NOT_RUNNING;
+    }
+
 }
