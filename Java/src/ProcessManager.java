@@ -15,6 +15,10 @@ public class ProcessManager {
         return queue.remove();
     }
 
+    public void printQueue() {
+        System.out.println(queue.toString());
+    }
+
     public Process getCurrentProcess() {return this.currentProcess;}
 
     public void runNextFunction () throws NullPointerException {
@@ -66,6 +70,8 @@ public class ProcessManager {
     }
 
 
+    public Process checkNextProcess() {return queue.peek();}
+
     public void saveContextData(Cpu c, Process p) {
         String [] reg = {"R1", "R2", "R3", "R4", "R5","R6", "R7", "R8"};
         for(String s : reg) {
@@ -83,6 +89,18 @@ public class ProcessManager {
         }
     }
 
+
+    public void selectPartition(Memory m, MemoryManager mm) {
+        Process next = checkNextProcess();
+        for(int i = 0; i <= mm.getLimit(); i++) {
+            if(next.getFunctions().size() < mm.getPartitions().get(i).getSize() && mm.getPartitions().get(i).isAvailable()) {
+                // mm.realocate(next.getFunctions(), mm.getPartitions().get(i), cpu);
+                mm.malloc(next, m, mm.getPartitions().get(i));
+                queue.remove();
+                break;
+            }
+        }       
+    }
 
 //    get free/occupied partition
 //    compare

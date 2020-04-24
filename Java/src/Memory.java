@@ -150,6 +150,8 @@ final class Memory {
     }
 
 
+    public ArrayList getMemory() {return (ArrayList) this.memoryArray;}
+
     public void add(Object value, int index) {
         memoryArray.set(index, value);
     }
