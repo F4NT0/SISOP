@@ -200,7 +200,7 @@ public class Cpu{
     public void loadProgram(String file){
         ObjectCreator objects = new ObjectCreator();
         objects.readAndCreateFunctions(file);
-        clearMemory();
+        // clearMemory();
         storeProgram(objects.getFuncoes());
         setProgramSize(objects.getProgramSize()-1);
 
@@ -229,13 +229,13 @@ public class Cpu{
     /**
      * Limpa a Memória para ler outro programa
      */
-    public void clearMemory(){
-        memory.clearMemory();
-        setR1(-1);setR2(-1);
-        setR3(-1);setR4(-1);
-        setR5(-1);setR6(-1);
-        setR7(-1);setR8(-1);
-    }
+    // public void clearMemory(){
+    //     memory.clearMemory();
+    //     setR1(-1);setR2(-1);
+    //     setR3(-1);setR4(-1);
+    //     setR5(-1);setR6(-1);
+    //     setR7(-1);setR8(-1);
+    // }
     
 
     /*----------------------------------------- 

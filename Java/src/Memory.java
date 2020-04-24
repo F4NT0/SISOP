@@ -9,7 +9,7 @@ final class Memory {
 
     private final Integer memorySize = 1024;
     private List <Object> memoryArray;
-    private ProcessManager _ProcessManager = new ProcessManager();
+
 
 
     public Memory() {

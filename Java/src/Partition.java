@@ -42,12 +42,12 @@ public class Partition {
 
     // public int getProgramSize() {return this.program_size;}
 
-    public void malloc(Process p, Memory m) {
-        int pos = 0;
-        for(int i = rb; i <= p.getProgram().size(); i++) {
-            m.add(p.getProgram().get(pos), i);
-            pos++;
-        }
-        setPartitionLock();
-    }
+    // public void malloc(Process p, Memory m) {
+    //     int pos = 0;
+    //     for(int i = rb; i <= p.getProgram().size(); i++) {
+    //         m.add(p.getProgram().get(pos), i);
+    //         pos++;
+    //     }
+    //     setPartitionLock();
+    // }
 }

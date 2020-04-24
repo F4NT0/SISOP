@@ -37,4 +37,6 @@ public class Process {
         this.functions = functions;
     }
 
+    public ProcessControlBlock getPCB() {return this.processControlBlock;}
+
 }

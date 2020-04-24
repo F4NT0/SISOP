@@ -96,4 +96,6 @@ class ProcessControlBlock {
         return contextData;
     }
 
+    public int getID() {return this.id;}
+
 }

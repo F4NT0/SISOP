@@ -28,17 +28,15 @@ public class MemoryManager {
     }
 
     //Precisa arrumar as classes de criar objetos para funcionar
-    public void realocate(List <Funcao> program, Partition p) {
-        for(Funcao f : program) {
+    public void realocate(Process p, Partition pa, Cpu c) {
+        for(Funcao f : p.getFunctions()) {
             switch(f.getOpcode()) {
-                case "JMP": f.setK(x(f.getK(),program,p));
-                // case "JMPI": f.setRs(x(f.getRs(),program,p));
-                // case "JMPIG": f.setRs(x(f.getRs(),program,p))); 
-                // case "JMPIL":
-                // case "JMPIE":
-                // case "LDD": f.getA()
+                case "JMP": f.setK(x(f.getK(),p.getFunctions(),pa));
+                case "LDD": f.setA(y(f.getA(),p.getFunctions(),pa));
+                case "STD": f.setA(y(f.getA(),p.getFunctions(),pa));
             }
         }
+        malloc(p, c.getMemory(), pa);
     }
     
     // public int findNewIndex(int oldIndex) {
@@ -74,8 +72,8 @@ public class MemoryManager {
 
     public void malloc(Process p, Memory m, Partition pa) {
         m.setValue(p.getPCB(), pa.getRB());
-        for(int i = 0; i < p.getProgram().size(); i++) {
-            m.add(p.getProgram().get(i), pa.getRB() + 1 + i);
+        for(int i = 0; i < p.getFunctions().size(); i++) {
+            m.add(p.getFunctions().get(i), pa.getRB() + 1 + i);
             i++;
         }
         pa.setPartitionLock();
