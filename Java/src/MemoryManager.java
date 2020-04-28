@@ -1,6 +1,5 @@
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MemoryManager {
@@ -18,11 +17,11 @@ public class MemoryManager {
     public List<Partition> getPartitions() {return this.partitions;}
 
     public void addPartition(int register_base, int register_limit) {
-        for(Partition p : partitions) {
-            if(register_base >= p.getRB() || register_base <= p.getRL()) {
-                throw new InvalidParameterException("Valores passados já são usados em outra partição.");
-            }
-        }
+        // for(Partition p : partitions) {
+        //     if(register_base >= p.getRB() || register_base <= p.getRL()) {
+        //         throw new InvalidParameterException("Valores passados já são usados em outra partição.");
+        //     }
+        // }
         Partition p = new Partition(register_base, register_limit);
         partitions.add(p);
     }
