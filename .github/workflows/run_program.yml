@@ -21,4 +21,3 @@ jobs:
         run: echo $status
         env: 
           status: ${{job.status}}
-    

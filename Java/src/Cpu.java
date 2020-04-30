@@ -9,6 +9,9 @@ public class Cpu{
     private Integer R1,R2,R3,R4,R5,R6,R7,R8; //localização do Registrador na memória
     private Integer pc;
     private Memory memory = new Memory();
+    private ProcessManager pManager;
+    private MemoryManager mManager;
+    //private SystemFunctions assemblyFunctions = new SystemFunctions();
     private Integer programSize;
 
 
@@ -197,7 +200,7 @@ public class Cpu{
     public void loadProgram(String file){
         ObjectCreator objects = new ObjectCreator();
         objects.readAndCreateFunctions(file);
-        clearMemory();
+        // clearMemory();
         storeProgram(objects.getFuncoes());
         setProgramSize(objects.getProgramSize()-1);
 
@@ -226,13 +229,13 @@ public class Cpu{
     /**
      * Limpa a Memória para ler outro programa
      */
-    public void clearMemory(){
-        memory.clearMemory();
-        setR1(-1);setR2(-1);
-        setR3(-1);setR4(-1);
-        setR5(-1);setR6(-1);
-        setR7(-1);setR8(-1);
-    }
+    // public void clearMemory(){
+    //     memory.clearMemory();
+    //     setR1(-1);setR2(-1);
+    //     setR3(-1);setR4(-1);
+    //     setR5(-1);setR6(-1);
+    //     setR7(-1);setR8(-1);
+    // }
     
 
     /*----------------------------------------- 

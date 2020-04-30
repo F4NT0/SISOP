@@ -11,6 +11,7 @@ final class Memory {
     private List <Object> memoryArray;
 
 
+
     public Memory() {
         memoryArray = new ArrayList<>(memorySize);
         for(int i = 0 ; i < memorySize ; i++){ memoryArray.add(i, null);}
@@ -36,7 +37,7 @@ final class Memory {
      * @param value
      */
     public void addRegister (Object value){
-        memoryArray.set( memoryArray.indexOf(null), value);
+        memoryArray.set(memoryArray.indexOf(null), value);
     }
     
     /**
@@ -84,7 +85,6 @@ final class Memory {
         ObjectRegister object = new ObjectRegister();
         try{
             object = (ObjectRegister) memoryArray.get(position);
-
         }catch(IndexOutOfBoundsException e){
             System.out.println("Index fora da Memória");
         }
@@ -121,7 +121,6 @@ final class Memory {
      * @param newRegister
      */
     public void updateRegister(Integer location, ObjectRegister newRegister){
-        memoryArray.remove(location);
         memoryArray.set(location,newRegister);
         
     }
@@ -147,22 +146,35 @@ final class Memory {
      * @param object
      */
     public void remove(Object object) {
-        this.memoryArray.remove(object);
+        this.memoryArray.set(this.memoryArray.indexOf(object), null);
     }
 
-    /**
-     * Limpa a memória após carregar um Programa
-     */
-    public void clearMemory(){
-        for(int i = 0 ; i < memoryArray.size() ; i++){
-                memoryArray.set(i, null);
-        }
+
+    public ArrayList getMemory() {return (ArrayList) this.memoryArray;}
+
+    public void add(Object value, int index) {
+        memoryArray.set(index, value);
     }
 
-    /**
-     * Retorna a memória externamente
-     * @return Memory
-     */
+    public Object getObject(int index) {
+        return memoryArray.get(index);
+    }
+
+    public void setValue(Object value, int index) {
+        memoryArray.set(index, value);
+    }
+
+    public void createPartition () {
+    }
+
+    public void realocate () {
+
+    }
+
+    public void alocateProgram(Process program, Partition p ) {
+
+    }
+
     public List<Object> array() {
         return this.memoryArray;
     }
