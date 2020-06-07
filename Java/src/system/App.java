@@ -4,6 +4,7 @@ package system;
  * Steps to run the application: 
  * 
  * 1. Open terminal and make sure you are inside the 'Java' folder
+ *      cd Java
  * 
  * 2. Copy paste this in the terminal in order to compile the program:
  *      javac src/system/App.java -d src/compiled_program
