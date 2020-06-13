@@ -1,3 +1,5 @@
+package system;
+
 /**********************************************
 * SHELL DE INTERAÇÃO DO USUÁRIO COM O PROGRAMA
 **********************************************/
@@ -9,6 +11,15 @@ import java.awt.Font;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+
+// Teste
+import java.lang.ProcessBuilder;
+import java.lang.Process;
+import java.io.BufferedReader;
+import java.lang.StringBuilder;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.lang.InterruptedException;
 
 // Lendo arquivo simples
 import java.util.ArrayList;
@@ -25,7 +36,7 @@ public class Shell implements KeyListener {
     private JTextField input;
     private JFrame f;
     private List<String> allFiles = new ArrayList<String>();
-    Cpu cpu = new Cpu();
+    // Cpu cpu = new Cpu();
 
 /***************************************
  *    TELA DO TERMINAL COM JAVA SWING
@@ -132,15 +143,39 @@ public class Shell implements KeyListener {
                 output.setText("");
                 output.append("Lendo arquivo " + arquivo + ".... \n");
                 output.append("");
-                cpu.loadProgram(arquivo);
-                cpu.runningProgram(cpu.getProgramSize());
-                String finalValues = cpu.finalValues();
-                output.append(finalValues);
-                cpu.testMemory();
+               //cpu.loadProgram(arquivo);
+               //cpu.runningProgram(cpu.getProgramSize());
+               //String finalValues = cpu.finalValues();
+               //output.append(finalValues);
+               //cpu.testMemory();
                 input.setText("");
             }
 
         }
+				if(text.equals("teste")){
+						ProcessBuilder processOne = new ProcessBuilder();
+						processOne.command("./TESTE.sh");
+						try{
+								Process process1 = processOne.start();				
+								StringBuilder saida = new StringBuilder();
+								BufferedReader reader = new BufferedReader(new InputStreamReader(process1.getInputStream()));
+								String line;
+								while((line = reader.readLine()) != null){
+									saida.append(line + "\n");
+								}
+								int exitPro1 = process1.waitFor();
+								if(exitPro1 == 0){
+									String exit = saida.toString();
+									output.append("\n" + exit);
+										
+								}
+
+						}catch (IOException e){
+									e.printStackTrace();
+						 }catch (InterruptedException e){
+									e.printStackTrace();
+						 }
+				}
     }
 
     /*********************
