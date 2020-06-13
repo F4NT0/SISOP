@@ -153,7 +153,8 @@ public class Shell implements KeyListener {
 
         }
 				if(text.equals("teste")){
-						ProcessBuilder processOne = new ProcessBuilder();
+            output.append("\nCarregando...\n");
+           	ProcessBuilder processOne = new ProcessBuilder();
 						processOne.command("./TESTE.sh");
 						try{
 								Process process1 = processOne.start();				
@@ -161,12 +162,14 @@ public class Shell implements KeyListener {
 								BufferedReader reader = new BufferedReader(new InputStreamReader(process1.getInputStream()));
 								String line;
 								while((line = reader.readLine()) != null){
-									saida.append(line + "\n");
+									//saida.append(line + "\n");
+									output.append(line + "\n");
 								}
 								int exitPro1 = process1.waitFor();
 								if(exitPro1 == 0){
-									String exit = saida.toString();
-									output.append("\n" + exit);
+									//String exit = saida.toString();
+									//output.append("\n" + exit);
+									output.append("\n Processo Finalizado!");
 										
 								}
 
