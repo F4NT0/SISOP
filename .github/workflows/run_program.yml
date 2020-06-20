@@ -15,7 +15,8 @@ jobs:
        # run: cd ci_cd/ && chmod +x teste.sh && ./teste.sh
         #shell: bash
       - name: testando os comandos
-        run: cd Java/src/ && javac *.java && java CI_CD
+        #run: cd Java/src/ && javac *.java && java CI_CD
+         run: cd Java/src/ && chmod +x TESTE.sh && ./TESTE.sh
       - name: mostrando Status de Leitura
         if: always()
         run: echo $status
