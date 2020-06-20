@@ -1,8 +1,7 @@
-package process;
+package system.process;
 
 import java.util.List;
-
-import process.ProcessControlBlock.ContextData;
+import system.process.ProcessControlBlock.ContextData;
 
 /**
  * Mudar a lista de functions (de object para function quando tiver)
@@ -10,7 +9,6 @@ import process.ProcessControlBlock.ContextData;
 */
 
 public class Process {
-
     private ProcessControlBlock processControlBlock;
     private List<Object> functions; 
 
