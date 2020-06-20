@@ -25,3 +25,7 @@ java -cp compiled_program/ system.memory.Memory
 # MEMORY MANAGER
 javac system/memory/MemoryManager.java -d compiled_program/
 java -cp compiled_program/ system.memory.MemoryManager
+
+# PROGRAM READER
+javac system/IO/ProgramReader.java -d compiled_program/
+java -cp compiled_program/ system.IO.ProgramReader
