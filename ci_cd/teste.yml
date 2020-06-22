@@ -1,7 +1,0 @@
-name: Verificar Funções
-description: "Testar se o Programa está Rodando"
-author: "Gabriel Fanto Stundner"
-runs:
-  using: "docker"
-  image: "Dockerfile"
- 

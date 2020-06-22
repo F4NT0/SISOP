@@ -1,5 +1,8 @@
 #!/bin/bash
 cd ..
+echo "Acessando Java/src/"
 cd Java/src/
-chmod +x TESTE.sh
-./TESTE.sh
+echo "Info interno"
+ls
+
+
