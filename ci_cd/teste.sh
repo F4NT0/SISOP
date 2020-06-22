@@ -6,4 +6,6 @@ mkdir compiled_program/
 
 # TESTES DEFINIDOS INTERNOS
 chmod +x TESTE.sh && ./TESTE.sh
-echo "✅ Teste Concluido!!"
+echo ""
+echo ""
+echo "✅ TESTE CONCLUIDO !!"
