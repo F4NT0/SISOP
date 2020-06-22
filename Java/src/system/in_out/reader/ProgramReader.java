@@ -1,4 +1,4 @@
-package system.IO;
+package system.in_out.reader;
 
 // Imports
 import java.io.BufferedReader;
