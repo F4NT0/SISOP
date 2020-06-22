@@ -11,14 +11,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
-      #- name: Iniciando Script
-       # run: cd ci_cd/ && chmod +x teste.sh && ./teste.sh
-        #shell: bash
+      - name: Iniciando Script
+        run: cd ci_cd/ && chmod +x teste.sh && ./teste.sh
+        shell: bash
       #- name: testando os comandos
         #run: cd Java/src/ && javac *.java && java CI_CD
-      - name: Testando Arquivos
-        run: cd Java/src/ && ./TESTE.sh
-        shell: bash
       - name: mostrando Status de Leitura
         if: always()
         run: echo $status

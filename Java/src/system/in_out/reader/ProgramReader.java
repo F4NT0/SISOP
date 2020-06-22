@@ -1,4 +1,4 @@
-package system.IO;
+package system.in_out.reader;
 
 // Imports
 import java.io.BufferedReader;
@@ -220,8 +220,8 @@ public class ProgramReader {
         //    System.out.println("Linha " + i + "= Rs: " + funcoes.get(i).getRs());
         //}
 
-        System.out.println("┌────────────────────────┐");
-        System.out.println("׀ PROGRAM READER RODANDO  ׀");
-        System.out.println("└────────────────────────┘");
+        System.out.println("╔══════════════════════╗");
+        System.out.println("║PROGRAM READER RODANDO║");
+        System.out.println("╚══════════════════════╝");
     }
 }

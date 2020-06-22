@@ -1,6 +1,11 @@
 #!/bin/bash
 cd ..
+echo "Acessando Java/src/"
 cd Java/src/
-javac *.java
-java CI_CD
-echo "TESTE FINALIZADO"
+mkdir compiled_program/
+
+# TESTES DEFINIDOS INTERNOS
+chmod +x TESTE.sh && ./TESTE.sh
+echo ""
+echo ""
+echo "✅ TESTE CONCLUIDO !!"
