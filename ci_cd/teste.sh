@@ -2,8 +2,8 @@
 cd ..
 echo "Acessando Java/src/"
 cd Java/src/
-echo "Info interno"
-ls
+javac system/App.java -d compiled_program/
+java -cp compiled_program/ system.App
 
 
 
