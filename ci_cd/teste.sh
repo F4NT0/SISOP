@@ -5,6 +5,5 @@ cd Java/src/
 mkdir compiled_program/
 
 # TESTES DEFINIDOS INTERNOS
-echo -e "tput setaf 2"
 chmod +x TESTE.sh && ./TESTE.sh
-
+echo "✅ Teste Concluido!!"
