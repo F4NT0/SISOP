@@ -104,6 +104,7 @@ public class MemoryManager {
     }
 
     public static void main(String[] args){
+        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
 		System.out.println("🆗 MEMORY MANAGER COMPILANDO!");
     } 
     

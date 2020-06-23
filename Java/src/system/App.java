@@ -18,7 +18,8 @@ package system;
 public class App {
 
     public static void main (String args[]) {
-		System.out.println("🆗 APP COMPILANDO!");
+      // ÁREA DE TESTES UNITÁRIOS DA CLASSE
+		  System.out.println("🆗 APP COMPILANDO!");
     }
     
 }

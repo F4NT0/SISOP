@@ -41,6 +41,7 @@ public class Memory {
         return memorySize;
     }
     public static void main(String[] args){
+        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
         System.out.println("🆗 MEMORY COMPILANDO!");
     } 
 
