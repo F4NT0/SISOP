@@ -29,3 +29,6 @@ java -cp compiled_program/ system.memory.MemoryManager
 # PROGRAM READER
 javac system/in_out/reader/ProgramReader.java -d compiled_program/
 java -cp compiled_program/ system.in_out.reader.ProgramReader
+
+# Finalização
+echo "✅ TODOS PROGRAMAS COMPILADOS!"
