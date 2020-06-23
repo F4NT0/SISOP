@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 class Reader{
     private String FILE_PATH = "";
-
-    /*Leitura de Arquivo*/
     public BufferedReader setupFilePath(String filename) {
         try {
             File currentDirFile = new File("");
@@ -31,48 +29,17 @@ class Reader{
     }
 }
 
-class Funcao{
-    private String opcode ;
-    private String rs;
-    private String rc;
-    private String rd;
-    private Integer k;
-    private Integer a;
-
-    public Funcao() {
-        this.opcode = "";
-        this.rs = "";
-        this.rc = "";
-        this.rd = "";
-        this.k = null;
-        this.a = null;
-    }
-
-    public String getOpcode() {return opcode;}
-    public Integer getK() {return k;}
-    public String getRs() {return rs;}
-    public String getRc() {return rc;}
-    public String getRd(){return rd;}
-    public Integer getA(){return a;}
-    public void setOpcode(String opcode) {this.opcode = opcode;}
-    public void setRs(String rs) {this.rs = rs;}
-    public void setRc(String rc) {this.rc = rc;}
-    public void setRd(String rd){this.rd = rd;}
-    public void setK(Integer k) {this.k = k;}
-    public void setA(Integer a){this.a = a;}
-}
-
-class ObjectCreator{
+public class ProgramReader{
 
     private static BufferedReader buffer;
-    private static ArrayList<Funcao> funcoes = new ArrayList<Funcao>();
+    private static ArrayList<FunctionObjects> funcoes = new ArrayList<FunctionObjects>();
 
     public void setup(String path) {
         Reader reader = new Reader();
         buffer = reader.setupFilePath(path);
     }
 
-    public ArrayList<Funcao> getFuncoes(){return funcoes;}
+    public ArrayList<FunctionObjects> getFuncoes(){return funcoes;}
     public Integer getProgramSize(){return funcoes.size();}
 
     public boolean isNumeric(String str){
@@ -94,16 +61,14 @@ class ObjectCreator{
         setup(path);
         try {
             eraseOldReading();
-            // int position = 0;
-            //File myObj = new File(path);
             while (true) {
                 String line = buffer.readLine();
                 if (line != null) {
                     
                     String split[] = line.split(" ");
 
-                     // cria objeto Funcao
-                     Funcao f = new Funcao();   
+                     // cria objeto FunctionObjects
+                         FunctionObjects f = new FunctionObjects();
 
                     if(split[0].equals("STOP")){
                         String stop = split[0];
@@ -132,7 +97,11 @@ class ObjectCreator{
                     // Atribui o Rs e Rc ao Objeto (JMPIG JMPIL JMPIE)
                     if ((split[0].substring(0, 3).equals("JMP")) &&(split[1].charAt(0) == 'R') && (split[2].charAt(0) == 'R')){
                         f.setRs(split[1]);
+                            f.setRc(split[2]);  
                         f.setRc(split[2]);  
+                            f.setRc(split[2]);  
+                        f.setRc(split[2]);  
+                            f.setRc(split[2]);  
                     }
 
                     // STD
@@ -202,26 +171,22 @@ class ObjectCreator{
         }
     }
 
-}
-
-public class ProgramReader {
     public static void main(String[] args){
-        //ArrayList<Funcao> funcoes = new ArrayList<Funcao>(); //vetor com as Funcoes lidas do arquivo
-        //ObjectCreator programa = new ObjectCreator(); // Inicializando o ObjectCreator de Teste(SHELL)
+        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
+        System.out.println("🆗 PROGRAM READER COMPILANDO!");
+        //ArrayList<FunctionObjects> funcoes = new ArrayList<FunctionObjects>(); //vetor com as Funcoes lidas do arquivo
+        //ProgramReader programa = new ProgramReader(); // Inicializando o ProgramReader de Teste(SHELL)
         //programa.readAndCreateFunctions("prog.txt"); //lendo e gravando o programa
-        //funcoes = programa.getFuncoes(); //salvando o vetor de objetos lidos do programa
+        //funcoes = programa.getFuncoes(); //salvando o vetor de objetos lidos do program
 
         //for(int i = 0 ; i < funcoes.size() ; i++){
-        //    System.out.println("Linha " + i + "= OPCODE: " + funcoes.get(i).getOpcode());
-        //    System.out.println("Linha " + i + "= A: " + funcoes.get(i).getA());
-        //    System.out.println("Linha " + i + "= K: " + funcoes.get(i).getK());
-        //    System.out.println("Linha " + i + "= Rc: " + funcoes.get(i).getRc());
-        //    System.out.println("Linha " + i + "= Rd: " + funcoes.get(i).getRd());
-        //    System.out.println("Linha " + i + "= Rs: " + funcoes.get(i).getRs());
+        //  System.out.println("Linha " + i + "= OPCODE: " + funcoes.get(i).getOpcode());
+        //   System.out.println("Linha " + i + "= A: " + funcoes.get(i).getA());
+        //   System.out.println("Linha " + i + "= K: " + funcoes.get(i).getK());
+        //   System.out.println("Linha " + i + "= Rc: " + funcoes.get(i).getRc());
+        //   System.out.println("Linha " + i + "= Rd: " + funcoes.get(i).getRd());
+        //   System.out.println("Linha " + i + "= Rs: " + funcoes.get(i).getRs());
         //}
-
-        System.out.println("╔══════════════════════╗");
-        System.out.println("║PROGRAM READER RODANDO║");
-        System.out.println("╚══════════════════════╝");
     }
+
 }
