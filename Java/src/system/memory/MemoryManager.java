@@ -1,6 +1,7 @@
 package system.memory;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
     /*
@@ -12,62 +13,82 @@ import java.util.List;
 
 public class MemoryManager {
 
-    private class Pagination {
-        private String name;
-        private List<Integer> indexes;
-
-        public Pagination(String name, List<Integer> indexes) {
-            this.name = name;
-            this.indexes = indexes;
+    private class Partition {
+        private int id;
+        private int rb;
+        private int rl;
+        private boolean available;
+        private int size;
+        public Partition(int id, int rb, int rl) {
+            this.id = id;
+            this.rb = rb;
+            this.rl = rl;
+            this.size = rl - rb;
+            this.available = true;
         }
 
-        public Integer size() {
-            return indexes.size();
-        }
-        public String name() {
-            return name;
-        }
-        public Integer memoryIndex(Integer index) {
-            return indexes.get(index);
-        }
+        public int getRB() {return this.rb;}
+        public int getRL() {return this.rl;}
+        public boolean isAvailable() {return this.available;}
+        public void lockPartition() {this.available = false;}
+        public int getSize() {return this.size;}
     }
 
+
     private Memory memory;
-    private List<Pagination> paginations;
+    private List<Partition> partitions;
 
     public MemoryManager() {
         memory = new Memory();
-        paginations = new ArrayList<>();
+        this.partitions = new LinkedList<>();
     }
 
-    public Boolean createPagination(String name, List<Object> objects) {
-        List<Integer> indexes = new ArrayList<>();
-        try {
-            for (int i = 0; i < objects.size(); i++) {
-                indexes.add(this.append(objects.get(i)));
-            }
-        } catch (OutOfMemoryError outOfMemoryError) {
-            outOfMemoryError.printStackTrace();
-            return false;
-        }
-        Pagination pagination = new Pagination(name, indexes);
-        paginations.add(pagination);
-        return true;
+    public boolean isPartitionAvailable(Partition p) {
+        return p.isAvailable();
+    }
+    
+    public void addPartition(int id, int rb, int rl) {
+        Partition p = new Partition(id,rb,rl);
+        this.partitions.add(p);
     }
 
-    public Boolean deletePagination(String name) {
-        Pagination pagination = getPagination(name);
-        try {
-            for (int i = 0; i < pagination.size(); i++) {
-                memory.deleteIndex(pagination.memoryIndex(i));
-            }
-        } catch (IndexOutOfBoundsException exception) {
-            System.out.printf("Error while deleting pagination \'%s\'\n", pagination.name);
-            exception.printStackTrace();
-            return false;
+    //Provavelmente vai precisar ser mudado esse método
+    public Partition findPartition(int registerBase) {
+        for(Partition p : partitions) {
+            if(p.getRB() == registerBase)
+                return p;
         }
-        return true;
+        throw new IllegalArgumentException("Essa partição não existe.");
     }
+
+    public Partition findBestPartition(Process p) {
+        Partition aux = partitions.get(0);
+        // int best = aux.getSize() - p.getFunctions().size();
+        for(Partition pa : partitions) {
+            // if( (pa.getSize() - p.getFunctions().size()) < best) {
+                // best = pa.getSize() - p.getFunctions().size();
+                // aux = pa;
+            // }
+        }
+        return aux;
+    }
+
+    public void selectPartition(Process p) {
+        for(Partition pa : partitions) {
+            if(pa.isAvailable()) 
+                malloc(pa, p);
+        }
+    }
+
+    public void malloc(Partition pa, Process p) {
+        //Fazer método para achar a melhor partição para o processo
+        // for(int i = 0; i < p.getFunctions(); i++) {
+            // memory.setIndexElement(pa.getRB() + i, p.getFunctions().get(i));
+        // }
+        pa.lockPartition();
+        // p.setProgramState(ProgramState.READY);
+    }
+
 
     private Integer append(Object object) throws OutOfMemoryError {
         for (Integer i = 0; i < memory.size(); i++) {
@@ -94,14 +115,7 @@ public class MemoryManager {
     //     return memory.deleteIndex(index);
     // }
 
-    private Pagination getPagination(String name) {
-        for (int i = 0; i < paginations.size(); i++) {
-            if (paginations.get(i).name() == name) {
-                return paginations.get(i);
-            }
-        }
-        return null;
-    }
+    
 
     public static void main(String[] args){
         System.out.println("╔══════════════════════╗");
