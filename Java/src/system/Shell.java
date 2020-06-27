@@ -152,31 +152,31 @@ public class Shell implements KeyListener {
             }
 
         }
-				if(text.equals("teste")){
-            System.out.println("\nCarregando...\n");
-           	ProcessBuilder processOne = new ProcessBuilder();
-						processOne.command("./TESTE.sh");
-						try{
-								Process process1 = processOne.start();				
-								StringBuilder saida = new StringBuilder();
-								BufferedReader reader = new BufferedReader(new InputStreamReader(process1.getInputStream()));
-								String line;
-								while((line = reader.readLine()) != null){
-									//output.append(line + "\n");
-									System.out.println(line + "\n");
-								}
-								int exitPro1 = process1.waitFor();
-								if(exitPro1 == 0){
-									output.append("\n Processo Finalizado!");
-									output.append("\n Todos os Arquivos Compilados. Verifique seu Terminal!");
-										
-								}
+			if(text.equals("teste")){
+                System.out.println("\nCarregando...\n");
+           	    ProcessBuilder processOne = new ProcessBuilder();
+                    processOne.command("./TESTE.sh");
+                    try{
+                            Process process1 = processOne.start();				
+                            //StringBuilder saida = new StringBuilder();
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(process1.getInputStream()));
+                            String line;
+                            while((line = reader.readLine()) != null){
+                                //output.append(line + "\n");
+                                System.out.println(line + "\n");
+                            }
+                            int exitPro1 = process1.waitFor();
+                            if(exitPro1 == 0){
+                                output.append("\n Processo Finalizado!");
+                                output.append("\n Todos os Arquivos Compilados. Verifique seu Terminal!");
+                                    
+                            }
 
-						}catch (IOException e){
-									e.printStackTrace();
-						 }catch (InterruptedException e){
-									e.printStackTrace();
-						 }
+                    }catch (IOException e){
+                            e.printStackTrace();
+                    }catch (InterruptedException e){
+                            e.printStackTrace();
+                    }
 				}
     }
 

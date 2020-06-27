@@ -27,5 +27,20 @@ javac system/memory/MemoryManager.java -d compiled_program/
 java -cp compiled_program/ system.memory.MemoryManager
 
 # PROGRAM READER
-javac system/IO/ProgramReader.java -d compiled_program/
-java -cp compiled_program/ system.IO.ProgramReader
+javac system/in_out/reader/ProgramReader.java -d compiled_program/
+java -cp compiled_program/ system.in_out.reader.ProgramReader
+
+# FUNCTION OBJECTS
+javac system/in_out/reader/FunctionObjects.java -d compiled_program/
+java -cp compiled_program/ system.in_out.reader.FunctionObjects
+
+# CONTROL UNIT 
+javac system/cpu/ControlUnit.java -d compiled_program/
+java -cp compiled_program/ system.cpu.ControlUnit
+
+# ASSEMBLY
+javac system/cpu/Assembly.java -d compiled_program/
+java -cp compiled_program/ system.cpu.Assembly
+
+# Finalização
+echo "✅ TODOS PROGRAMAS COMPILADOS!"

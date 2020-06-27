@@ -7,8 +7,7 @@ public class MemoryAccess {
         this.manager = new MemoryManager();
     }
    public static void main(String[] args){
-	    			System.out.println("┌───────────────────────┐");
-		    		System.out.println("׀ MEMORY ACCESS RODANDO ׀");
-		    		System.out.println("└───────────────────────┘");
-	 }  
+     // ÁREA DE TESTES UNITÁRIOS DA CLASSE
+     System.out.println("🆗 MEMORY ACCESS COMPILANDO!");
+	}  
 }
