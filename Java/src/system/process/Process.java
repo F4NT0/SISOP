@@ -33,5 +33,9 @@ public class Process {
     public List<Object> getFunctions() {
         return functions;
     }
+    public static void main(String[] args){
+        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
+		System.out.println("🆗 PROCESS COMPILANDO!");
+    } 
     
 }

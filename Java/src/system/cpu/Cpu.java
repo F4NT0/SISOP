@@ -66,5 +66,10 @@ public class Cpu implements Runnable {
 	private void trapFlag() {
 		// TODO: write this function
 	}
-   
+
+	public static void main(String[] args){
+        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
+        System.out.println("🆗 CPU COMPILANDO!");
+    }
 }
+

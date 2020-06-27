@@ -41,4 +41,8 @@ public class Scheduler extends Thread {
         }
     }
 
+    public static void main(String[] args){
+        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
+		System.out.println("🆗 SCHEDULER COMPILANDO!");
+    } 
 }

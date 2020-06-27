@@ -10,9 +10,25 @@ java -cp compiled_program/ system.App
 javac system/cpu/Cpu.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Cpu
 
+# PROCESS
+javac system/process/Process.java -d compiled_program/
+java -cp compiled_program/ system.process.Process
+
 # PROCESS MANAGER
-javac system/cpu/ProcessManager.java -d compiled_program/
-java -cp compiled_program/ system.cpu.ProcessManager
+javac system/process/ProcessManager.java -d compiled_program/
+java -cp compiled_program/ system.process.ProcessManager
+
+# PROCESS CONTROL BLOCK
+javac system/process/ProcessControlBlock.java -d compiled_program/
+java -cp compiled_program/ system.process.ProcessControlBlock
+
+# PROGRAM STATE
+javac system/process/ProgramState.java -d compiled_program/
+java -cp compiled_program/ system.process.ProgramState
+
+# SCHEDULER
+javac system/process/Scheduler.java -d compiled_program/
+java -cp compiled_program/ system.process.Scheduler
 
 # MEMORY ACCESS
 javac system/memory/MemoryAccess.java -d compiled_program/
@@ -41,6 +57,10 @@ java -cp compiled_program/ system.cpu.ControlUnit
 # ASSEMBLY
 javac system/cpu/Assembly.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Assembly
+
+# TESTE MEMORY
+javac system/memory/TestMemory.java -d compiled_program/
+java -cp compiled_program/ system.memory.TestMemory
 
 # Finalização
 echo "✅ TODOS PROGRAMAS COMPILADOS!"

@@ -15,20 +15,20 @@ public class MemoryManager {
 
     private class Partition {
         private int id;
-        private int rb;
-        private int rl;
+        private int registerBase;
+        private int registerLimit;
         private boolean available;
         private int size;
-        public Partition(int id, int rb, int rl) {
+        public Partition(int id, int registerBase, int registerLimit) {
             this.id = id;
-            this.rb = rb;
-            this.rl = rl;
-            this.size = rl - rb;
+            this.registerBase = registerBase;
+            this.registerLimit = registerLimit;
+            this.size = registerLimit - registerBase;
             this.available = true;
         }
 
-        public int getRB() {return this.rb;}
-        public int getRL() {return this.rl;}
+        public int getRegisterBase() {return this.registerBase;}
+        public int getRegisterLimit() {return this.registerLimit;}
         public boolean isAvailable() {return this.available;}
         public void lockPartition() {this.available = false;}
         public int getSize() {return this.size;}
@@ -43,19 +43,30 @@ public class MemoryManager {
         this.partitions = new LinkedList<>();
     }
 
+    /**
+     * Verifica se a Partição está disponivel
+     * @param p
+     * @return boolean
+     */
     public boolean isPartitionAvailable(Partition p) {
         return p.isAvailable();
     }
     
-    public void addPartition(int id, int rb, int rl) {
-        Partition p = new Partition(id,rb,rl);
+    /**
+     * Adiciona uma Partição
+     * @param id
+     * @param registerBase
+     * @param registerLimit
+     */
+    public void addPartition(int id, int registerBase, int registerLimit) {
+        Partition p = new Partition(id,registerBase,registerLimit);
         this.partitions.add(p);
     }
 
     //Provavelmente vai precisar ser mudado esse método
-    public Partition findPartition(int registerBase) {
+    public Partition findPartition(int registeregisterBasease) {
         for(Partition p : partitions) {
-            if(p.getRB() == registerBase)
+            if(p.getregisterBase() == registeregisterBasease)
                 return p;
         }
         throw new IllegalArgumentException("Essa partição não existe.");
@@ -83,7 +94,7 @@ public class MemoryManager {
     public void malloc(Partition pa, Process p) {
         //Fazer método para achar a melhor partição para o processo
         // for(int i = 0; i < p.getFunctions(); i++) {
-            // memory.setIndexElement(pa.getRB() + i, p.getFunctions().get(i));
+            // memory.setIndexElement(pa.getregisterBase() + i, p.getFunctions().get(i));
         // }
         pa.lockPartition();
         // p.setProgramState(ProgramState.READY);

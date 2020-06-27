@@ -115,5 +115,9 @@ public class ProcessControlBlock {
         this.programState = programState;
     }
 
+    public static void main(String[] args){
+        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
+		System.out.println("🆗 PROCESS CONTROL BLOCK COMPILANDO!");
+    } 
 
 }
