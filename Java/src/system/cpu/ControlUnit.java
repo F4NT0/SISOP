@@ -9,7 +9,7 @@ import system.in_out.reader.*;
 public class ControlUnit{
 	private Integer R1,R2,R3,R4,R5,R6,R7,R8;
 	private Integer pc;
-	private Memory memory = new Memory();
+	private Memory memory = new Memory(); //Mudar para ser usado a mesma memoria por todo o programa
 	private Integer programSize;
 	public ControlUnit(){
 		R1 = R2 = R3 = R4 = R5 = R6 = R7 = R8 = -1;
@@ -114,6 +114,7 @@ public class ControlUnit{
 		memory.updateRegister(location,newRegister);
     }
     
+	public void trat
 
     /**
     ========================================================= 
@@ -134,7 +135,7 @@ public class ControlUnit{
     }
 
     public void runningFunctions(FunctionObjects object){
-        Assembly assembly = new Assembly();
+        Assembly assembly = new Assembly(memory, this);
         String opcode = object.getOpcode();
         String rs = object.getRs();
         String rd = object.getRd();
@@ -153,6 +154,7 @@ public class ControlUnit{
         }
     }
 
+	//Mudar isso para funcionar no modelo atual.
     public void runningProgram(Integer size){
         //FunctionObjects object = memory.getProgram(getPc());
         //runningFunctions(object);

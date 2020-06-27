@@ -4,9 +4,14 @@ import system.in_out.reader.*;
 
 public class Assembly {
 
-    ControlUnit controlUnit = new ControlUnit();
-    Memory memory = new Memory();
+    ControlUnit controlUnit;
+    Memory memory;
 
+
+    public Assembly(Memory m, ControlUnit controlUnit) {
+        this.memory = m;
+        this.controlUnit = controlUnit;
+    }
     /**
     ===================
     Métodos de Assembly
@@ -14,6 +19,8 @@ public class Assembly {
     */
 
     public void JMP(Integer k) {
+        //Partition pa = findPartition(controlUnit.getProcess().getPCB().getPartitionID())
+        
         controlUnit.setPc(k);
     }
     
