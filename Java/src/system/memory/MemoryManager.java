@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import system.process.Process;
+import system.process.ProgramState;
+
     /*
         TODO: set, get, delete
         Fazer com que tu pegue, mude, delete algo de uma paginação
@@ -65,7 +68,7 @@ public class MemoryManager {
     }
 
     //Provavelmente vai precisar ser mudado esse método
-    public Partition findPartition(int id) {
+    public Partition findPartition(int id) throws IllegalArgumentException {
         for(Partition p : partitions) {
             if(p.getID() == id)
                 return p;
@@ -101,7 +104,7 @@ public class MemoryManager {
             memory.setIndexElement(pa.getRegisterBase() + i, p.getFunctions().get(i));
         }
         pa.lockPartition();
-        p.setProgramState(ProgramState.READY);
+        p.getPCB().setProgramState(ProgramState.READY);
         p.getPCB().setPartitionID(pa.getID());
     }
 

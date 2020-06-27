@@ -104,6 +104,7 @@ public class ControlUnit{
 		
 	}
 
+	//
 	public Object getIntegerDirect(Integer position){
 		Object value = memory.getObjectOnPosition(position);
 		return value;
@@ -114,7 +115,7 @@ public class ControlUnit{
 		memory.updateRegister(location,newRegister);
     }
     
-	public void trat
+	
 
     /**
     ========================================================= 
@@ -134,7 +135,7 @@ public class ControlUnit{
         setProgramSize(objects.getProgramSize()-1);
     }
 
-    public void runningFunctions(FunctionObjects object){
+    public void runningFunctions(FunctionObjects object) throws Exception {
         Assembly assembly = new Assembly(memory, this);
         String opcode = object.getOpcode();
         String rs = object.getRs();
@@ -142,7 +143,7 @@ public class ControlUnit{
         String rc = object.getRc();
         Integer k = object.getK();
         Integer a = object.getA();
-        switch(opcode){
+        switch(opcode) {
             case "JMP":assembly.JMP(k);break;case "JMPI":assembly.JMPI(rs);break;
             case "JMPIG":assembly.JMPIG(rs, rc);break;case "JMPIL":assembly.JMPIL(rs, rc);break;
             case "JMPIE":assembly.JMPIE(rs, rc);break;case "ADDI":assembly.ADDI(rd, k);break;
@@ -150,8 +151,16 @@ public class ControlUnit{
             case "LDD":assembly.LDD(rd, a);break;case "STD":assembly.STD(a, rs);break;
             case "ADD":assembly.ADD(rd, rs);break;case "SUB":assembly.SUB(rd, rs);break;
             case "MULT":assembly.MULT(rd, rs);break;case "LDX":assembly.LDX(rd, rs);break;
-            case "STX":assembly.STX(rd, rs);break;    
-        }
+			case "STX":assembly.STX(rd, rs);break;
+			case "STOP": throw new Exception("Program STOP reached");
+		}
+		
+		// verifica se há alguma interrupcao
+		try {
+			
+		} catch (IllegalArgumentException e) {
+			//TODO: handle exception
+		}
     }
 
 	//Mudar isso para funcionar no modelo atual.

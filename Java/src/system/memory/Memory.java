@@ -134,7 +134,7 @@ public class Memory {
      */
     public void remove (int position) throws IndexOutOfBoundsException {
         if (memoryArray.size() < position) {
-            throw new IndexOutOfBoundsException("Tried to acess ");
+            throw new IndexOutOfBoundsException("Tried to acess illegal position");
         }
         memoryArray.set(position,null);
     }
@@ -148,8 +148,9 @@ public class Memory {
         Object object = new Object();
         try{
             object = memoryArray.get(position);
-        }catch(IndexOutOfBoundsException e){
-
+        }catch(IndexOutOfBoundsException exception){
+            //retornar exception com erro de acesso a memoria
+            throw exception;
         }
         return object;
     }
