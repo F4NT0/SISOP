@@ -6,17 +6,7 @@ import java.util.ArrayList;
 
 import system.in_out.reader.*;
 
-class ObjectRegister{
-	private String register;
-	private Object value;
-	public ObjectRegister(){this.register = "";this.value = 0;}
-	public String getRegister(){return register;}
-	public Object getValue(){return value;}
-	public void setRegister(String reg){register = reg;}
-	public void setValue(Object value){this.value = value;}
-}
-
-class ControlUnit{
+public class ControlUnit{
 	private Integer R1,R2,R3,R4,R5,R6,R7,R8;
 	private Integer pc;
 	private Memory memory = new Memory();
@@ -79,57 +69,51 @@ class ControlUnit{
 		ObjectRegister object = new ObjectRegister();
 		object.setRegister(register);
 		object.setValue(value);
-		//memory.addRegister(object);
-		//Integer position = memory.findRegister(object);
-		//setRegisterPosition(register, position);
+		memory.addRegister(object);
+		Integer position = memory.findRegister(object);
+		setRegisterPosition(register, position);
 	}
 
 	public void setValueOnMemory(Object value,Integer position){
-		//memory.addValueOnPosition(value,position);
+		memory.addValueOnPosition(value,position);
 	}
 
 	public void setRegValuePosition(ObjectRegister object,Integer position){
-		//Integer positionFind = memory.findRegister(object);
-		//if(positionFind == -1){
-			//memory.addRegister(object);
-		//}
-		//memory.setRegisterOnPosition(position,object);
-		//memory.remove(positionFind);
+		Integer positionFind = memory.findRegister(object);
+		if(positionFind == -1){
+			memory.addRegister(object);
+		}
+		memory.setRegisterOnPosition(position,object);
+		memory.remove(positionFind);
 	}
 
 	public ObjectRegister getValue(String register){
 		ObjectRegister value = null;
 		switch(register){
-			//case "R1": value = memory.getValue(R1);case "R2": value = memory.getValue(R2);
-			//case "R3": value = memory.getValue(R3);case "R4": value = memory.getValue(R4);
-			//case "R5": value = memory.getValue(R5);case "R6": value = memory.getValue(R6);
-			//case "R7": value = memory.getValue(R7);case "R8": value = memory.getValue(R8);
+			case "R1": value = memory.getValue(R1);case "R2": value = memory.getValue(R2);
+			case "R3": value = memory.getValue(R3);case "R4": value = memory.getValue(R4);
+			case "R5": value = memory.getValue(R5);case "R6": value = memory.getValue(R6);
+			case "R7": value = memory.getValue(R7);case "R8": value = memory.getValue(R8);
 		}
 	 return value;
 	}
 
 	public ObjectRegister getValueDirect(Integer position){
-		//ObjectRegister value = memory.getValue(position);return value;
-		ObjectRegister temporario = null;
-		return temporario;
+		ObjectRegister value = memory.getValue(position);
+		return value;
+		
 	}
 
 	public Object getIntegerDirect(Integer position){
-		//Object value = memory.getObjectOnPosition(position);return value
-		ObjectRegister temporario = null;
-		return temporario;
+		Object value = memory.getObjectOnPosition(position);
+		return value;
+		
 	}
 
 	public void updateRegister(Integer location,ObjectRegister newRegister){
-		//memory.updateRegister(location,newRegister);
+		memory.updateRegister(location,newRegister);
     }
     
-    public void testMemory(){
-        //List<Object> teste = memory.array();
-        for(Integer i = 0 ; i <= 20 ; i++){
-            //System.out.println("Pos: " + i + ": " + teste.get(i));
-        }
-    }
 
     /**
     ========================================================= 
