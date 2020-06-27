@@ -74,6 +74,7 @@ public class ProcessControlBlock {
     private Integer programCounter;
     private ProgramState programState;
     private ContextData contextData;
+    private int partitionID;
 
     public ProcessControlBlock (Integer id) {
         this.id = id;
@@ -114,6 +115,8 @@ public class ProcessControlBlock {
     public void setProgramState(ProgramState programState) {
         this.programState = programState;
     }
+
+    public void setPartitionID(int id) {this.partitionID = id;}
 
     public static void main(String[] args){
         // ÁREA DE TESTES UNITÁRIOS DA CLASSE
