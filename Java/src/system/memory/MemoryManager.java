@@ -32,6 +32,7 @@ public class MemoryManager {
         public boolean isAvailable() {return this.available;}
         public void lockPartition() {this.available = false;}
         public int getSize() {return this.size;}
+        public int getID() {return this.id;}
     }
 
 
@@ -64,42 +65,53 @@ public class MemoryManager {
     }
 
     //Provavelmente vai precisar ser mudado esse método
-    public Partition findPartition(int registeregisterBasease) {
+    public Partition findPartition(int id) {
         for(Partition p : partitions) {
-            if(p.getregisterBase() == registeregisterBasease)
+            if(p.getID() == id)
                 return p;
         }
         throw new IllegalArgumentException("Essa partição não existe.");
     }
 
-    public Partition findBestPartition(Process p) {
-        Partition aux = partitions.get(0);
-        // int best = aux.getSize() - p.getFunctions().size();
-        for(Partition pa : partitions) {
-            // if( (pa.getSize() - p.getFunctions().size()) < best) {
-                // best = pa.getSize() - p.getFunctions().size();
-                // aux = pa;
-            // }
-        }
-        return aux;
-    }
+    // public Partition findBestPartition(Process p) {
+    //     Partition aux = partitions.get(0);
+    //     // int best = aux.getSize() - p.getFunctions().size();
+    //     for(Partition pa : partitions) {
+    //         // if( (pa.getSize() - p.getFunctions().size()) < best) {
+    //             // best = pa.getSize() - p.getFunctions().size();
+    //             // aux = pa;
+    //         // }
+    //     }
+    //     return aux;
+    // }
+    
 
-    public void selectPartition(Process p) {
+    public boolean selectPartition(Process p) {
         for(Partition pa : partitions) {
-            if(pa.isAvailable()) 
+            if(pa.isAvailable()) {
                 malloc(pa, p);
+                return true;
+            }            
         }
+        return false;
     }
 
     public void malloc(Partition pa, Process p) {
-        //Fazer método para achar a melhor partição para o processo
-        // for(int i = 0; i < p.getFunctions(); i++) {
-            // memory.setIndexElement(pa.getregisterBase() + i, p.getFunctions().get(i));
-        // }
+        for(int i = 0; i < p.getFunctions().size() ; i++) {
+            memory.setIndexElement(pa.getRegisterBase() + i, p.getFunctions().get(i));
+        }
         pa.lockPartition();
-        // p.setProgramState(ProgramState.READY);
+        p.setProgramState(ProgramState.READY);
+        p.getPCB().setPartitionID(pa.getID());
     }
 
+    //Falta printar resultado do programa.
+    public void deleteProgram(Partition pa) {
+        for(int i = pa.getRegisterBase(); i <= pa.getRegisterLimit() - 1; i++) {
+            if(!(memory.getFromIndex(i).equals(null))) 
+                memory.setIndexElement(i, null);
+        }
+    }
 
     private Integer append(Object object) throws OutOfMemoryError {
         for (Integer i = 0; i < memory.size(); i++) {

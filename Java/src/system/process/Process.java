@@ -23,6 +23,7 @@ public class Process {
     public void setPCB(ProcessControlBlock processControlBlock) {
         this.processControlBlock = processControlBlock;
     }
+    
     public void setFunctions(List<Object> functions) {
         this.functions = functions;
     }
