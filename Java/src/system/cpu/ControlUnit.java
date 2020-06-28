@@ -37,10 +37,14 @@ public class ControlUnit{
 	public Memory getMemory(){return memory;}
 	public void setRegisterPosition(String register,Integer position){
 		switch(register){
-			case "R1":this.R1 = position;case "R2":this.R2 = position;
-			case "R3":this.R3 = position;case "R4":this.R4 = position;
-			case "R5":this.R5 = position;case "R6":this.R6 = position;
-			case "R7":this.R7 = position;case "R8":this.R8 = position;
+			case "R1":this.R1 = position;break;
+			case "R2":this.R2 = position;break;
+			case "R3":this.R3 = position;break;
+			case "R4":this.R4 = position;break;
+			case "R5":this.R5 = position;break;
+			case "R6":this.R6 = position;break;
+			case "R7":this.R7 = position;break;
+			case "R8":this.R8 = position;break;
 		}
 	}
 	public void setPc(Integer pc){this.pc = pc;}
@@ -49,10 +53,14 @@ public class ControlUnit{
 	public Integer getRegisterLocation(String register){
 		Integer location = -1;
 		switch(register){
-			case "R1": location = getReg("R1");case "R2": location = getReg("R2");
-			case "R3": location = getReg("R3");case "R4": location = getReg("R4");
-			case "R5": location = getReg("R5");case "R6": location = getReg("R6");
-			case "R7": location = getReg("R7");case "R8": location = getReg("R8");
+			case "R1": location = getReg("R1");break;
+			case "R2": location = getReg("R2");break;
+			case "R3": location = getReg("R3");break;
+			case "R4": location = getReg("R4");break;
+			case "R5": location = getReg("R5");break;
+			case "R6": location = getReg("R6");break;
+			case "R7": location = getReg("R7");break;
+			case "R8": location = getReg("R8");break;
 		}
 		return location;
 	}
@@ -65,6 +73,7 @@ public class ControlUnit{
 	================================
 	*/
 
+	// TODO: deletar essa Função(colocada em Assembly)
 	public void setRegValue(Object value,String register){
 		ObjectRegister object = new ObjectRegister();
 		object.setRegister(register);
@@ -74,6 +83,7 @@ public class ControlUnit{
 		setRegisterPosition(register, position);
 	}
 
+	// TODO: deletar essa Função(não necessária)
 	public void setValueOnMemory(Object value,Integer position){
 		memory.addValueOnPosition(value,position);
 	}
@@ -87,6 +97,7 @@ public class ControlUnit{
 		memory.remove(positionFind);
 	}
 
+	// TODO: deletar essa Função (está em Assembly)
 	public ObjectRegister getValue(String register){
 		ObjectRegister value = null;
 		switch(register){
@@ -104,13 +115,14 @@ public class ControlUnit{
 		
 	}
 
-	//
+	// TODO: deletar essa Função(não necessária)
 	public Object getIntegerDirect(Integer position){
 		Object value = memory.getObjectOnPosition(position);
 		return value;
 		
 	}
 
+	// TODO: essa função não precisa
 	public void updateRegister(Integer location,ObjectRegister newRegister){
 		memory.updateRegister(location,newRegister);
     }

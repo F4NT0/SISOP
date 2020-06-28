@@ -70,8 +70,8 @@ public class Memory {
      * Testa o Status 
      */
     public void getMemory(){
-        // tem que por size()
-        for(int i = 0 ; i < 20 ; i++){
+        // TODO: tem que ser por size(), botei 10 só para teste
+        for(int i = 0 ; i < 10 ; i++){
             System.out.println("Posição " + i + ": " + memoryArray.get(i));
         }
     }

@@ -1,6 +1,5 @@
 package system.cpu;
-import system.memory.*;
-import system.in_out.reader.*;
+import system.memory.*;;
 
 public class Assembly {
 
@@ -39,11 +38,18 @@ public class Assembly {
         else{controlUnit.setPc(controlUnit.getPc() + 1);}
         
     }
-    
+
+    /**
+     * Verifica se um valor de um Registrador é menor que Zero, se for, 
+     * ele vai pegar o valor de outro Registrador e enviar o PC para o valor, 
+     * senão ele somente vai para a proxima linha do programa
+     * @param rs
+     * @param rc
+     */
     public void JMPIL(String rs, String rc) {
-        ObjectRegister object1 = controlUnit.getValue(rs);
+        ObjectRegister object1 = getRegister(rs);
         Integer valueRs = (Integer) object1.getValue();
-        ObjectRegister object2 = controlUnit.getValue(rc);
+        ObjectRegister object2 = getRegister(rc);
         Integer valueRc = (Integer) object2.getValue();
         if(valueRs < 0){controlUnit.setPc(valueRc);}
         else{controlUnit.setPc(controlUnit.getPc() + 1);}
@@ -66,30 +72,53 @@ public class Assembly {
         controlUnit.setPc(controlUnit.getPc() + 1); 
     }
     
+    /**
+     * Imediatamente subtrai um valor dentro de um Registrador 
+     * com um valor entrado
+     * @param rd
+     * @param k
+     */
     public void SUBI(String rd, Integer k) {
-        ObjectRegister registerValue = controlUnit.getValue(rd);
+        ObjectRegister registerValue = getRegister(rd);
         Integer oldValue = (Integer) registerValue.getValue();
         registerValue.setValue(oldValue - k);
-        controlUnit.updateRegister(controlUnit.getRegisterLocation(rd), registerValue);
+        memory.updateRegister(controlUnit.getRegisterLocation(rd),registerValue);
         controlUnit.setPc(controlUnit.getPc() + 1);
     }
     
+    /**
+     * Imediatamente Carrega um valor entrado para dentro de um Registrador
+     * @param rd
+     * @param k
+     */
     public void LDI(String rd, Integer k) {
-        controlUnit.setRegValue(k, rd);
+        setRegValue(k, rd);
         controlUnit.setPc(controlUnit.getPc() + 1);
     }
     
+    /**
+     * Imediatamente Carregamos um valor vindo 
+     * de uma Posição de Memória Específica
+     * @param rd
+     * @param a
+     */
     public void LDD(String rd, Integer a) {
-        Object value = controlUnit.getIntegerDirect(a);
-        controlUnit.setRegValue(value, rd);
+        Object value = memory.getObjectOnPosition(a);
+        setRegValue(value, rd);
         controlUnit.setPc(controlUnit.getPc() + 1);
     }
     
+    /**
+     * Imediatamente Colocamos um valor de um Registrador
+     * dentro de uma Posição da Memória
+     * @param a
+     * @param rd
+     */
     public void STD(Integer a, String rd) {
         try{
-            ObjectRegister objectRd = controlUnit.getValue(rd);
+            ObjectRegister objectRd = getRegister(rd);
             Object value = objectRd.getValue();
-            controlUnit.setValueOnMemory(value, a);
+            memory.addValueOnPosition(value, a);
             controlUnit.setPc(controlUnit.getPc() + 1);
         }catch(NullPointerException e){
             System.err.println(e);
@@ -118,14 +147,20 @@ public class Assembly {
         controlUnit.setPc(controlUnit.getPc() + 1);
     }
     
+    /**
+     * Multiplica o valor armazenado entre dois Registradores 
+     * no primeiro Registrador inserido
+     * @param rd
+     * @param rs
+     */
     public void MULT(String rd, String rs) {
-        ObjectRegister objectRd = controlUnit.getValue(rd);
-        ObjectRegister objectRs = controlUnit.getValue(rs);
+        ObjectRegister objectRd = getRegister(rd);
+        ObjectRegister objectRs = getRegister(rs);
         Integer valueRd = (Integer) objectRd.getValue();
         Integer valueRs = (Integer) objectRs.getValue();
         Integer mult = valueRd * valueRs;
         objectRd.setValue(mult);
-        controlUnit.updateRegister(controlUnit.getRegisterLocation(rd), objectRd);
+        memory.updateRegister(controlUnit.getRegisterLocation(rd), objectRd);
         controlUnit.setPc(controlUnit.getPc() + 1);
     }
     
@@ -147,6 +182,44 @@ public class Assembly {
         controlUnit.setPc(controlUnit.getPc() + 1);
       
     }
+
+
+    // FUNÇÕES AUXILIARES
+
+    /**
+     * Cria um Registrador e o Salva na Memória
+     * @param value
+     * @param register
+     */
+    public void setRegValue(Object value,String register){
+		ObjectRegister object = new ObjectRegister();
+		object.setRegister(register);
+		object.setValue(value);
+		memory.addRegister(object);
+		Integer position = memory.findRegister(object); 
+		controlUnit.setRegisterPosition(register, position);
+    }
+    
+    /**
+     * Pegar um Registrador da Memória de Entrada
+     * @param register
+     * @return Object
+     */
+    public ObjectRegister getRegister(String register){
+		ObjectRegister value = null;
+		switch(register){
+            case "R1": value = memory.getValue(controlUnit.getReg("R1"));break;
+            case "R2": value = memory.getValue(controlUnit.getReg("R2"));break;
+            case "R3": value = memory.getValue(controlUnit.getReg("R3"));break;
+            case "R4": value = memory.getValue(controlUnit.getReg("R4"));break;
+            case "R5": value = memory.getValue(controlUnit.getReg("R5"));break;
+            case "R6": value = memory.getValue(controlUnit.getReg("R6"));break;
+            case "R7": value = memory.getValue(controlUnit.getReg("R7"));break;
+            case "R8": value = memory.getValue(controlUnit.getReg("R8"));break;
+		}
+	 return value;
+    }
+    
 
     public static void main(String[] args){
         // ÁREA DE TESTES UNITÁRIOS DA CLASSE
