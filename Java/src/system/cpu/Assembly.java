@@ -29,10 +29,17 @@ public class Assembly {
         controlUnit.setPc(value);
     }
     
+    /**
+     * Verifica se um valor de um Registrador é maior que Zero, 
+     * se for, ele vai pegar o valor de outro Registrador e enviar o PC para o valor, 
+     * senão ele somente vai para a proxima linha do programa
+     * @param rs
+     * @param rc
+     */
     public void JMPIG(String rs, String rc) {
-        ObjectRegister object1 = controlUnit.getValue(rs);
+        ObjectRegister object1 = getRegister(rs);
         Integer valueRs = (Integer) object1.getValue();
-        ObjectRegister object2 = controlUnit.getValue(rc);
+        ObjectRegister object2 = getRegister(rc);
         Integer valueRc = (Integer) object2.getValue();
         if(valueRs > 0){controlUnit.setPc(valueRc);}
         else{controlUnit.setPc(controlUnit.getPc() + 1);}
@@ -173,14 +180,19 @@ public class Assembly {
         controlUnit.setPc(controlUnit.getPc() + 1); 
     }
     
+    /**
+     * Pega o valor que está no Rd e envia o valor em Rs 
+     * para a posição de memória que era o valor do Rd
+     * @param rd
+     * @param rs
+     */
     public void STX(String rd, String rs) {
-        ObjectRegister rdObject = controlUnit.getValue(rd);
+        ObjectRegister rdObject = getRegister(rd);
         Integer value = (Integer) rdObject.getValue();
-        ObjectRegister rsObject = controlUnit.getValue(rs);
-        Object rsValue = rsObject.getValue();    
-        //memory.addValueOnPosition(rsValue, value);
+        ObjectRegister rsObject = getRegister(rs);
+        Object valueRs = rsObject.getValue();    
+        memory.addValueOnPosition(valueRs, value);
         controlUnit.setPc(controlUnit.getPc() + 1);
-      
     }
 
 
