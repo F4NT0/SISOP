@@ -66,7 +66,7 @@ public class Memory {
      * Testa o Status 
      */
     public void getMemory(){
-        // TODO: tem que ser por size(), botei 10 só para teste
+        // TODO: tem que ser por size(), botei 20 só para teste
         for(int i = 0 ; i < 20 ; i++){
             System.out.println("Posição " + i + ": " + memoryArray.get(i));
         }
@@ -83,7 +83,7 @@ public class Memory {
         try{
             object = (ObjectRegister) memoryArray.get(position);
         }catch(IndexOutOfBoundsException e){
-            System.out.println("Index fora da Memória");
+            System.out.println("Index fora da Memória " + position);
         }
         return object;
     }

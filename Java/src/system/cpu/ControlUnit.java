@@ -114,7 +114,11 @@ public class ControlUnit{
         setProgramSize(objects.getProgramSize()-1);
     }
 
-    public void runningFunctions(FunctionObjects object){
+	/**
+	 * Compila cada linha do programa com sua Função
+	 * @param object
+	 */
+    private void runningFunctions(FunctionObjects object){
         try {
 			Assembly assembly = new Assembly(memory, this);
         	String opcode = object.getOpcode();
@@ -148,23 +152,19 @@ public class ControlUnit{
         else{runningProgram(size-1);}
     }
 
+	/**
+	 * Apresenta os Valores finais dos Registradores
+	 * @return
+	 */
     public String finalValues(){
-        try{
-            String r1,r2,r3,r4,r5,r6,r7,r8 = "";
-            //if(getReg("R1") != -1){ObjectRegister object = memory.getValue(getReg("R1"));r1 = "R1: " + object.getValue();}
-            //if(getReg("R2") != -1){ObjectRegister object = memory.getValue(getReg("R2"));r2 = "R2: " + object.getValue();}
-            //if(getReg("R3") != -1){ObjectRegister object = memory.getValue(getReg("R3"));r3 = "R3: " + object.getValue();}
-            //if(getReg("R4") != -1){ObjectRegister object = memory.getValue(getReg("R4"));r4 = "R4: " + object.getValue();}
-            //if(getReg("R5") != -1){ObjectRegister object = memory.getValue(getReg("R5"));r5 = "R5: " + object.getValue();}
-            //if(getReg("R6") != -1){ObjectRegister object = memory.getValue(getReg("R6"));r6 = "R6: " + object.getValue();}
-            //if(getReg("R7") != -1){ObjectRegister object = memory.getValue(getReg("R7"));r7 = "R7: " + object.getValue();}
-            //if(getReg("R8") != -1){ObjectRegister object = memory.getValue(getReg("R8"));r8 = "R8: " + object.getValue();}
-            //String exit = r1 + "\n" + r2 + "\n" + r3 + "\n" + r4 + "\n" + r5 + "\n" + r6 + "\n" + r7 + "\n" + r8 + "\n"; 
-            //return exit;
-        }catch(NullPointerException e){
-            System.err.print("Erro: " + e);
-        }
-        return "";
+		String[] options = {"R1","R2","R3","R4","R5","R6","R7","R8"};
+		String exit = "";
+		for(int i = 0 ; i < options.length ; i++){
+			if(getRegisterLocation(options[i]) != -1){
+				exit = exit + options[i] + " " + memory.getValue(getRegisterLocation(options[i])).getValue() + "\n";  
+			}
+		}
+        return exit;
     }
 
     public static void main(String[] args){
