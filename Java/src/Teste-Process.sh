@@ -7,5 +7,5 @@ javac system/in_out/reader/FunctionObjects.java -d compiled_program/
 java -cp compiled_program/ system.in_out.reader.FunctionObjects
 
 # TESTE PROCESS
-javac system/process/TestProcess.java -d compiled_program/
-java -cp compiled_program/ system.process.TestProcess
+javac system/tests/TestProcess.java -d compiled_program/
+java -cp compiled_program/ system.tests.TestProcess

@@ -7,5 +7,5 @@ javac system/cpu/ControlUnit.java -d compiled_program/
 java -cp compiled_program/ system.cpu.ControlUnit
 
 # TESTE DO CONTROL UNIT
-javac system/cpu/TestControlUnit.java -d compiled_program/
-java -cp compiled_program/ system.cpu.TestControlUnit
+javac system/tests/TestControlUnit.java -d compiled_program/
+java -cp compiled_program/ system.tests.TestControlUnit

@@ -1,15 +1,16 @@
-package system.cpu;
-import system.memory.*;
+package system.tests;
+//import system.memory.*;
+//import system.cpu.*;
 
 public class TestControlUnit {
     public static void main(String[] args){
-        Memory memory = new Memory();
-        ControlUnit cu = new ControlUnit(memory);
+        //Memory memory = new Memory();
+        //ControlUnit cu = new ControlUnit(memory);
 
         System.out.println("\n🔰 TESTE DAS FUNÇÕES DA UNIDADE DE CONTROLE\n");
 
         // Verificando se o programa é adicionado na memória
-        cu.loadProgram("prog.txt");
+        //cu.loadProgram("prog.txt");
         //memory.getMemory();
 
         // Lendo o OPCODE de cada Função da Memória
@@ -17,9 +18,9 @@ public class TestControlUnit {
         //     System.out.println("OPCODE " + i + " : " + memory.getProgram(i).getOpcode());
         // }
 
-        cu.runningProgram(cu.getProgramSize());
-        memory.getMemory();
-        System.out.println(cu.finalValues());
+        //cu.runningProgram(cu.getProgramSize());
+        //memory.getMemory();
+        //System.out.println(cu.finalValues());
 
 
     }

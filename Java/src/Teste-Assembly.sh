@@ -10,5 +10,5 @@ java -cp compiled_program/ system.cpu.ControlUnit
 javac system/cpu/Assembly.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Assembly
 
-javac system/cpu/TestAssembly.java -d compiled_program/
-java -cp compiled_program/ system.cpu.TestAssembly
+javac system/tests/TestAssembly.java -d compiled_program/
+java -cp compiled_program/ system.tests.TestAssembly

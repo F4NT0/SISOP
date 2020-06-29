@@ -14,21 +14,35 @@ public class Process {
         this.processControlBlock = new ProcessControlBlock(pcbID);
         this.functions = program;
     }
-    
-    public Process(){}
 
     public void setContextData(ContextData contextData) {
         this.processControlBlock.setContextData(contextData);
     }
     
+    /**
+     * Define qual ProcessControlBlock no Processo
+     * @param processControlBlock
+     */
     public void setPCB(ProcessControlBlock processControlBlock) {
         this.processControlBlock = processControlBlock;
     }
     
+    /**
+     * Define a Lista de Funções que tem que fazer
+     * @param functions
+     */
     public void setFunctions(ArrayList<FunctionObjects> functions) {this.functions = functions;}
 
+    /**
+     * Retorna o ProcessControlBlock
+     * @return processControlBlock
+     */
     public ProcessControlBlock getPCB() {return processControlBlock;}
     
+    /**
+     * Pega a Lista de Funções do Processo
+     * @return
+     */
     public ArrayList<FunctionObjects> getFunctions() {return functions;}
     public static void main(String[] args){
 		System.out.println("🆗 PROCESS COMPILANDO!");
