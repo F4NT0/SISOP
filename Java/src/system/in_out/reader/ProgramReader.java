@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 class Reader{
     private String FILE_PATH = "";
     public BufferedReader setupFilePath(String filename) {
@@ -34,6 +33,10 @@ public class ProgramReader{
     private static BufferedReader buffer;
     private static ArrayList<FunctionObjects> funcoes = new ArrayList<FunctionObjects>();
 
+    /**
+     * Definindo o caminho do arquivo
+     * @param path
+     */
     public void setup(String path) {
         Reader reader = new Reader();
         buffer = reader.setupFilePath(path);
@@ -42,6 +45,11 @@ public class ProgramReader{
     public ArrayList<FunctionObjects> getFuncoes(){return funcoes;}
     public Integer getProgramSize(){return funcoes.size();}
 
+    /**
+     * Verificando se o valor de entrada é um número
+     * @param str
+     * @return boolean
+     */
     public boolean isNumeric(String str){
         try{
             Integer.parseInt(str);
@@ -51,12 +59,17 @@ public class ProgramReader{
         }
     }
 
+    
     public void eraseOldReading(){
         for(int i = 0 ; i < funcoes.size() ; i++){
             funcoes.removeAll(funcoes);
         }
     }
    
+    /**
+     * Método que cria e controi os Objetos de Função
+     * @param path
+     */
     public void readAndCreateFunctions(String path) {
         setup(path);
         try {

@@ -9,12 +9,13 @@ import system.in_out.reader.*;
 public class ControlUnit{
 	private Integer R1,R2,R3,R4,R5,R6,R7,R8;
 	private Integer pc;
-	private Memory memory = new Memory(); //Mudar para ser usado a mesma memoria por todo o programa
+	private Memory memory;
 	private Integer programSize;
-	public ControlUnit(){
+	public ControlUnit(Memory mem){
 		R1 = R2 = R3 = R4 = R5 = R6 = R7 = R8 = -1;
 		pc = 0;
 		programSize = 0;
+		memory = mem;
 	}
 
 	/**
@@ -23,18 +24,14 @@ public class ControlUnit{
 	==========================================
 	*/
 
-	public Integer getReg(String reg){
-		switch(reg){
-			case "R1": return R1;case "R2": return R2;
-			case "R3": return R3;case "R4": return R4;
-			case "R5": return R5;case "R6": return R6;
-			case "R7": return R7;case "R8": return R8;
-		}
-		return -1;
-	}
 	public Integer getProgramSize(){return programSize;}
 	public Integer getPc(){return pc;}
-	public Memory getMemory(){return memory;}
+
+	/**
+	 * Salva a posição de memória do Registrador
+	 * @param register
+	 * @param position
+	 */
 	public void setRegisterPosition(String register,Integer position){
 		switch(register){
 			case "R1":this.R1 = position;break;
@@ -47,25 +44,31 @@ public class ControlUnit{
 			case "R8":this.R8 = position;break;
 		}
 	}
+
 	public void setPc(Integer pc){this.pc = pc;}
 	public void setProgramSize(Integer ps){programSize = ps;}
 
+	/**
+	 * Retorna a posição do Registrador salvo na
+	 * Unidade de Controle da CPU
+	 * @param register
+	 * @return Integer
+	 */
 	public Integer getRegisterLocation(String register){
 		Integer location = -1;
 		switch(register){
-			case "R1": location = getReg("R1");break;
-			case "R2": location = getReg("R2");break;
-			case "R3": location = getReg("R3");break;
-			case "R4": location = getReg("R4");break;
-			case "R5": location = getReg("R5");break;
-			case "R6": location = getReg("R6");break;
-			case "R7": location = getReg("R7");break;
-			case "R8": location = getReg("R8");break;
+			case "R1": location = R1;break;
+			case "R2": location = R2;break;
+			case "R3": location = R3;break;
+			case "R4": location = R4;break;
+			case "R5": location = R5;break;
+			case "R6": location = R6;break;
+			case "R7": location = R7;break;
+			case "R8": location = R8;break;
 		}
 		return location;
 	}
 
-	
 
 	/** 
 	================================
@@ -73,62 +76,21 @@ public class ControlUnit{
 	================================
 	*/
 
-	// TODO: deletar essa Função(colocada em Assembly)
-	public void setRegValue(Object value,String register){
-		ObjectRegister object = new ObjectRegister();
-		object.setRegister(register);
-		object.setValue(value);
-		memory.addRegister(object);
-		Integer position = memory.findRegister(object);
-		setRegisterPosition(register, position);
-	}
+	// public void setRegValuePosition(ObjectRegister object,Integer position){
+	// 	Integer positionFind = memory.findRegister(object);
+	// 	if(positionFind == -1){
+	// 		memory.addRegister(object);
+	// 	}
+	// 	memory.setRegisterOnPosition(position,object);
+	// 	memory.remove(positionFind);
+	// }
 
-	// TODO: deletar essa Função(não necessária)
-	public void setValueOnMemory(Object value,Integer position){
-		memory.addValueOnPosition(value,position);
-	}
-
-	public void setRegValuePosition(ObjectRegister object,Integer position){
-		Integer positionFind = memory.findRegister(object);
-		if(positionFind == -1){
-			memory.addRegister(object);
-		}
-		memory.setRegisterOnPosition(position,object);
-		memory.remove(positionFind);
-	}
-
-	// TODO: deletar essa Função (está em Assembly)
-	public ObjectRegister getValue(String register){
-		ObjectRegister value = null;
-		switch(register){
-			case "R1": value = memory.getValue(R1);case "R2": value = memory.getValue(R2);
-			case "R3": value = memory.getValue(R3);case "R4": value = memory.getValue(R4);
-			case "R5": value = memory.getValue(R5);case "R6": value = memory.getValue(R6);
-			case "R7": value = memory.getValue(R7);case "R8": value = memory.getValue(R8);
-		}
-	 return value;
-	}
-
-	public ObjectRegister getValueDirect(Integer position){
-		ObjectRegister value = memory.getValue(position);
-		return value;
+	// public ObjectRegister getValueDirect(Integer position){
+	// 	ObjectRegister value = memory.getValue(position);
+	// 	return value;
 		
-	}
-
-	// TODO: deletar essa Função(não necessária)
-	public Object getIntegerDirect(Integer position){
-		Object value = memory.getObjectOnPosition(position);
-		return value;
-		
-	}
-
-	// TODO: essa função não precisa
-	public void updateRegister(Integer location,ObjectRegister newRegister){
-		memory.updateRegister(location,newRegister);
-    }
-    
+	// }
 	
-
     /**
     ========================================================= 
     Métodos de Leitura e Armazenamento do Programa na Memória
@@ -175,7 +137,7 @@ public class ControlUnit{
 		}
     }
 
-	//Mudar isso para funcionar no modelo atual.
+	//TODO: Mudar isso para funcionar no modelo atual.
     public void runningProgram(Integer size){
         //FunctionObjects object = memory.getProgram(getPc());
         //runningFunctions(object);
