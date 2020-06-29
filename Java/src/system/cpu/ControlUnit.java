@@ -95,7 +95,7 @@ public class ControlUnit{
 
 	
 	/**
-	 * Método privado para o Método storeProgram
+	 * Adiciona o programa dentro da Memória
 	 * @param program
 	 */
     private  void storeProgram(ArrayList<FunctionObjects> program){
@@ -109,8 +109,8 @@ public class ControlUnit{
 	 */
     public void loadProgram(String file){
         ProgramReader objects = new ProgramReader();
-        objects.readAndCreateFunctions(file);
-        storeProgram(objects.getFuncoes());
+		objects.readAndCreateFunctions(file);
+		//storeProgram(objects.getFuncoes());
         setProgramSize(objects.getProgramSize()-1);
     }
 

@@ -2,7 +2,7 @@ package system.memory;
 
 public class TestMemoryManager {
    public static void main(String[] args){
-    System.out.println("\n🔰 TESTE DAS FUNÇÕES DA MEMÓRIA\n");
+    System.out.println("\n🔰 TESTE DAS FUNÇÕES DO GERENTE DE MEMÓRIA\n");
 
     Memory memory = new Memory();
     MemoryManager mm = new MemoryManager(memory);
