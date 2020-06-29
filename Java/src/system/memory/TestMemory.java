@@ -1,25 +1,31 @@
 package system.memory;
+import java.util.ArrayList;
 import system.in_out.reader.*;
 
 public class TestMemory {
     public static void main(String[] args){
-        //MemoryManager mem = new MemoryManager();
-        //mem.getMemory();
-        
+        Memory memory = new Memory();
 
+        // Teste de Criação de um Objeto
+        final ArrayList<FunctionObjects> program = new ArrayList<>();
+        FunctionObjects object1 = new FunctionObjects();
+        object1.setOpcode("LDI");
+        object1.setK(1);
+        object1.setRd("R1");
+        program.add(object1);
 
         // 🔰 1F530
-        System.out.println("🔰 TESTE DAS FUNÇÕES DA MEMÓRIA");
+        System.out.println("\n🔰 TESTE DAS FUNÇÕES DA MEMÓRIA\n");
 
-        // System.out.println("Adicionando um valor!");
-        // Integer object = 1;
-        // mem.setIndexElement(0, object);
-        // mem.getMemory();
+        //Teste de Inserção na memória
+        memory.setProgram(1, program);
+        System.out.println("Objeto no Valor 0: " + memory.getObjectOnPosition(0));
+        FunctionObjects objetoMemoria = (FunctionObjects) memory.getObjectOnPosition(0);
+        System.out.println("Valor de K: " + objetoMemoria.getK());
+        memory.getMemory();
 
-        // System.out.println("Deletando um valor!");
-        // mem.deleteIndex(0);
-        // mem.getMemory();
-
+        // Rodando as Funções
+        
 
 
 

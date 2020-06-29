@@ -67,7 +67,7 @@ public class Memory {
      */
     public void getMemory(){
         // TODO: tem que ser por size(), botei 10 só para teste
-        for(int i = 0 ; i < 10 ; i++){
+        for(int i = 0 ; i < 20 ; i++){
             System.out.println("Posição " + i + ": " + memoryArray.get(i));
         }
     }
@@ -138,7 +138,7 @@ public class Memory {
     /**
      * Retorna um Objeto Integer/Char pela posição de Memória
      * @param position
-     * @return object Object
+     * @return Object
      */
     public Object getObjectOnPosition(Integer position){
         Object object = new Object();
@@ -162,16 +162,30 @@ public class Memory {
     }
 
     // =====================================
-    // SALVANDO O PROGRAMA DENTRO DA MEMÓRIA
+    // INTERAGINDO COM O PROGRAMA DENTRO DA MEMÓRIA
     // =====================================
 
+    /**
+     * Adiciona o Programa lido na memória
+     * @param sizeProgram
+     * @param program
+     */
     public void setProgram(int sizeProgram,ArrayList<FunctionObjects> program){
         for(int i = 0 ; i < sizeProgram ; i++){
             memoryArray.set(i,program.get(i));
         }
     }
 
-    
+    /**
+     * Pega a linha do programa e retorna
+     * @param pc
+     * @return FunctionObjects
+     */
+    public FunctionObjects getProgram(Integer pc){
+        return (FunctionObjects) memoryArray.get(pc);
+    }
+
+
 
 
 

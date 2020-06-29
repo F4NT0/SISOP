@@ -85,11 +85,7 @@ public class ControlUnit{
 	// 	memory.remove(positionFind);
 	// }
 
-	// public ObjectRegister getValueDirect(Integer position){
-	// 	ObjectRegister value = memory.getValue(position);
-	// 	return value;
-		
-	// }
+	
 	
     /**
     ========================================================= 
@@ -97,11 +93,20 @@ public class ControlUnit{
     =========================================================
     */
 
-    public void storeProgram(ArrayList<FunctionObjects> program){
-        //memory.setProgram(program.size(),program);
+	
+	/**
+	 * Método privado para o Método storeProgram
+	 * @param program
+	 */
+    private  void storeProgram(ArrayList<FunctionObjects> program){
+        memory.setProgram(program.size(),program);
         pc = 0;
     }
 
+	/**
+	 * Carrega o Programa para dentro da Memória
+	 * @param file
+	 */
     public void loadProgram(String file){
         ProgramReader objects = new ProgramReader();
         objects.readAndCreateFunctions(file);
@@ -109,15 +114,16 @@ public class ControlUnit{
         setProgramSize(objects.getProgramSize()-1);
     }
 
-    public void runningFunctions(FunctionObjects object) throws Exception {
-        Assembly assembly = new Assembly(memory, this);
-        String opcode = object.getOpcode();
-        String rs = object.getRs();
-        String rd = object.getRd();
-        String rc = object.getRc();
-        Integer k = object.getK();
-        Integer a = object.getA();
-        switch(opcode) {
+    public void runningFunctions(FunctionObjects object){
+        try {
+			Assembly assembly = new Assembly(memory, this);
+        	String opcode = object.getOpcode();
+        	String rs = object.getRs();
+        	String rd = object.getRd();
+        	String rc = object.getRc();
+        	Integer k = object.getK();
+        	Integer a = object.getA();
+        	switch(opcode) {
             case "JMP":assembly.JMP(k);break;case "JMPI":assembly.JMPI(rs);break;
             case "JMPIG":assembly.JMPIG(rs, rc);break;case "JMPIL":assembly.JMPIL(rs, rc);break;
             case "JMPIE":assembly.JMPIE(rs, rc);break;case "ADDI":assembly.ADDI(rd, k);break;
@@ -126,23 +132,19 @@ public class ControlUnit{
             case "ADD":assembly.ADD(rd, rs);break;case "SUB":assembly.SUB(rd, rs);break;
             case "MULT":assembly.MULT(rd, rs);break;case "LDX":assembly.LDX(rd, rs);break;
 			case "STX":assembly.STX(rd, rs);break;
-			case "STOP": throw new Exception("Program STOP reached");
-		}
-		
-		// verifica se há alguma interrupcao
-		try {
-			
+			case "STOP": new Exception("Program STOP reached");
+			}
 		} catch (IllegalArgumentException e) {
-			//TODO: handle exception
+			System.err.println(e);
 		}
     }
 
 	//TODO: Mudar isso para funcionar no modelo atual.
     public void runningProgram(Integer size){
-        //FunctionObjects object = memory.getProgram(getPc());
-        //runningFunctions(object);
+        FunctionObjects object = memory.getProgram(getPc());
+        runningFunctions(object);
         if(size == 0){System.out.println("Finish Program!");}
-        //if(object.getOpcode().equals("STOP")){size = 0;}
+        if(object.getOpcode().equals("STOP")){size = 0;}
         else{runningProgram(size-1);}
     }
 

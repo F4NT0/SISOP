@@ -260,14 +260,14 @@ public class Assembly {
     public ObjectRegister getRegister(String register){
 		ObjectRegister value = null;
 		switch(register){
-            case "R1": value = memory.getValue(controlUnit.getReg("R1"));break;
-            case "R2": value = memory.getValue(controlUnit.getReg("R2"));break;
-            case "R3": value = memory.getValue(controlUnit.getReg("R3"));break;
-            case "R4": value = memory.getValue(controlUnit.getReg("R4"));break;
-            case "R5": value = memory.getValue(controlUnit.getReg("R5"));break;
-            case "R6": value = memory.getValue(controlUnit.getReg("R6"));break;
-            case "R7": value = memory.getValue(controlUnit.getReg("R7"));break;
-            case "R8": value = memory.getValue(controlUnit.getReg("R8"));break;
+            case "R1": value = memory.getValue(controlUnit.getRegisterLocation("R1"));break;
+            case "R2": value = memory.getValue(controlUnit.getRegisterLocation("R2"));break;
+            case "R3": value = memory.getValue(controlUnit.getRegisterLocation("R3"));break;
+            case "R4": value = memory.getValue(controlUnit.getRegisterLocation("R4"));break;
+            case "R5": value = memory.getValue(controlUnit.getRegisterLocation("R5"));break;
+            case "R6": value = memory.getValue(controlUnit.getRegisterLocation("R6"));break;
+            case "R7": value = memory.getValue(controlUnit.getRegisterLocation("R7"));break;
+            case "R8": value = memory.getValue(controlUnit.getRegisterLocation("R8"));break;
 		}
 	 return value;
     }

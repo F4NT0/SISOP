@@ -58,9 +58,6 @@ java -cp compiled_program/ system.cpu.ControlUnit
 javac system/cpu/Assembly.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Assembly
 
-# TESTE MEMORY
-javac system/memory/TestMemory.java -d compiled_program/
-java -cp compiled_program/ system.memory.TestMemory
 
 # Finalização
 echo "✅ TODOS PROGRAMAS COMPILADOS!"

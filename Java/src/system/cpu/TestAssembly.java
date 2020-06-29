@@ -5,7 +5,7 @@ public class TestAssembly {
     public static void main(String[] args){
        // Inicializando
         Memory memory = new Memory();
-        ControlUnit cu = new ControlUnit();
+        ControlUnit cu = new ControlUnit(memory);
         Assembly functions = new Assembly(memory,cu);
       
         // Para testar a saida de um valor de reg:
