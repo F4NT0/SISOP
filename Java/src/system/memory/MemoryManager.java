@@ -16,48 +16,21 @@ import system.process.ProgramState;
 
 public class MemoryManager {
 
-    private class Partition {
-        private int id;
-        private int registerBase;
-        private int registerLimit;
-        private boolean available;
-        private int size;
-        public Partition(int id, int registerBase, int registerLimit) {
-            this.id = id;
-            this.registerBase = registerBase;
-            this.registerLimit = registerLimit;
-            this.size = registerLimit - registerBase;
-            this.available = true;
-        }
-
-        public int getRegisterBase() {return this.registerBase;}
-        public int getRegisterLimit() {return this.registerLimit;}
-        public boolean isAvailable() {return this.available;}
-        public void lockPartition() {this.available = false;}
-        public int getSize() {return this.size;}
-        public int getID() {return this.id;}
-    }
-
-
     private Memory memory;
     private List<Partition> partitions;
 
-    public MemoryManager() {
-        memory = new Memory();
+    public MemoryManager(Memory mem) {
+        memory = mem;
         this.partitions = new LinkedList<>();
     }
 
-    /**
-     * Verifica se a Partição está disponivel
-     * @param p
-     * @return boolean
-     */
+    
     public boolean isPartitionAvailable(Partition p) {
         return p.isAvailable();
     }
     
     /**
-     * Adiciona uma Partição
+     * Adiciona uma Partição na Lista de Partições
      * @param id
      * @param registerBase
      * @param registerLimit
@@ -67,7 +40,12 @@ public class MemoryManager {
         this.partitions.add(p);
     }
 
-    //Provavelmente vai precisar ser mudado esse método
+    /**
+     * Procura e entrega uma Partição pelo ID
+     * @param id
+     * @return Partition
+     * @throws IllegalArgumentException
+     */
     public Partition findPartition(int id) throws IllegalArgumentException {
         for(Partition p : partitions) {
             if(p.getID() == id)
@@ -76,6 +54,7 @@ public class MemoryManager {
         throw new IllegalArgumentException("Essa partição não existe.");
     }
 
+    // NÃO DESCOMENTAR
     // public Partition findBestPartition(Process p) {
     //     Partition aux = partitions.get(0);
     //     // int best = aux.getSize() - p.getFunctions().size();
@@ -89,6 +68,21 @@ public class MemoryManager {
     // }
     
 
+    /**
+     * Método para alocar uma Partição em um Processo
+     * @param pa
+     * @param p
+     */
+    private void malloc(Partition pa, Process p) {
+        for(int i = 0; i < p.getFunctions().size() ; i++) {
+            //memory.setIndexElement(pa.getRegisterBase() + i, p.getFunctions().get(i));
+
+        }
+        pa.lockPartition();
+        p.getPCB().setProgramState(ProgramState.READY);
+        p.getPCB().setPartitionID(pa.getID());
+    }
+
     public boolean selectPartition(Process p) {
         for(Partition pa : partitions) {
             if(pa.isAvailable()) {
@@ -99,32 +93,23 @@ public class MemoryManager {
         return false;
     }
 
-    public void malloc(Partition pa, Process p) {
-        for(int i = 0; i < p.getFunctions().size() ; i++) {
-            memory.setIndexElement(pa.getRegisterBase() + i, p.getFunctions().get(i));
-        }
-        pa.lockPartition();
-        p.getPCB().setProgramState(ProgramState.READY);
-        p.getPCB().setPartitionID(pa.getID());
-    }
-
     //Falta printar resultado do programa.
-    public void deleteProgram(Partition pa) {
-        for(int i = pa.getRegisterBase(); i <= pa.getRegisterLimit() - 1; i++) {
-            if(!(memory.getFromIndex(i).equals(null))) 
-                memory.setIndexElement(i, null);
-        }
-    }
+    // public void deleteProgram(Partition pa) {
+    //     for(int i = pa.getRegisterBase(); i <= pa.getRegisterLimit() - 1; i++) {
+    //         if(!(memory.getFromIndex(i).equals(null))) 
+    //             memory.setIndexElement(i, null);
+    //     }
+    // }
 
-    private Integer append(Object object) throws OutOfMemoryError {
-        for (Integer i = 0; i < memory.size(); i++) {
-            if (memory.getFromIndex(i) == null) {
-                memory.setIndexElement(i, object);
-                return i;
-            }
-        }
-        throw new OutOfMemoryError("Memory is full");
-    }
+    // private Integer append(Object object) throws OutOfMemoryError {
+    //     for (Integer i = 0; i < memory.size(); i++) {
+    //         if (memory.getFromIndex(i) == null) {
+    //             memory.setIndexElement(i, object);
+    //             return i;
+    //         }
+    //     }
+    //     throw new OutOfMemoryError("Memory is full");
+    // }
 
     // Esses próximos métodos provavelmente não vão ser usados assim.
     // CONSIDERAR O TODO NO INÍCIO DESSE ARQUIVO!
