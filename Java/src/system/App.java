@@ -37,7 +37,12 @@ public class App {
 
       // Salvando o Programa na Partição de Memória
       controlUnit.loadProgram("prog.txt", 0, mm);
+      // mm.printPartition(mm.findPartition(0));
+
+      // Rodando o Programa
       
+
+
 
 
 
