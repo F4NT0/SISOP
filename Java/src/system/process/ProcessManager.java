@@ -5,6 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+--------------------------------------------------------------------------
+GERENTE DE PROCESSOS NO NOSSO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 public class ProcessManager {
     
     private Queue <Process> readyQueue, ioRequestQueue;

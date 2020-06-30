@@ -7,6 +7,13 @@ import java.util.List;
 import system.process.Process;
 import system.process.ProgramState;
 
+/**
+--------------------------------------------------------------------------
+GERENCIADOR DE MEMÓRIA DO NOSSO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+*/
+
     /*
         TODO: set, get, delete
         Fazer com que tu pegue, mude, delete algo de uma paginação

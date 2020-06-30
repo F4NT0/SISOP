@@ -1,5 +1,12 @@
 package system.cpu;
 
+/**
+--------------------------------------------------------------------------
+CPU CONCORRENTE DO NOSSO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 import java.util.concurrent.Semaphore;
 import system.process.Process;
 

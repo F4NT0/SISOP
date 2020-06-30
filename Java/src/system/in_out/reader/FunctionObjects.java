@@ -1,5 +1,12 @@
 package system.in_out.reader;
 
+/**
+--------------------------------------------------------------------------
+CRIADOR DOS OBJETOS FUNÇÕES QUE VEM DO ARQUIVO TEXTO
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 public class FunctionObjects {
     private String opcode ;
     private String rs;

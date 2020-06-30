@@ -6,8 +6,9 @@ public class ProcessControlBlock {
     private Integer programCounter;
     private ProgramState programState;
     private ContextData contextData;
-    private int partitionID;
+    //private int partitionID;
 
+    // Construtores
     public ProcessControlBlock (Integer id) {
         this.id = id;
         this.programCounter = 0;
@@ -23,15 +24,12 @@ public class ProcessControlBlock {
     }
 
     public Integer getId() {return id;}
-
     public Integer getProgramCounter() {return programCounter;}
-
     public ProgramState getProgramState() {return programState;}
-
     public ContextData getContextData() {return contextData;}
 
     /**
-     * Salva o PC vindo do Status do Processo
+     * Salva o Program Counter vindo do Control Unit
      * @param pc
      * @throws IllegalArgumentException
      */
@@ -42,11 +40,21 @@ public class ProcessControlBlock {
         this.programCounter = pc;
     }
 
+    /**
+     * Define os valores das posições dos Registradores do Control Unit
+     * @param contextData
+     */
     public void setContextData(ContextData contextData) {this.contextData = contextData;}
 
+    /**
+     * Define o Estado do Programa, onde NEW é recém adicionado,
+     * READY pronto para rodar,RUNNING é rodando, BLOCKED é bloqueado
+     * e EXIT é finalizado
+     * @param programState
+     */
     public void setProgramState(ProgramState programState) {this.programState = programState;}
 
-    public void setPartitionID(int id) {this.partitionID = id;}
+    //public void setPartitionID(int id) {this.partitionID = id;}
 
     public static void main(String[] args){
         // ÁREA DE TESTES UNITÁRIOS DA CLASSE

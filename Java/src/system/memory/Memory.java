@@ -5,6 +5,13 @@ import java.util.List;
 import system.cpu.ObjectRegister;
 import system.in_out.reader.FunctionObjects;
 
+/**
+--------------------------------------------------------------------------
+MEMÓRIA DO NOSSO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 
 public class Memory {
     private final Integer memorySize = 1024;

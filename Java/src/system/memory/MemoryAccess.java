@@ -1,5 +1,12 @@
 package system.memory;
 
+/**
+--------------------------------------------------------------------------
+ACESSO Á MEMÓRIA(EM CONSTRUÇÃO)
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 public class MemoryAccess {
     private MemoryManager manager;
 

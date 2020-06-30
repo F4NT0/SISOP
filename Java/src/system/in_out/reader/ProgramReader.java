@@ -1,12 +1,19 @@
 package system.in_out.reader;
 
-// Imports
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+/**
+--------------------------------------------------------------------------
+LEITOR DO ARQUIVO TEXTO E CRIADOR DAS FUNÇÕES QUE SERÃO LIDAS
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 class Reader{
     private String FILE_PATH = "";
     public BufferedReader setupFilePath(String filename) {

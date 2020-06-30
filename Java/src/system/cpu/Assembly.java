@@ -1,6 +1,13 @@
 package system.cpu;
 import system.memory.*;;
 
+/**
+--------------------------------------------------------------------------
+FUNÇÕES ASSEMBLY QUE SERÃO UTILIZADAS PELO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 public class Assembly {
 
     ControlUnit controlUnit;

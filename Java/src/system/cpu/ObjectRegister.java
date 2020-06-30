@@ -1,5 +1,12 @@
 package system.cpu;
 
+/**
+--------------------------------------------------------------------------
+CRIADOR DOS OBJETOS REGISTRADORES QUE SERÃO SALVOS NA MEMÓRIA
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 public class ObjectRegister{
 	private String register;
 	private Object value;

@@ -1,5 +1,12 @@
 package system.cpu;
 
+/**
+--------------------------------------------------------------------------
+UNIDADE DE CONTROLE QUE RODA AS FUNÇÕES E CRIA PROCESSOS
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 import system.memory.*;
 import java.util.ArrayList;
 //import java.util.List;

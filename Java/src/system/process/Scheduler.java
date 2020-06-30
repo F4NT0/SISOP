@@ -3,6 +3,14 @@ package system.process;
 import java.util.concurrent.Semaphore;
 
 /**
+--------------------------------------------------------------------------
+SISTEMA DE ESCALONAMENTO DOS PROCESSOS
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
+
+/**
  * Run method
  * Restaurar estado da cpu quando CPU tiver sido montada
  * 

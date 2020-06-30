@@ -1,9 +1,14 @@
 package system.process;
 
 import java.util.ArrayList;
-
 import system.in_out.reader.FunctionObjects;
-import system.process.ProcessControlBlock.ContextData;
+
+/**
+--------------------------------------------------------------------------
+CRIADOR DE PROCESSOS NO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+*/
 
 public class Process {
     private ProcessControlBlock processControlBlock;
@@ -15,6 +20,11 @@ public class Process {
         this.functions = program;
     }
 
+    /**
+     * Adiciona as Posições dos Registradores do 
+     * Control Unit dentro do Process Control Block
+     * @param contextData
+     */
     public void setContextData(ContextData contextData) {
         this.processControlBlock.setContextData(contextData);
     }
