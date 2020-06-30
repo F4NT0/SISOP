@@ -99,14 +99,14 @@ public class MemoryManager {
      * @param p
      * @return boolean
      */
-    public boolean selectPartition(Process p) {
+    public int selectPartition(Process p) {
         for(Partition pa : partitions) {
             if(pa.isAvailable()) {
                 malloc(pa, p);
-                return true;
+                return pa.getID();
             }            
         }
-        return false;
+        return -1;
     }
 
     /**

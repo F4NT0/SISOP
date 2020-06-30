@@ -20,13 +20,13 @@ public class TestProcessManager {
         // Programa 1
         program1.readAndCreateFunctions("prog.txt");
         Process process1 = new Process(program1.getFuncoes(),0);
-        pm.addProcess(process1,0);
+        pm.addProcess(process1);
         //process1.printOpcodes();
 
         // Programa 2
         program1.readAndCreateFunctions("prog2.txt");
         Process process2 = new Process(program1.getFuncoes(),1);
-        pm.addProcess(process2,1);
+        pm.addProcess(process2);
         //process2.printOpcodes();
         
         //Verificando

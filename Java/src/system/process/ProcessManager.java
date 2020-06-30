@@ -26,7 +26,7 @@ public class ProcessManager {
         this.ioRequestQueue = new LinkedList<>();
         this.bloquedList = new ArrayList<>();
         this.currentProcess = null;
-        this.allProcess = new ArrayList<>(4);
+        this.allProcess = new ArrayList<>();
     }
 
     /**
@@ -45,8 +45,8 @@ public class ProcessManager {
         }
     }
 
-    public void addProcess(Process p,int position) {
-        allProcess.add(position,p);
+    public void addProcess(Process p) {
+        allProcess.add(p);
     }
 
     public Process getNextProcess() {

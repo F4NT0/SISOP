@@ -13,6 +13,7 @@ import java.util.ArrayList;
 //import java.util.List;
 
 import system.in_out.reader.*;
+import system.memory.*;
 
 public class ControlUnit{
 	private Integer R1,R2,R3,R4,R5,R6,R7,R8;
@@ -115,11 +116,11 @@ public class ControlUnit{
 	 * Carrega o Programa para um Processo
 	 * @param file
 	 */
-    public void loadProgram(String file, int newPcb, MemoryManager memoryManager){
+    public void loadProgram(String file, MemoryManager memoryManager, int newPcb){
         ProgramReader objects = new ProgramReader();
 		objects.readAndCreateFunctions(file);
 		Process process = new Process(objects.getFuncoes(),newPcb);
-		memoryManager.selectPartition(process);
+		process.getPCB().setPartitionID(memoryManager.selectPartition(process));
 		setProgramSize(objects.getProgramSize()-1);
 		pc = 0;
     }
@@ -154,12 +155,17 @@ public class ControlUnit{
     }
 
 	//TODO: Mudar isso para funcionar no modelo atual.
-    public void runningProgram(Integer size){
-        FunctionObjects object = memory.getProgram(getPc());
-        runningFunctions(object);
-        if(size == 0){System.out.println("Finish Program!");}
-        if(object.getOpcode().equals("STOP")){size = 0;}
-        else{runningProgram(size-1);}
+    public void runningProgram(MemoryManager mm, Process p){
+		Partition partition = mm.findPartition(p.getPCB().getPartitionID());
+		int count = 0;
+		for(int i = partition.getRegisterBase() ; i < partition.getRegisterLimit() ; i++){
+			if(p.getFunctions().get(count).getOpcode().equals("STOP")){break;}
+			runningFunctions(p.getFunctions().get(count));
+			count++;
+		}
+        // if(size == 0){System.out.println("Finish Program!");}
+        // if(object.getOpcode().equals("STOP")){size = 0;}
+        // else{runningProgram(size-1);}
     }
 
 	/**
