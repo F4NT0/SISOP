@@ -1,23 +1,26 @@
 package system.cpu;
 
+/**
+--------------------------------------------------------------------------
+CPU CONCORRENTE DO NOSSO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+-------------------------------------------------------------------------
+ */
+
 import java.util.concurrent.Semaphore;
 import system.process.Process;
-
-/**
- * Change atribute control unit type from Object to ControlUnit
- * Change on class initiation (new Object) to (new ControllUnit)
-*/
 
 public class Cpu implements Runnable {
 
 	private Semaphore semaphoreCPU, semaphoreTimer;
-	private Object controlUnit; 
+	private ControlUnit controlUnit; 
 	private Process process;
+	private Boolean flagDivZero, flagTrap, flagSTOP, flagMemoryOutOfBounds;
 
 	public Cpu(Semaphore cpu, Semaphore timer) {
 		this.semaphoreCPU = cpu;
 		this.semaphoreTimer = timer;
-		this.controlUnit = new Object();
+		this.controlUnit = new ControlUnit();
 		this.process = null;
 	}
 
@@ -46,24 +49,49 @@ public class Cpu implements Runnable {
 	private void executeNextInstruction() {
 		try {
 			// executa próxima instrução
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception exception) {
+			if (exception.getMessage().contains("Program STOP reached")) {
+				// parar programa
+				this.flagSTOP = true;
+				stopFlag();
+			} else if (exception.getMessage().contains("Essa partição não existe.")) {
+				this.flagMemoryOutOfBounds = true;
+				outOfBoundsMemoryHandler();
+				//TODO: colocar mensagem da exception de div por zero
+			} else if (exception.getMessage().contains("")) {
+				this.flagDivZero = true;
+				divZeroHandler();
+				//TODO: colocar mensagem da exception de TRAP
+			} else if (exception.getMessage().contains("")){
+				this.flagTrap = true;
+				trapHandler();
+			}
+			exception.printStackTrace();
 		}
 		// garantir que try catch verifica divisão por zero,
 		// flag de memória fora do devido, STOP e TRAP
 		// usar os métoddos criados a baixo
 	}
 
-	private void divZeroFlag() {
+	
+
+	private void divZeroHandler() {
+		this.flagDivZero = true;
 		// TODO: write this function
 	}
-	private void outOfBoundsMemoryFlag() {
+	private void outOfBoundsMemoryHandler() {
 		// TODO: write this function
+		this.flagMemoryOutOfBounds = true;
 	}
 	private void stopFlag() {
-		// TODO: write this function
+		this.flagSTOP = true;
+		// TODO: 
+		// printar na shell o resultado
+		// tirar da memoria o processo
+		// tirar do gerente de memoria
 	}
-	private void trapFlag() {
+	private void trapHandler() {
+		this.flagTrap = true;
 		// TODO: write this function
 	}
 

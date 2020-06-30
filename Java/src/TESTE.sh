@@ -2,10 +2,6 @@
 # ARQUIVO PARA TESTAR O PROGRAMA
 #--------------------------------
 
-# App
-javac system/App.java -d compiled_program/
-java -cp compiled_program/ system.App
-
 # CPU
 javac system/cpu/Cpu.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Cpu
@@ -58,9 +54,10 @@ java -cp compiled_program/ system.cpu.ControlUnit
 javac system/cpu/Assembly.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Assembly
 
-# TESTE MEMORY
-javac system/memory/TestMemory.java -d compiled_program/
-java -cp compiled_program/ system.memory.TestMemory
+# App
+javac system/App.java -d compiled_program/
+java -cp compiled_program/ system.App
+
 
 # Finalização
 echo "✅ TODOS PROGRAMAS COMPILADOS!"

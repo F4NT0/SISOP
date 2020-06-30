@@ -1,41 +1,65 @@
 package system.process;
 
-import java.util.List;
-import system.process.ProcessControlBlock.ContextData;
+import java.util.ArrayList;
+import system.in_out.reader.FunctionObjects;
 
 /**
- * Mudar a lista de functions (de object para function quando tiver)
- * Linha 13, 15, 28, 35
+CRIADOR DE PROCESSOS NO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
 */
 
 public class Process {
     private ProcessControlBlock processControlBlock;
-    private List<Object> functions; 
+    private ArrayList<FunctionObjects> functions; 
 
-    public Process(List<Object> program, Integer pcbID) {
+    // Construtores
+    public Process(ArrayList<FunctionObjects> program, Integer pcbID) {
         this.processControlBlock = new ProcessControlBlock(pcbID);
         this.functions = program;
     }
 
+    /**
+     * Adiciona as Posições dos Registradores do 
+     * Control Unit dentro do Process Control Block
+     * @param contextData
+     */
     public void setContextData(ContextData contextData) {
         this.processControlBlock.setContextData(contextData);
     }
+    
+    /**
+     * Define qual ProcessControlBlock no Processo
+     * @param processControlBlock
+     */
     public void setPCB(ProcessControlBlock processControlBlock) {
         this.processControlBlock = processControlBlock;
     }
     
-    public void setFunctions(List<Object> functions) {
-        this.functions = functions;
-    }
+    /**
+     * Define a Lista de Funções que tem que fazer
+     * @param functions
+     */
+    public void setFunctions(ArrayList<FunctionObjects> functions) {this.functions = functions;}
 
-    public ProcessControlBlock getPCB() {
-        return processControlBlock;
+    /**
+     * Retorna o ProcessControlBlock
+     * @return processControlBlock
+     */
+    public ProcessControlBlock getPCB() {return processControlBlock;}
+    
+    /**
+     * Pega a Lista de Funções do Processo
+     * @return
+     */
+    public ArrayList<FunctionObjects> getFunctions() {return functions;}
+    
+    public void printOpcodes(){
+        for(int i = 0 ; i < getFunctions().size(); i++){
+            System.out.println("OPCODE: " + getFunctions().get(i).getOpcode());
+        }
     }
-    public List<Object> getFunctions() {
-        return functions;
-    }
+    
     public static void main(String[] args){
-        // ÁREA DE TESTES UNITÁRIOS DA CLASSE
 		System.out.println("🆗 PROCESS COMPILANDO!");
     } 
     
