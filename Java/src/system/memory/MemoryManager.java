@@ -94,7 +94,8 @@ public class MemoryManager {
     }
 
     /**
-     * Método para selecionar a Partição que o Processo vai rodar
+     * Método para selecionar a Partição que o Processo vai 
+     * ser adicionado
      * @param p
      * @return boolean
      */

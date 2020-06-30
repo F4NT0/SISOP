@@ -102,24 +102,26 @@ public class ControlUnit{
     */
 
 	
-	/**
-	 * Adiciona o programa dentro da Memória
-	 * @param program
-	 */
-    private  void storeProgram(ArrayList<FunctionObjects> program){
-        memory.setProgram(program.size(),program);
-        pc = 0;
-    }
+	// /**
+	//  * Adiciona o programa dentro da Memória
+	//  * @param program
+	//  */
+    // private  void storeProgram(ArrayList<FunctionObjects> program){
+    //     memory.setProgram(program.size(),program);
+    //     pc = 0;
+    // }
 
 	/**
-	 * Carrega o Programa para dentro da Memória
+	 * Carrega o Programa para um Processo
 	 * @param file
 	 */
-    public void loadProgram(String file, int newPcb){
+    public void loadProgram(String file, int newPcb, MemoryManager memoryManager){
         ProgramReader objects = new ProgramReader();
 		objects.readAndCreateFunctions(file);
-		Process process = new Process(objects.getFuncoes(),0);
-        setProgramSize(objects.getProgramSize()-1);
+		Process process = new Process(objects.getFuncoes(),newPcb);
+		memoryManager.selectPartition(process);
+		setProgramSize(objects.getProgramSize()-1);
+		pc = 0;
     }
 
 	/**

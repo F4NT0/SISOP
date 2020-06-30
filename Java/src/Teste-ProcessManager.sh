@@ -1,3 +1,7 @@
+# PROGRAM READER
+javac system/in_out/reader/ProgramReader.java -d compiled_program/
+java -cp compiled_program/ system.in_out.reader.ProgramReader
+
 # PROCESS
 javac system/process/Process.java -d compiled_program/
 java -cp compiled_program/ system.process.Process

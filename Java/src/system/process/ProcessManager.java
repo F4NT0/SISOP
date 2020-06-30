@@ -26,7 +26,7 @@ public class ProcessManager {
         this.ioRequestQueue = new LinkedList<>();
         this.bloquedList = new ArrayList<>();
         this.currentProcess = null;
-        this.allProcess = new ArrayList<>();
+        this.allProcess = new ArrayList<>(4);
     }
 
     /**
@@ -41,22 +41,13 @@ public class ProcessManager {
             for(int j = 0 ; j < allProcess.get(i).getFunctions().size(); j++){
                 System.out.println("TESTE: " + allProcess.get(i).getFunctions().get(j).getOpcode());
             }
-            System.out.println("\n");
+            System.out.println("\n");   
         }
     }
 
-    public void newProcess(ArrayList<FunctionObjects> functions, int pcbNumber) {
-       Process newProcess = new Process(functions,pcbNumber);
-       for(int i = 0 ; i < newProcess.getFunctions().size() ; i++){
-            System.out.println("OPCODE LIDO: " + newProcess.getFunctions().get(i).getOpcode());
-       }
-       allProcess.add(pcbNumber,newProcess);
-       //return newProcess;
+    public void addProcess(Process p,int position) {
+        allProcess.add(position,p);
     }
-
-    // public void addProcess(Process p){
-    //     allProcess.add(p);
-    // }
 
     public Process getNextProcess() {
         if (readyQueue.isEmpty() && currentProcess == null) { return null; }

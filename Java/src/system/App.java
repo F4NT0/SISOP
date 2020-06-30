@@ -1,4 +1,9 @@
 package system;
+import system.cpu.*;
+import system.in_out.reader.*;
+import system.memory.*;
+import system.process.*;
+
 
 /*
  * Steps to run the application: 
@@ -19,7 +24,22 @@ public class App {
 
     public static void main (String args[]) {
       // ÁREA DE TESTES UNITÁRIOS DA CLASSE
-		  System.out.println("🆗 APP COMPILANDO!");
+      System.out.println("🆗 APP COMPILANDO!");
+
+      // Inicializando
+      Memory memoria = new Memory();
+      ControlUnit controlUnit = new ControlUnit(memoria);
+      MemoryManager mm = new MemoryManager(memoria);
+
+      // Criando partições da Memória
+      mm.addPartition(0, 0, 39);
+      mm.addPartition(1, 40, 79);
+
+      
+
+
+
+
     }
     
 }
