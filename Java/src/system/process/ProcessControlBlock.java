@@ -1,5 +1,10 @@
 package system.process;
 
+/**
+CRIADOR DE PROCESS CONTROL BLOCK DO NOSSO SISTEMA OPERACIONAL
+Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
+*/
+
 public class ProcessControlBlock {
     
     private final Integer id;
@@ -24,6 +29,7 @@ public class ProcessControlBlock {
     }
 
     public Integer getId() {return id;}
+    public Integer getPartitionID(){return partitionID;}
     public Integer getProgramCounter() {return programCounter;}
     public ProgramState getProgramState() {return programState;}
     public ContextData getContextData() {return contextData;}

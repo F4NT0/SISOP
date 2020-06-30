@@ -1,4 +1,5 @@
 package system.cpu;
+import system.process.Process;
 
 /**
 --------------------------------------------------------------------------
@@ -114,10 +115,10 @@ public class ControlUnit{
 	 * Carrega o Programa para dentro da Memória
 	 * @param file
 	 */
-    public void loadProgram(String file){
+    public void loadProgram(String file, int newPcb){
         ProgramReader objects = new ProgramReader();
 		objects.readAndCreateFunctions(file);
-		//storeProgram(objects.getFuncoes());
+		Process process = new Process(objects.getFuncoes(),0);
         setProgramSize(objects.getProgramSize()-1);
     }
 

@@ -6,11 +6,9 @@ import system.cpu.ObjectRegister;
 import system.in_out.reader.FunctionObjects;
 
 /**
---------------------------------------------------------------------------
 MEMÓRIA DO NOSSO SISTEMA OPERACIONAL
 Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
--------------------------------------------------------------------------
- */
+*/
 
 
 public class Memory {
@@ -21,23 +19,6 @@ public class Memory {
         memoryArray = new ArrayList<>();
         for(int i = 0; i < memorySize; i++) { memoryArray.add(i, null); }
     }
-
-    
-    // /**
-    //  * Deleta o Valor que está no Index 
-    //  * @param index
-    //  * @return Object
-    //  * @throws IndexOutOfBoundsException
-    //  */
-    // public Object deleteIndex(Integer index) throws IndexOutOfBoundsException {
-    //     if (index < 0 || index >= memorySize) {
-    //         throw new IndexOutOfBoundsException("Illegal access ocurred.");
-    //     }
-    //     Object original = memoryArray.get(index);
-    //     memoryArray.set(index, null);
-    //     return original;
-    // }
-
     
     public Integer size() {return memorySize;}
 

@@ -72,6 +72,12 @@ public class ProgramReader{
             funcoes.removeAll(funcoes);
         }
     }
+
+    public void testeFunctions(){
+        for(int i = 0 ; i < funcoes.size() ; i++){
+            System.out.println("OPCODE: " + funcoes.get(i).getOpcode());
+        }
+    }
    
     /**
      * Método que cria e controi os Objetos de Função
@@ -189,6 +195,7 @@ public class ProgramReader{
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+
     }
 
     public static void main(String[] args){

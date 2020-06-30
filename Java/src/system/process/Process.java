@@ -52,6 +52,13 @@ public class Process {
      * @return
      */
     public ArrayList<FunctionObjects> getFunctions() {return functions;}
+    
+    public void printOpcodes(){
+        for(int i = 0 ; i < getFunctions().size(); i++){
+            System.out.println("OPCODE: " + getFunctions().get(i).getOpcode());
+        }
+    }
+    
     public static void main(String[] args){
 		System.out.println("🆗 PROCESS COMPILANDO!");
     } 

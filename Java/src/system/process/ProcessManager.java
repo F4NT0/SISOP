@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import system.in_out.reader.*;
+
 /**
 --------------------------------------------------------------------------
 GERENTE DE PROCESSOS NO NOSSO SISTEMA OPERACIONAL
@@ -17,19 +19,44 @@ public class ProcessManager {
     private Queue <Process> readyQueue, ioRequestQueue;
     private List <Process> bloquedList;
     private Process currentProcess;
+    private ArrayList <Process> allProcess;
 
     public ProcessManager() {
         this.readyQueue = new LinkedList<>();
         this.ioRequestQueue = new LinkedList<>();
         this.bloquedList = new ArrayList<>();
         this.currentProcess = null;
+        this.allProcess = new ArrayList<>();
     }
 
-    public void newProcess() {
-        // cria processo
-        // seta pcb (pode não precisar, pois cria indiretamente)
-        // coloca processo na fila ready
+    /**
+     * Número de todos os Processos criados
+     * @return Integer
+     */
+    public Integer getAllProcessSize(){return allProcess.size();}
+    
+    
+    public void verifyOpcode(){
+        for(int i = 0 ; i < allProcess.size() ; i++){
+            for(int j = 0 ; j < allProcess.get(i).getFunctions().size(); j++){
+                System.out.println("TESTE: " + allProcess.get(i).getFunctions().get(j).getOpcode());
+            }
+            System.out.println("\n");
+        }
     }
+
+    public void newProcess(ArrayList<FunctionObjects> functions, int pcbNumber) {
+       Process newProcess = new Process(functions,pcbNumber);
+       for(int i = 0 ; i < newProcess.getFunctions().size() ; i++){
+            System.out.println("OPCODE LIDO: " + newProcess.getFunctions().get(i).getOpcode());
+       }
+       allProcess.add(pcbNumber,newProcess);
+       //return newProcess;
+    }
+
+    // public void addProcess(Process p){
+    //     allProcess.add(p);
+    // }
 
     public Process getNextProcess() {
         if (readyQueue.isEmpty() && currentProcess == null) { return null; }
