@@ -35,7 +35,11 @@ public class App {
       mm.addPartition(0, 0, 39);
       mm.addPartition(1, 40, 79);
 
+      // Salvando o Programa na Partição de Memória
+      controlUnit.loadProgram("prog.txt", 0, mm);
       
+
+
 
 
 

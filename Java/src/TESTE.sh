@@ -2,10 +2,6 @@
 # ARQUIVO PARA TESTAR O PROGRAMA
 #--------------------------------
 
-# App
-javac system/App.java -d compiled_program/
-java -cp compiled_program/ system.App
-
 # CPU
 javac system/cpu/Cpu.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Cpu
@@ -57,6 +53,10 @@ java -cp compiled_program/ system.cpu.ControlUnit
 # ASSEMBLY
 javac system/cpu/Assembly.java -d compiled_program/
 java -cp compiled_program/ system.cpu.Assembly
+
+# App
+javac system/App.java -d compiled_program/
+java -cp compiled_program/ system.App
 
 
 # Finalização
