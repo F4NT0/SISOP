@@ -1,11 +1,9 @@
 package system.memory;
 
 /**
---------------------------------------------------------------------------
 CRIADOR DE PARTIÇÕES NA MEMÓRIA
 Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
--------------------------------------------------------------------------
- */
+*/
 
 public class Partition {
     private int id;

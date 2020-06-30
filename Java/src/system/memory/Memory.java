@@ -22,35 +22,7 @@ public class Memory {
         for(int i = 0; i < memorySize; i++) { memoryArray.add(i, null); }
     }
 
-    // /**
-    //  * Pega um Objeto de uma Posição da Memória
-    //  * @param index 
-    //  * @return Object
-    //  * @throws IndexOutOfBoundsException
-    //  */
-    // public Object getFromIndex(Integer index) throws IndexOutOfBoundsException {
-    //     if (index < 0 || index >= memorySize) {
-    //         throw new IndexOutOfBoundsException("Illegal access ocurred.");
-    //     }
-    //     return memoryArray.get(index);
-    // }
-
-    // /**
-    //  * Adiciona o Valor numa Posição da Memória
-    //  * @param index
-    //  * @param object
-    //  * @return Object
-    //  * @throws IndexOutOfBoundsException
-    //  */
-    // public Object setIndexElement(Integer index, Object object) throws IndexOutOfBoundsException {
-    //     if (index < 0 || index >= memorySize) {
-    //         throw new IndexOutOfBoundsException("Illegal access ocurred.");
-    //     }
-    //     Object original = memoryArray.get(index);
-    //     memoryArray.set(index, object);
-    //     return original;
-    // }
-
+    
     // /**
     //  * Deleta o Valor que está no Index 
     //  * @param index
@@ -72,15 +44,19 @@ public class Memory {
     /**
      * Testa o Status 
      */
-    public void getMemory(){
-        // TODO: tem que ser por size(), botei 20 só para teste
-        for(int i = 0 ; i < 20 ; i++){
+    public void getMemory(int begin,int limit){
+        for(int i = begin ; i < limit ; i++){
             System.out.println("Posição " + i + ": " + memoryArray.get(i));
         }
     }
 
+
+    // ===========================================
+    // INTERAGINDO COM OS REGISTRADORES DA MEMÓRIA
+    // ===========================================
+
     /**
-     * Retorna o Objeto de uma Posição da Memória
+     * Retorna o Objeto Registrador de uma Posição da Memória
      * @param position
      * @return object ObjectRegister
      * @throws IndexOutOfBoundsException
@@ -173,14 +149,20 @@ public class Memory {
     // =====================================
 
     /**
-     * Adiciona o Programa lido na memória
-     * @param sizeProgram
+     * Adiciona cada Objeto FunctionObjects dentro da Memória pelo 
+     * MemoryManager(Método malloc)
+     * @param indexPartition
      * @param program
+     * @return FunctionObjects object
+     * @throws IndexOutOfBoundsException
      */
-    public void setProgram(int sizeProgram,ArrayList<FunctionObjects> program){
-        for(int i = 0 ; i < sizeProgram ; i++){
-            memoryArray.set(i,program.get(i));
+    public FunctionObjects setProgram(int indexPartition,FunctionObjects program) throws IndexOutOfBoundsException{
+        if (indexPartition < 0 || indexPartition >= memorySize) {
+            throw new IndexOutOfBoundsException("Illegal access ocurred.");
         }
+        FunctionObjects original = (FunctionObjects) memoryArray.get(indexPartition);
+        memoryArray.set(indexPartition, program);
+        return original;
     }
 
     /**
@@ -192,6 +174,39 @@ public class Memory {
         return (FunctionObjects) memoryArray.get(pc);
     }
 
+    // ==========================================
+    // FUNÇÕES PARA INTERAGIR COM TODA A PARTIÇÃO
+    // ==========================================
+
+    /**
+     * Pega um Objeto qualquer da Memória
+     * @param index 
+     * @return Object
+     * @throws IndexOutOfBoundsException
+     */
+    public Object getFromIndex(Integer index) throws IndexOutOfBoundsException{
+        if (index < 0 || index >= memorySize) {
+            throw new IndexOutOfBoundsException("Illegal access ocurred.");
+        }
+        return memoryArray.get(index);
+    }
+
+    /**
+     * Adiciona o valor objeto qualquer numa Posição da Memória
+     * principalmente para deixar null uma posição da memória
+     * @param index
+     * @param object
+     * @return Object
+     * @throws IndexOutOfBoundsException
+     */
+    public Object setIndexElement(Integer index, Object object) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= memorySize) {
+            throw new IndexOutOfBoundsException("Illegal access ocurred.");
+        }
+        Object original = memoryArray.get(index);
+        memoryArray.set(index, object);
+        return original;
+    }
 
 
 

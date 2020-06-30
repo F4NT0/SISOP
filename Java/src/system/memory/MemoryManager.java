@@ -31,7 +31,11 @@ public class MemoryManager {
         this.partitions = new LinkedList<>();
     }
 
-    
+    /**
+     * Verifica se a Partição está Liberada para adicionar o Programa
+     * @param p
+     * @return
+     */
     public boolean isPartitionAvailable(Partition p) {
         return p.isAvailable();
     }
@@ -76,20 +80,24 @@ public class MemoryManager {
     
 
     /**
-     * Método para alocar uma Partição em um Processo
+     * Método para Adicionar o Programa na Memória
      * @param pa
      * @param p
      */
     private void malloc(Partition pa, Process p) {
         for(int i = 0; i < p.getFunctions().size() ; i++) {
-            //memory.setIndexElement(pa.getRegisterBase() + i, p.getFunctions().get(i));
-
+        memory.setProgram(pa.getRegisterBase() + i, p.getFunctions().get(i));
         }
         pa.lockPartition();
         p.getPCB().setProgramState(ProgramState.READY);
         p.getPCB().setPartitionID(pa.getID());
     }
 
+    /**
+     * Método para selecionar a Partição que o Processo vai rodar
+     * @param p
+     * @return boolean
+     */
     public boolean selectPartition(Process p) {
         for(Partition pa : partitions) {
             if(pa.isAvailable()) {
@@ -100,13 +108,39 @@ public class MemoryManager {
         return false;
     }
 
-    //Falta printar resultado do programa.
-    // public void deleteProgram(Partition pa) {
-    //     for(int i = pa.getRegisterBase(); i <= pa.getRegisterLimit() - 1; i++) {
-    //         if(!(memory.getFromIndex(i).equals(null))) 
-    //             memory.setIndexElement(i, null);
-    //     }
-    // }
+    /**
+    * Imprime todas as Partições no Terminal
+    */
+    public void printPartitions(){
+        for(int i = 0 ; i < partitions.size() ; i++){
+            System.out.println("\n Particao " + partitions.get(i).getID() + " \n");
+            memory.getMemory(partitions.get(i).getRegisterBase(), partitions.get(i).getRegisterLimit());
+        }
+    }
+
+    /**
+    * Imprime uma Partição especifica no Terminal
+    */
+    public void printPartition(Partition pa){
+            System.out.println("\n Particao " + pa.getID() + " \n");
+            memory.getMemory(pa.getRegisterBase(), pa.getRegisterLimit());
+    }
+
+    /**
+     * Deleta todos os Objetos de uma Partição
+     * @param pa
+     */
+    public void deleteProgram(Partition pa) {
+        for(int i = pa.getRegisterBase(); i < pa.getRegisterLimit(); i++) {
+          try{
+            if(!(memory.getFromIndex(i) == null)){ 
+                memory.setIndexElement(i, null);
+            }
+          }catch (NullPointerException e){
+              System.err.println("Erro: " + e);
+          }
+        }
+    }
 
     // private Integer append(Object object) throws OutOfMemoryError {
     //     for (Integer i = 0; i < memory.size(); i++) {

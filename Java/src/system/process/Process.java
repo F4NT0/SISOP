@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import system.in_out.reader.FunctionObjects;
 
 /**
---------------------------------------------------------------------------
 CRIADOR DE PROCESSOS NO SISTEMA OPERACIONAL
 Criadores: Gabriel Fanto Stundner,Lucas Leal,Luiz Guerra,Matheus Ferreira
--------------------------------------------------------------------------
 */
 
 public class Process {

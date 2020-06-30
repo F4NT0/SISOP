@@ -6,7 +6,7 @@ public class ProcessControlBlock {
     private Integer programCounter;
     private ProgramState programState;
     private ContextData contextData;
-    //private int partitionID;
+    private int partitionID;
 
     // Construtores
     public ProcessControlBlock (Integer id) {
@@ -54,7 +54,11 @@ public class ProcessControlBlock {
      */
     public void setProgramState(ProgramState programState) {this.programState = programState;}
 
-    //public void setPartitionID(int id) {this.partitionID = id;}
+    /**
+     * Define o ID da Partição no MemoryManager
+     * @param id
+     */
+    public void setPartitionID(int id) {this.partitionID = id;}
 
     public static void main(String[] args){
         // ÁREA DE TESTES UNITÁRIOS DA CLASSE
